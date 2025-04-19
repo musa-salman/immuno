@@ -44,6 +44,12 @@ TagManager:
   - name: background
     uniqueID: 15992943
     locked: 0
+  - name: layer_1
+    uniqueID: 2726633219
+    locked: 0
   - name: platform
     uniqueID: 1368464661
+    locked: 0
+  - name: player
+    uniqueID: 2460186627
     locked: 0
