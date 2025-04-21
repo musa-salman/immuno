@@ -25,6 +25,7 @@ public class PlayerMovment : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
         float horizontalInput = Input.GetAxis("Horizontal");
+
         body.velocity = new Vector2( horizontalInput* speed, body.velocity.y);
 
         if (mainCamera != null)
@@ -59,6 +60,14 @@ public class PlayerMovment : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             jumpCount = 0;
+        }
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            
+            if (contact.normal.y < -0.5f)
+            {
+                jumpCount = maxJumps;
+            }
         }
     }
 
