@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7527148679062365569}
   - component: {fileID: 4846009480665003556}
   - component: {fileID: 5884556310398012061}
+  - component: {fileID: 1966661055319827078}
   m_Layer: 0
   m_Name: background
   m_TagString: Untagged
@@ -1620,3 +1621,16 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &1966661055319827078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334513735670014104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e86684e58b68d96b29e8f266925c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxMultiplier: {x: 0.6, y: 0.6}
