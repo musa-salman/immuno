@@ -43,7 +43,7 @@ public class PlayerMovment : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && jumpCount < maxJumps)
+        if ((Input.GetKeyDown(KeyCode.W)) && jumpCount < maxJumps)
         {
             Jump();
         }
