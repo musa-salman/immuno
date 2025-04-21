@@ -46,13 +46,13 @@ public class PlayerMovment : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && jumpCount < maxJumps)
         {
             Jump();
-            jumpCount++;
         }
     }
 
     private void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, jumpForce);
+        jumpCount++;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -63,7 +63,7 @@ public class PlayerMovment : MonoBehaviour
         }
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            
+
             if (contact.normal.y < -0.5f)
             {
                 jumpCount = maxJumps;
