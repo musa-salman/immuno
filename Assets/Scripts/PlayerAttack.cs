@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown;
+    [SerializeField] private float attackCooldown = 0.5f;
     [SerializeField] private Transform bulletPoint;
     [SerializeField] private GameObject[] bullets;
 
@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer > attackCooldown)
+        if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer > attackCooldown && playerMovement.canAttack())
         {
             Attack();
         }
@@ -27,8 +27,20 @@ public class PlayerAttack : MonoBehaviour
     private void Attack()
     {
         cooldownTimer = 0;
-        bullets[0].transform.position = bulletPoint.position;
-        bullets[0].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+        bullets[FindBullet()].transform.position = bulletPoint.position;
+        bullets[FindBullet()].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+    }
+
+    private int FindBullet()
+    {
+        for (int i = 0; i < bullets.Length; i++)
+        {
+            if (!bullets[i].activeInHierarchy)
+            {
+                return i;
+            }
+        }
+        return 0;
     }
 
 }

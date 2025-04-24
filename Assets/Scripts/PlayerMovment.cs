@@ -63,12 +63,16 @@ public class PlayerMovment : MonoBehaviour
         }
         foreach (ContactPoint2D contact in collision.contacts)
         {
-
             if (contact.normal.y < -0.5f)
             {
                 jumpCount = maxJumps;
             }
         }
     }
+
+    public bool canAttack()
+    {
+        return true;
+    } 
 
 }
