@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
-    [SerializeField] private float speed = 5; 
+    [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 6f;
+    [SerializeField] private float dashForce = 125f; 
+    [SerializeField] private float dashCooldown = 0.5f;
 
-    private Rigidbody2D body; 
-    private Transform mainCamera; 
-
+    private Rigidbody2D body;
+    private Transform mainCamera;
     private int jumpCount = 0;
-
     private int maxJumps = 2;
+
+    private float lastDashTime = -Mathf.Infinity;
+    private float lastKeyPressTime = -Mathf.Infinity;
+    private string lastKeyPressed = "";
 
 
     private void Awake()
@@ -25,6 +29,8 @@ public class PlayerMovment : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
         float horizontalInput = Input.GetAxis("Horizontal");
+
+        // HandleDash();
 
         body.velocity = new Vector2( horizontalInput* speed, body.velocity.y);
 
@@ -53,6 +59,37 @@ public class PlayerMovment : MonoBehaviour
     {
         body.velocity = new Vector2(body.velocity.x, jumpForce);
         jumpCount++;
+    }
+
+    private void HandleDash()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (lastKeyPressed == "D" && Time.time - lastKeyPressTime < 0.2f && Time.time - lastDashTime > dashCooldown)
+            {
+                Teleport(Vector2.right);
+            }
+            lastKeyPressed = "D";
+            lastKeyPressTime = Time.time;
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (lastKeyPressed == "A" && Time.time - lastKeyPressTime < 0.2f && Time.time - lastDashTime > dashCooldown)
+            {
+                Teleport(Vector2.left);
+            }
+            lastKeyPressed = "A";
+            lastKeyPressTime = Time.time;
+        }
+    }
+
+    private void Teleport(Vector2 direction)
+    {
+        float teleportDistance = 5f;
+        Vector3 newPosition = transform.position + new Vector3(direction.x * teleportDistance, 0, 0);
+        transform.position = newPosition;
+        lastDashTime = Time.time;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
