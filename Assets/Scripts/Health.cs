@@ -29,7 +29,15 @@ public class Health : MonoBehaviour
         {
             if (!isDead)
             {
-                GetComponent<PlayerMovment>().enabled = false;
+                if (GetComponent<PlayerMovment>() != null)
+                {
+                    GetComponent<PlayerMovment>().enabled = false;
+                }
+
+                if (GetComponent<Enemy>() != null)
+                {
+                    GetComponent<Enemy>().enabled = false;
+                }
                 isDead = true;
             }
         }

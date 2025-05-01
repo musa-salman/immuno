@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Attack Parameters")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private float damage;
     [SerializeField] private float rangeX;
     [SerializeField] private float rangeY;
+    [Header("Collider Parameters")]
     [SerializeField] private BoxCollider2D boxCollider;
+    [Header("Player Layer")]
     [SerializeField] private LayerMask playerLayer;
     private float cooldownTimer = Mathf.Infinity;
+    [Header("Range Attack")]
+    [SerializeField] private Transform bulletPoint;
+    [SerializeField] private GameObject[] bullets;
 
-    private Health playerHealth;
 
     private void Update()
     {
@@ -21,7 +26,7 @@ public class Enemy : MonoBehaviour
             if (cooldownTimer >= attackCooldown)
             {
                 cooldownTimer = 0;
-                DamagePlayer();
+                RangedAttack();
             }
         }
     }
@@ -39,7 +44,6 @@ private bool PlayerInSight()
             Mathf.Sign(distanceToPlayerX) == Mathf.Sign(transform.localScale.x) &&
             distanceToPlayerY <= rangeY)
         {
-            playerHealth = player.GetComponent<Health>();
             return true;
         }
     }
@@ -55,12 +59,22 @@ private void OnDrawGizmos()
     Gizmos.DrawWireCube(center, size);
 }
 
-    private void DamagePlayer()
+    private void RangedAttack()
     {
-        if (PlayerInSight())
+        cooldownTimer = 0;
+        bullets[FindBullet()].transform.position = bulletPoint.position;
+        bullets[FindBullet()].GetComponent<EnemyProjectile>().ActivateProjectile(Mathf.Sign(transform.localScale.x));
+    }
+
+    private int FindBullet()
+    {
+        for (int i = 0; i < bullets.Length; i++)
         {
-            playerHealth.TakeDamage(damage);
-            cooldownTimer = 0;
+            if (!bullets[i].activeInHierarchy)
+            {
+                return i;
+            }
         }
+        return 0;
     }
 }
