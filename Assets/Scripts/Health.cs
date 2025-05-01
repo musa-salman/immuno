@@ -37,6 +37,7 @@ public class Health : MonoBehaviour
                 if (GetComponent<Enemy>() != null)
                 {
                     GetComponent<Enemy>().enabled = false;
+                    gameObject.SetActive(false);
                 }
                 isDead = true;
             }
