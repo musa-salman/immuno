@@ -718,12 +718,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 1
   damage: 0.5
-  range: 4
+  rangeX: 5
+  rangeY: 3
   boxCollider: {fileID: 511788666}
   playerLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  ydistanceToPlayer: 3
 --- !u!61 &511788666
 BoxCollider2D:
   m_ObjectHideFlags: 0

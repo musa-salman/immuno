@@ -5,9 +5,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackCooldown;
     [SerializeField] private float damage;
     [SerializeField] private float rangeX;
+    [SerializeField] private float rangeY;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private float rangeY = 5f;
     private float cooldownTimer = Mathf.Infinity;
 
     private Health playerHealth;
@@ -35,9 +35,9 @@ private bool PlayerInSight()
         float distanceToPlayerX = player.transform.position.x - transform.position.x;
         float distanceToPlayerY = Mathf.Abs(player.transform.position.y - transform.position.y);
 
-        if (Mathf.Abs(distanceToPlayerX) <= range &&
+        if (Mathf.Abs(distanceToPlayerX) <= rangeX &&
             Mathf.Sign(distanceToPlayerX) == Mathf.Sign(transform.localScale.x) &&
-            distanceToPlayerY <= ydistanceToPlayer)
+            distanceToPlayerY <= rangeY)
         {
             playerHealth = player.GetComponent<Health>();
             return true;
@@ -50,8 +50,8 @@ private bool PlayerInSight()
 private void OnDrawGizmos()
 {
     Gizmos.color = Color.red;
-    Vector3 center = transform.position + Vector3.right * range / 2 * (transform.localScale.x / Mathf.Abs(transform.localScale.x));
-    Vector3 size = new Vector3(range, ydistanceToPlayer * 2, 0);
+    Vector3 center = transform.position + Vector3.right * rangeX / 2 * (transform.localScale.x / Mathf.Abs(transform.localScale.x));
+    Vector3 size = new Vector3(rangeX, rangeY * 2, 0);
     Gizmos.DrawWireCube(center, size);
 }
 
