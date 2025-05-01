@@ -4,10 +4,10 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float attackCooldown;
     [SerializeField] private float damage;
-    [SerializeField] private float range;
+    [SerializeField] private float rangeX;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private float ydistanceToPlayer = 5f;
+    [SerializeField] private float rangeY = 5f;
     private float cooldownTimer = Mathf.Infinity;
 
     private Health playerHealth;
@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
                 DamagePlayer();
             }
         }
-        Debug.Log(PlayerInSight());
     }
 
 private bool PlayerInSight()
