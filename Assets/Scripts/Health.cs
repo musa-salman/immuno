@@ -3,7 +3,13 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
+    [SerializeField] private float regenRate = 0.01f;
+    [SerializeField] private float regenDelay = 10f;
+
     public float currentHealth { get; private set; }
+
+    private bool isDead = false;
+    private float lastDamageTime; 
 
     private void Awake()
     {
@@ -13,13 +19,19 @@ public class Health : MonoBehaviour
     public void TakeDamage(float _damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+        lastDamageTime = Time.time;
+
         if (currentHealth > 0)
         {
             // Play hurt animation or sound here
         }
         else
         {
-            // Play death animation or sound here
+            if (!isDead)
+            {
+                GetComponent<PlayerMovment>().enabled = false;
+                isDead = true;
+            }
         }
     }
 
@@ -29,5 +41,15 @@ public class Health : MonoBehaviour
         {
             TakeDamage(0.25f);
         }
+
+        if (!isDead && Time.time - lastDamageTime >= regenDelay && currentHealth < startingHealth)
+        {
+            RegenerateHealth();
+        }
+    }
+
+    private void RegenerateHealth()
+    {
+        currentHealth = Mathf.Clamp(currentHealth + regenRate * Time.deltaTime, 0, startingHealth);
     }
 }
