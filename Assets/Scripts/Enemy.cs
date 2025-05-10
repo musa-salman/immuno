@@ -63,7 +63,7 @@ private void OnDrawGizmos()
     {
         cooldownTimer = 0;
         bullets[FindBullet()].transform.position = bulletPoint.position;
-        bullets[FindBullet()].GetComponent<EnemyProjectile>().ActivateProjectile(Mathf.Sign(transform.localScale.x));
+        bullets[FindBullet()].GetComponent<EnemyProjectile>().ActivateProjectile(transform.localScale.x);
     }
 
     private int FindBullet()
