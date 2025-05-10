@@ -10,7 +10,14 @@ public class EnemyProjectile : EnemyDamage
     public void ActivateProjectile(float _direction)
     {
         lifetime = 0;
-        direction = _direction; 
+        if (_direction < 0)
+        {
+            direction = _direction; 
+        }
+        else
+        {
+            direction = -_direction; 
+        }
         gameObject.SetActive(true);
     }
 
