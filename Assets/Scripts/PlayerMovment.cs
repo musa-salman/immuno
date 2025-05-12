@@ -1,20 +1,29 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 public class PlayerMovment : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 6f;
-    [SerializeField] private float dashForce = 125f; 
+    [SerializeField] private float dashSpeed = 20f; 
     [SerializeField] private float dashCooldown = 0.5f;
+    [SerializeField] private float maxSpeed = 5f;
+    // [SerializeField] private bool invincble = false;
 
     private Rigidbody2D body;
     private Transform mainCamera;
     private int jumpCount = 0;
     private int maxJumps = 2;
 
-    private float lastDashTime = -Mathf.Infinity;
+    private char lastKeyPressed;
     private float lastKeyPressTime = -Mathf.Infinity;
-    private string lastKeyPressed = "";
+    private bool CanDash = true;
+    private bool isDashing = false;
+    private float DashPower = 2f;
+    private float DashTime = 0.2f;
+    private float DashCooldown = 1f;
+    
+
 
 
     private void Awake()
@@ -28,17 +37,20 @@ public class PlayerMovment : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-
-        // HandleDash();
-
-        body.velocity = new Vector2( horizontalInput* speed, body.velocity.y);
-
         if (mainCamera != null)
         {
             mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
         }
+        if (isDashing)
+        {
+            return;
+        }
 
+        float horizontalInput = Input.GetAxis("Horizontal");
+        var new_speed = body.velocity.x + horizontalInput * speed;
+        var curr_vel = new Vector2(Mathf.Abs(new_speed) > maxSpeed? horizontalInput * maxSpeed : new_speed, body.velocity.y);
+
+        body.velocity = curr_vel;
         if (horizontalInput > 0.01f)
         {
             transform.localScale = Vector3.one;
@@ -53,6 +65,9 @@ public class PlayerMovment : MonoBehaviour
         {
             Jump();
         }
+
+        HandleDash();
+
     }
 
     private void Jump()
@@ -63,33 +78,25 @@ public class PlayerMovment : MonoBehaviour
 
     private void HandleDash()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && CanDash)
         {
-            if (lastKeyPressed == "D" && Time.time - lastKeyPressTime < 0.2f && Time.time - lastDashTime > dashCooldown)
-            {
-                Teleport(Vector2.right);
-            }
-            lastKeyPressed = "D";
-            lastKeyPressTime = Time.time;
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (lastKeyPressed == "A" && Time.time - lastKeyPressTime < 0.2f && Time.time - lastDashTime > dashCooldown)
-            {
-                Teleport(Vector2.left);
-            }
-            lastKeyPressed = "A";
-            lastKeyPressTime = Time.time;
+            StartCoroutine(Dash(transform.localScale.x));
         }
     }
 
-    private void Teleport(Vector2 direction)
+    private IEnumerator Dash(float direction)
     {
-        float teleportDistance = 5f;
-        Vector3 newPosition = transform.position + new Vector3(direction.x * teleportDistance, 0, 0);
-        transform.position = newPosition;
-        lastDashTime = Time.time;
+        CanDash = false;
+        isDashing = true;
+        float og_gravity = body.gravityScale;
+        body.gravityScale = 0f;
+        body.velocity = new Vector2(Mathf.Abs(body.velocity.x) > 0.1f? body.velocity.x * DashPower : speed * direction * DashPower, body.velocity.y);
+        Debug.Log(body.velocity.x);
+        yield return new WaitForSeconds(DashTime);
+        body.gravityScale = og_gravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        CanDash = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -100,6 +107,7 @@ public class PlayerMovment : MonoBehaviour
         }
         foreach (ContactPoint2D contact in collision.contacts)
         {
+
             if (contact.normal.y < -0.5f)
             {
                 jumpCount = maxJumps;
