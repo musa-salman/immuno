@@ -8,7 +8,8 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private float dashSpeed = 20f; 
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private float maxSpeed = 5f;
-    // [SerializeField] private bool invincble = false;
+
+    private Animator animator;
 
     private Rigidbody2D body;
     private Transform mainCamera;
@@ -29,7 +30,7 @@ public class PlayerMovment : MonoBehaviour
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-
+        animator = GetComponent<Animator>();
         mainCamera = Camera.main.transform;
     }
 
@@ -102,9 +103,7 @@ public class PlayerMovment : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
-        {
             jumpCount = 0;
-        }
         foreach (ContactPoint2D contact in collision.contacts)
         {
 
@@ -113,6 +112,12 @@ public class PlayerMovment : MonoBehaviour
                 jumpCount = maxJumps;
             }
         }
+    }
+
+    private void FixedUpdate() 
+    {
+        animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
+        animator.SetFloat("yVelocity", body.velocity.y);
     }
 
     public bool canAttack()
