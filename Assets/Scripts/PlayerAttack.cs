@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform bulletPoint;
     [SerializeField] private GameObject[] bullets;
 
+    private Animator animator;
     private PlayerMovment playerMovement;
 
     private float cooldownTimer = Mathf.Infinity;
@@ -13,12 +14,16 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovment>();
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer > attackCooldown && playerMovement.canAttack())
         {
+           animator.SetTrigger("Attack");
+
             Attack();
         }
         cooldownTimer += Time.deltaTime;

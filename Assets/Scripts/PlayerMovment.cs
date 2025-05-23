@@ -24,14 +24,12 @@ public class PlayerMovment : MonoBehaviour
     private float DashTime = 0.5f;
     private float DashCooldown = 1.5f;
     
-
-
-
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         mainCamera = Camera.main.transform;
+        
     }
 
     private void Update()
@@ -55,7 +53,7 @@ public class PlayerMovment : MonoBehaviour
         {
             curr_vel.x = 0;
         }
-        
+
         body.velocity = curr_vel;
         if (horizontalInput > 0.01f)
         {
