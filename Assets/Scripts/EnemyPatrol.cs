@@ -12,8 +12,16 @@ public class EnemyPatrol : MonoBehaviour
     [Header("Movement Parameters")]
     [SerializeField] private float speed;
 
+    private float stuckTimer = 0f;
+    [SerializeField] private float stuckCheckInterval = 0.1f;
+    [SerializeField] private float stuckThreshold = 0.1f;
+
+    private float prev_x;
+
     private Vector3 initScale;
     private bool movingLeft;
+
+
 
     private void Awake()
     {
@@ -26,23 +34,41 @@ public class EnemyPatrol : MonoBehaviour
         {
             if (enemy.position.x > leftEdge.position.x)
             {
-                MoveInDirection(-1); 
+                MoveInDirection(-1);
             }
             else
             {
-                DirectionChange(); 
+                DirectionChange();
             }
         }
         else
         {
             if (enemy.position.x < rightEdge.position.x)
             {
-                MoveInDirection(1); 
+                MoveInDirection(1);
             }
             else
             {
-                DirectionChange(); 
+                DirectionChange();
             }
+        }
+
+        float movedDistance = Mathf.Abs(enemy.position.x - prev_x);
+        if (movedDistance < stuckThreshold)
+        {
+            stuckTimer += Time.deltaTime;
+            if (stuckTimer >= stuckCheckInterval)
+            {
+                stuckTimer = 0f;
+                DirectionChange();
+            }
+
+            prev_x = enemy.position.x;
+        } 
+        else
+        {
+            stuckTimer = 0f;
+            prev_x = enemy.position.x;
         }
     }
 
@@ -56,6 +82,6 @@ public class EnemyPatrol : MonoBehaviour
 
     private void DirectionChange()
     {
-        movingLeft = !movingLeft; 
+        movingLeft = !movingLeft;
     }
 }
