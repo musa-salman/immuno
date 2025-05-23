@@ -21,8 +21,8 @@ public class PlayerMovment : MonoBehaviour
     private bool CanDash = true;
     private bool isDashing = false;
     private float DashPower = 2f;
-    private float DashTime = 0.2f;
-    private float DashCooldown = 1f;
+    private float DashTime = 0.5f;
+    private float DashCooldown = 1.5f;
     
 
 
@@ -49,8 +49,13 @@ public class PlayerMovment : MonoBehaviour
 
         float horizontalInput = Input.GetAxis("Horizontal");
         var new_speed = body.velocity.x + horizontalInput * speed;
-        var curr_vel = new Vector2(Mathf.Abs(new_speed) > maxSpeed? horizontalInput * maxSpeed : new_speed, body.velocity.y);
+        var curr_vel = new Vector2(Mathf.Abs(new_speed) > maxSpeed ? horizontalInput * maxSpeed : new_speed, body.velocity.y);
 
+        if (Mathf.Abs(curr_vel.x) < 0.8f)
+        {
+            curr_vel.x = 0;
+        }
+        
         body.velocity = curr_vel;
         if (horizontalInput > 0.01f)
         {
