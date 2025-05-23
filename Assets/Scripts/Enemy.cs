@@ -32,33 +32,33 @@ public class Enemy : MonoBehaviour
         }
     }
 
-private bool PlayerInSight()
-{
-    GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-    if (player != null)
+    private bool PlayerInSight()
     {
-        float distanceToPlayerX = player.transform.position.x - transform.position.x;
-        float distanceToPlayerY = Mathf.Abs(player.transform.position.y - transform.position.y);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (Mathf.Abs(distanceToPlayerX) <= rangeX &&
-            Mathf.Sign(distanceToPlayerX) == Mathf.Sign(transform.localScale.x) &&
-            distanceToPlayerY <= rangeY)
+        if (player != null)
         {
-            return true;
+            float distanceToPlayerX = player.transform.position.x - transform.position.x;
+            float distanceToPlayerY = Mathf.Abs(player.transform.position.y - transform.position.y);
+
+            if (Mathf.Abs(distanceToPlayerX) <= rangeX &&
+                Mathf.Sign(distanceToPlayerX) == Mathf.Sign(transform.localScale.x) &&
+                distanceToPlayerY <= rangeY)
+            {
+                return true;
+            }
         }
+
+        return false;
     }
 
-    return false;
-}
-
-private void OnDrawGizmos()
-{
-    Gizmos.color = Color.red;
-    Vector3 center = transform.position + Vector3.right * rangeX / 2 * (transform.localScale.x / Mathf.Abs(transform.localScale.x));
-    Vector3 size = new Vector3(rangeX, rangeY * 2, 0);
-    Gizmos.DrawWireCube(center, size);
-}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 center = transform.position + Vector3.right * rangeX / 2 * (transform.localScale.x / Mathf.Abs(transform.localScale.x));
+        Vector3 size = new Vector3(rangeX, rangeY * 2, 0);
+        Gizmos.DrawWireCube(center, size);
+    }
 
     private void RangedAttack()
     {

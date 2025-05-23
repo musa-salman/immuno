@@ -1014,9 +1014,14 @@ MonoBehaviour:
   leftEdge: {fileID: 2598875631402666908}
   rightEdge: {fileID: 1822615279303143401}
   enemy: {fileID: 51780317640282516}
-  speed: 2
+  baseSpeed: 2
+  speedVariance: 0.5
   stuckCheckInterval: 0.08
   stuckThreshold: 0.03
+  pauseChance: 0.5
+  minWait: 0.2
+  maxWait: 2
+  waitCooldownDuration: 6
 --- !u!1 &5763679974228571137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,15 +1903,15 @@ MonoBehaviour:
   bulletPoint: {fileID: 5984834862359951994}
   bullets:
   - {fileID: 5763679974228571137}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1979881179925419907}
+  - {fileID: 3691129594032255393}
+  - {fileID: 8431223118218505396}
+  - {fileID: 4226015788408457261}
+  - {fileID: 6873762485282951590}
+  - {fileID: 2932343780797444345}
+  - {fileID: 8061241855946981330}
+  - {fileID: 6412535067978881690}
+  - {fileID: 1683542171614001154}
 --- !u!114 &459989983506420825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1919,9 +1924,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d105b506d170044cb4a71275562b4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 2
-  regenRate: 0.1
-  regenDelay: 10
+  startingHealth: 5
+  regenRate: 0
+  regenDelay: 9
 --- !u!50 &7294858900533094692
 Rigidbody2D:
   serializedVersion: 4
