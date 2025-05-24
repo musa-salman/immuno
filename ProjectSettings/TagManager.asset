@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - NonWalkable
   - Enemy
+  - lava
   layers:
   - Default
   - TransparentFX
@@ -44,15 +45,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: nonvisible
+    uniqueID: 1400571903
+    locked: 0
   - name: background
     uniqueID: 15992943
     locked: 0
   - name: layer_1
     uniqueID: 2726633219
     locked: 0
-  - name: platform
-    uniqueID: 1368464661
+  - name: backlavafall
+    uniqueID: 1911321927
     locked: 0
   - name: player
     uniqueID: 2460186627
+    locked: 0
+  - name: lava
+    uniqueID: 2785896469
+    locked: 0
+  - name: platform
+    uniqueID: 1368464661
+    locked: 0
+  - name: lavafall
+    uniqueID: 3610867289
     locked: 0

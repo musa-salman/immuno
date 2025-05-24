@@ -115,6 +115,8 @@ public class PlayerMovment : MonoBehaviour
                 jumpCount = maxJumps;
             }
         }
+
+
     }
 
     private void FixedUpdate() 
