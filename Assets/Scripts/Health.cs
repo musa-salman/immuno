@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -9,7 +11,7 @@ public class Health : MonoBehaviour
     public float currentHealth { get; private set; }
 
     private bool isDead = false;
-    private float lastDamageTime; 
+    private float lastDamageTime;
 
     private void Awake()
     {
@@ -40,7 +42,12 @@ public class Health : MonoBehaviour
                     gameObject.SetActive(false);
                 }
                 isDead = true;
-            }
+
+                if (GetComponent<PlayerMovment>() != null)
+                {
+                    StartCoroutine(HandleDeath());
+                }
+                }
         }
     }
 
@@ -60,5 +67,35 @@ public class Health : MonoBehaviour
     private void RegenerateHealth()
     {
         currentHealth = Mathf.Clamp(currentHealth + regenRate * Time.deltaTime, 0, startingHealth);
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        GameManager.Instance?.RegisterDeath();
+        yield return new WaitForSeconds(1f);
+
+        string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        SceneController.Instance.LoadScene(currentScene, () =>
+        {
+            Debug.Log("Respawning player...");
+        });
+    }
+
+    public void ResetStats()
+    {
+        currentHealth = startingHealth;
+        isDead = false;
+
+        if (GetComponent<PlayerMovment>() != null)
+        {
+            GetComponent<PlayerMovment>().enabled = true;
+        }
+
+        if (GetComponent<Enemy>() != null)
+        {
+            GetComponent<Enemy>().enabled = true;
+            gameObject.SetActive(true);
+        }
+        lastDamageTime = Time.time;
     }
 }
