@@ -71,7 +71,6 @@ public class PlayerMovment : MonoBehaviour
         }
 
         HandleDash();
-
     }
 
     private void Jump()
