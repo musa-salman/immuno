@@ -6,6 +6,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform bulletPoint;
     [SerializeField] private GameObject[] bullets;
 
+    [SerializeField] private AudioClip bulletSound;
+
     private Animator animator;
     private PlayerMovment playerMovement;
 
@@ -31,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack()
     {
+        SoundManager.instance.PlaySound(bulletSound);
         cooldownTimer = 0;
         bullets[FindBullet()].transform.position = bulletPoint.position;
         bullets[FindBullet()].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));

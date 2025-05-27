@@ -131,6 +131,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (5)
@@ -188,6 +208,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (27)
@@ -245,6 +285,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (30)
@@ -377,6 +437,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (4)
@@ -578,6 +658,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (16)
@@ -635,6 +735,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder
@@ -869,6 +989,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (31)
@@ -1018,6 +1158,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (21)
@@ -1075,6 +1235,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (24)
@@ -1199,6 +1379,244 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9fec68411b1b35f1b8b59ce079eb8c9, type: 3}
+--- !u!1 &719928440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 719928441}
+  - component: {fileID: 719928442}
+  - component: {fileID: 719928443}
+  - component: {fileID: 719928444}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &719928441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719928440}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1478323116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &719928442
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719928440}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &719928443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719928440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9f0db2f75c31841a589f7389ad236f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &719928444
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719928440}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6367e156ac5d8664c9bb972b8805d184, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.13
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &738478564 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8622288384124795040, guid: 3fb4424d7e09dbdf58fa42fc94a8aa5b, type: 3}
@@ -1337,6 +1755,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (26)
@@ -1394,6 +1832,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (11)
@@ -7934,6 +8392,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (22)
@@ -7991,10 +8469,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
     - target: {fileID: 2598875631402666908, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.59
       objectReference: {fileID: 0}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (3)
@@ -8052,6 +8550,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (18)
@@ -8114,6 +8632,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (19)
@@ -8171,6 +8709,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (17)
@@ -8233,6 +8791,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (28)
@@ -9059,6 +9637,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (9)
@@ -9116,6 +9714,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (25)
@@ -9213,6 +9831,7 @@ Transform:
   - {fileID: 626902521}
   - {fileID: 1162645299}
   - {fileID: 436486393}
+  - {fileID: 719928441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1537327052
@@ -9223,6 +9842,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (14)
@@ -9347,6 +9986,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (13)
@@ -133327,6 +133986,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (23)
@@ -133456,6 +134135,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (6)
@@ -133580,6 +134279,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (32)
@@ -133637,6 +134356,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (20)
@@ -133694,6 +134433,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (10)
@@ -133751,6 +134510,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (1)
@@ -133813,6 +134592,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (29)
@@ -133870,6 +134669,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (8)
@@ -133927,6 +134746,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (15)
@@ -133984,6 +134823,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (12)
@@ -134116,10 +134975,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
     - target: {fileID: 1822615279303143401, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.18
       objectReference: {fileID: 0}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (2)
@@ -134244,6 +135123,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
+    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
     - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_Name
       value: RangedEnemyHolder (7)
@@ -134382,6 +135281,10 @@ PrefabInstance:
       propertyPath: lavaTilemap
       value: 
       objectReference: {fileID: 957294188}
+    - target: {fileID: 2584139466926132856, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: bulletSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 928283315828f8d4788e50961bb1ebc5, type: 3}
     - target: {fileID: 2584139466926132856, guid: 28d853960d90b766da18afb912ece87d, type: 3}
       propertyPath: bullets.Array.data[0]
       value: 
@@ -134610,6 +135513,34 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[52].y
       value: 0.25839233
       objectReference: {fileID: 0}
+    - target: {fileID: 4252627331146012062, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: dashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b4c9ee06f5558642b303a76471be95c, type: 3}
+    - target: {fileID: 4252627331146012062, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b4c9ee06f5558642b303a76471be95c, type: 3}
+    - target: {fileID: 4252627331146012062, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: floatingSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6469094021375132495, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: hurtSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
+    - target: {fileID: 6469094021375132495, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: deathSoundEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+    - target: {fileID: 6469094021375132495, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: hurtSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
+    - target: {fileID: 6469094021375132495, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: deathSoundPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
