@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform bulletPoint;
     [SerializeField] private GameObject[] bullets;
 
+    [Header("Attack Sound")]
+    [SerializeField] private AudioClip attackSound;
+
 
     private void Update()
     {
@@ -62,6 +65,7 @@ public class Enemy : MonoBehaviour
 
     private void RangedAttack()
     {
+        SoundManager.instance.PlaySound(attackSound);
         cooldownTimer = 0;
         bullets[FindBullet()].transform.position = bulletPoint.position;
         bullets[FindBullet()].GetComponent<EnemyProjectile>().ActivateProjectile(transform.localScale.x);

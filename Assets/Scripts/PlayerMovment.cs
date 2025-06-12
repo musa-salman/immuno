@@ -9,6 +9,11 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private float maxSpeed = 5f;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip dashSound;
+    [SerializeField] private AudioClip floatingSound;
+
     private Animator animator;
 
     private Rigidbody2D body;
@@ -48,6 +53,12 @@ public class PlayerMovment : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         var new_speed = body.velocity.x + horizontalInput * speed;
         var curr_vel = new Vector2(Mathf.Abs(new_speed) > maxSpeed ? horizontalInput * maxSpeed : new_speed, body.velocity.y);
+        bool isWalking = Mathf.Abs(horizontalInput) > 0.01f && Mathf.Abs(body.velocity.x) > 0.1f && jumpCount == 0 && !isDashing;
+
+        if (isWalking)
+        {
+            SoundManager.instance.PlaySound(floatingSound);
+        }
 
         if (Mathf.Abs(curr_vel.x) < 0.8f)
         {
@@ -75,6 +86,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void Jump()
     {
+        SoundManager.instance.PlaySound(jumpSound);
         body.velocity = new Vector2(body.velocity.x, jumpForce);
         jumpCount++;
     }
@@ -83,6 +95,7 @@ public class PlayerMovment : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && CanDash)
         {
+            SoundManager.instance.PlaySound(dashSound);
             StartCoroutine(Dash(transform.localScale.x));
         }
     }

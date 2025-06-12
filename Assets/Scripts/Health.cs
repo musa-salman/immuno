@@ -8,6 +8,16 @@ public class Health : MonoBehaviour
     [SerializeField] private float regenRate = 0.01f;
     [SerializeField] private float regenDelay = 10f;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip hurtSoundPlayer;
+    [SerializeField] private AudioClip hurtSoundEnemy;
+    [SerializeField] private AudioClip deathSoundPlayer;
+    [SerializeField] private AudioClip deathSoundEnemy;
+
+
+
+
+
     public float currentHealth { get; private set; }
 
     private bool isDead = false;
@@ -25,7 +35,14 @@ public class Health : MonoBehaviour
 
         if (currentHealth > 0)
         {
-            // Play hurt animation or sound here
+            if (GetComponent<PlayerMovment>() != null)
+            {
+                SoundManager.instance.PlaySound(hurtSoundPlayer);
+            }
+            else if (GetComponent<Enemy>() != null)
+            {
+                SoundManager.instance.PlaySound(hurtSoundEnemy);
+            }
         }
         else
         {
@@ -33,11 +50,13 @@ public class Health : MonoBehaviour
             {
                 if (GetComponent<PlayerMovment>() != null)
                 {
+                    SoundManager.instance.PlaySound(deathSoundPlayer);
                     GetComponent<PlayerMovment>().enabled = false;
                 }
 
                 if (GetComponent<Enemy>() != null)
                 {
+                    SoundManager.instance.PlaySound(deathSoundEnemy);
                     GetComponent<Enemy>().enabled = false;
                     gameObject.SetActive(false);
                 }
@@ -47,7 +66,7 @@ public class Health : MonoBehaviour
                 {
                     StartCoroutine(HandleDeath());
                 }
-                }
+            }
         }
     }
 
