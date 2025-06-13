@@ -22,6 +22,9 @@ public class Health : MonoBehaviour
 
     private bool isDead = false;
     private float lastDamageTime;
+    [SerializeField] private float hurtSoundCooldown = 0.5f;
+    private float lastHurtSoundTime = -1f;
+
 
     private void Awake()
     {
@@ -35,13 +38,18 @@ public class Health : MonoBehaviour
 
         if (currentHealth > 0)
         {
-            if (GetComponent<PlayerMovment>() != null)
+            if (Time.time - lastHurtSoundTime >= hurtSoundCooldown)
             {
-                SoundManager.instance.PlaySound(hurtSoundPlayer);
-            }
-            else if (GetComponent<Enemy>() != null)
-            {
-                SoundManager.instance.PlaySound(hurtSoundEnemy);
+                if (GetComponent<PlayerMovment>() != null)
+                {
+                    SoundManager.instance.PlaySound(hurtSoundPlayer);
+                }
+                else if (GetComponent<Enemy>() != null)
+                {
+                    SoundManager.instance.PlaySound(hurtSoundEnemy);
+                }
+
+                lastHurtSoundTime = Time.time;
             }
         }
         else
