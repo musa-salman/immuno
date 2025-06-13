@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 4823229902370201750}
   - component: {fileID: 3150457696340076897}
   - component: {fileID: 2380302774128235836}
+  - component: {fileID: 8277570104953805261}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -137,6 +138,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalDeaths: 0
   lastOrgan: 
+--- !u!114 &8277570104953805261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7031516152327300468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def4cac5d06afe88c85300263fd7a882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8779019510097343539
 GameObject:
   m_ObjectHideFlags: 0

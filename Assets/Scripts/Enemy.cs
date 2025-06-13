@@ -20,6 +20,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioClip attackSound;
 
 
+    private void Start()
+    {
+        EnemyManager.Instance.RegisterEnemy();
+    }
+
     private void Update()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);

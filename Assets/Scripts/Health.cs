@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -64,6 +63,7 @@ public class Health : MonoBehaviour
 
                 if (GetComponent<Enemy>() != null)
                 {
+                    EnemyManager.Instance.EnemyKilled();
                     SoundManager.instance.PlaySound(deathSoundEnemy);
                     GetComponent<Enemy>().enabled = false;
                     gameObject.SetActive(false);
