@@ -4,34 +4,33 @@ public class EnemyProjectile : EnemyDamage
 {
     [SerializeField] private float speed;
     [SerializeField] private float resetTime;
-    private float lifetime;
-    private float direction;
 
-    public void ActivateProjectile(float _direction)
+    private float lifetime;
+    private Vector2 moveDirection;
+
+    public void ActivateProjectile(Vector2 targetPosition)
     {
-        lifetime = 0;
-        if (_direction < 0)
-        {
-            direction = _direction; 
-        }
-        else
-        {
-            direction = -_direction; 
-        }
+        lifetime = 0f;
+
+        Vector2 startPosition = transform.position;
+        moveDirection = (targetPosition - startPosition).normalized;
+
+        float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+
         gameObject.SetActive(true);
     }
 
     private void Update()
     {
-        float movementSpeed = speed * Time.deltaTime * direction; 
-        transform.Translate(movementSpeed, 0, 0);
+        transform.Translate(speed * Time.deltaTime * moveDirection, Space.World);
 
         lifetime += Time.deltaTime;
         if (lifetime > resetTime)
             gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private new void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
         gameObject.SetActive(false);

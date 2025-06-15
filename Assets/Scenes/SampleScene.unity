@@ -690,9 +690,7 @@ Transform:
   - {fileID: 896210886}
   - {fileID: 1840859925}
   - {fileID: 1212639206}
-  - {fileID: 1926930317}
   - {fileID: 1725136349}
-  - {fileID: 285026666}
   - {fileID: 923777923}
   - {fileID: 1816114941}
   - {fileID: 446538194}
@@ -916,11 +914,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
---- !u!4 &285026666 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-  m_PrefabInstance: {fileID: 1846117116}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &333809591
 GameObject:
   m_ObjectHideFlags: 0
@@ -113992,83 +113985,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
   m_PrefabInstance: {fileID: 114272425}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1846117116
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 225788991}
-    m_Modifications:
-    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: hurtSoundEnemy
-      value: 
-      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
-    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: deathSoundEnemy
-      value: 
-      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
-    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: hurtSoundPlayer
-      value: 
-      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
-    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: deathSoundPlayer
-      value: 
-      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
-    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: attackSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
-    - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_Name
-      value: RangedEnemyHolder (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 32.830666
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.38306808
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.2183502
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
 --- !u!1 &1884064093
 GameObject:
   m_ObjectHideFlags: 0
@@ -114209,11 +114125,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8735521093305056047, guid: 3fb4424d7e09dbdf58fa42fc94a8aa5b, type: 3}
   m_PrefabInstance: {fileID: 7826446820020705483}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1926930317 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-  m_PrefabInstance: {fileID: 1933648696}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1930581518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114302,83 +114213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15eadc350e945f5ebb66aa778fbbc07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1933648696
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 225788991}
-    m_Modifications:
-    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: hurtSoundEnemy
-      value: 
-      objectReference: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
-    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: deathSoundEnemy
-      value: 
-      objectReference: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
-    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: hurtSoundPlayer
-      value: 
-      objectReference: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
-    - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: deathSoundPlayer
-      value: 
-      objectReference: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
-    - target: {fileID: 3480413249060767196, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: attackSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
-    - target: {fileID: 3661137757912494691, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_Name
-      value: RangedEnemyHolder (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.796889
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.7820396
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.2183502
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
 --- !u!1001 &1943534130
 PrefabInstance:
   m_ObjectHideFlags: 0

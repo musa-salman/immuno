@@ -7,11 +7,22 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float rangeX;
     [SerializeField] private float rangeY;
+
+    [Header("Chase Parameters")]
+    [SerializeField] private float chaseDuration = 2f;
+    [SerializeField] private float chaseSpeed = 2f;
+
+    [Header("Visual Feedback")]
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Color patrolColor = Color.white;
+    [SerializeField] private Color alertColor = Color.red;
+
     [Header("Collider Parameters")]
     [SerializeField] private BoxCollider2D boxCollider;
+
     [Header("Player Layer")]
     [SerializeField] private LayerMask playerLayer;
-    private float cooldownTimer = Mathf.Infinity;
+
     [Header("Range Attack")]
     [SerializeField] private Transform bulletPoint;
     [SerializeField] private GameObject[] bullets;
@@ -19,23 +30,53 @@ public class Enemy : MonoBehaviour
     [Header("Attack Sound")]
     [SerializeField] private AudioClip attackSound;
 
+    private float cooldownTimer = Mathf.Infinity;
+    private float chaseTimer = 0f;
+    private bool hasSeenPlayer = false;
+    private Transform playerTransform;
+    private Vector3 initialScale;
 
     private void Start()
     {
         EnemyManager.Instance.RegisterEnemy();
+        initialScale = transform.localScale;
+        if (spriteRenderer != null)
+            spriteRenderer.color = patrolColor;
     }
 
     private void Update()
     {
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = Quaternion.identity;
         cooldownTimer += Time.deltaTime;
 
         if (PlayerInSight())
         {
+            hasSeenPlayer = true;
+            chaseTimer = chaseDuration;
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+            if (spriteRenderer != null)
+                spriteRenderer.color = alertColor;
+
             if (cooldownTimer >= attackCooldown)
             {
                 cooldownTimer = 0;
                 RangedAttack();
+            }
+        }
+        else if (hasSeenPlayer)
+        {
+            chaseTimer -= Time.deltaTime;
+
+            if (chaseTimer > 0 && playerTransform != null)
+            {
+                ChasePlayer();
+            }
+            else
+            {
+                hasSeenPlayer = false;
+                if (spriteRenderer != null)
+                    spriteRenderer.color = patrolColor;
             }
         }
     }
@@ -46,18 +87,58 @@ public class Enemy : MonoBehaviour
 
         if (player != null)
         {
-            float distanceToPlayerX = player.transform.position.x - transform.position.x;
-            float distanceToPlayerY = Mathf.Abs(player.transform.position.y - transform.position.y);
+            float dx = player.transform.position.x - transform.position.x;
+            float dy = Mathf.Abs(player.transform.position.y - transform.position.y);
 
-            if (Mathf.Abs(distanceToPlayerX) <= rangeX &&
-                Mathf.Sign(distanceToPlayerX) == Mathf.Sign(transform.localScale.x) &&
-                distanceToPlayerY <= rangeY)
+            if (Mathf.Abs(dx) <= rangeX &&
+                Mathf.Sign(dx) == Mathf.Sign(transform.localScale.x) &&
+                dy <= rangeY)
             {
                 return true;
             }
         }
-
         return false;
+    }
+
+    private void ChasePlayer()
+    {
+        if (playerTransform == null) return;
+
+        float direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
+        transform.localScale = new Vector3(Mathf.Abs(initialScale.x) * direction, initialScale.y, initialScale.z);
+        transform.position += new Vector3(direction * Time.deltaTime * chaseSpeed, 0, 0);
+    }
+
+    private void RangedAttack()
+    {
+        SoundManager.instance.PlaySound(attackSound);
+        
+        int index = FindBullet();
+        if (index >= bullets.Length || playerTransform == null)
+            return;
+
+       Vector2 playerPos = playerTransform.position;
+
+        if (index < bullets.Length)
+        {
+            bullets[index].transform.SetParent(null);
+            bullets[index].transform.position = bulletPoint.position;
+            bullets[index].GetComponent<EnemyProjectile>().ActivateProjectile(playerPos);
+            Debug.Log("Enemy fired a projectile at: " + playerPos + " from position: " + bulletPoint.position);
+        }
+    }
+
+
+    private int FindBullet()
+    {
+        for (int i = 0; i < bullets.Length; i++)
+        {
+            if (!bullets[i].activeInHierarchy)
+                return i;
+        }
+
+        Debug.LogWarning("No available bullets found!");
+        return 0;
     }
 
     private void OnDrawGizmos()
@@ -66,25 +147,5 @@ public class Enemy : MonoBehaviour
         Vector3 center = transform.position + Vector3.right * rangeX / 2 * (transform.localScale.x / Mathf.Abs(transform.localScale.x));
         Vector3 size = new Vector3(rangeX, rangeY * 2, 0);
         Gizmos.DrawWireCube(center, size);
-    }
-
-    private void RangedAttack()
-    {
-        SoundManager.instance.PlaySound(attackSound);
-        cooldownTimer = 0;
-        bullets[FindBullet()].transform.position = bulletPoint.position;
-        bullets[FindBullet()].GetComponent<EnemyProjectile>().ActivateProjectile(transform.localScale.x);
-    }
-
-    private int FindBullet()
-    {
-        for (int i = 0; i < bullets.Length; i++)
-        {
-            if (!bullets[i].activeInHierarchy)
-            {
-                return i;
-            }
-        }
-        return 0;
     }
 }

@@ -29,53 +29,25 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private float minWait = 0.2f;
     [SerializeField] private float maxWait = 1.0f;
 
-    private bool isWaiting = false;
-    private float waitTimer = 0f;
-    private float waitDuration = 0f;
-
     [Header("Pause Cooldown")]
     [SerializeField] private float waitCooldownDuration = 5f;
-    private float waitCooldownTimer = 0f;
 
     private float speed;
 
     private void Awake()
     {
         initScale = enemy.localScale;
-        speed = baseSpeed + Random.Range(-speedVariance, speedVariance);
+        speed = baseSpeed;
         prev_x = enemy.position.x;
     }
 
     private void Update()
     {
-        if (waitCooldownTimer > 0f)
-            waitCooldownTimer -= Time.deltaTime;
-
-        if (isWaiting)
-        {
-            waitTimer += Time.deltaTime;
-            if (waitTimer >= waitDuration)
-            {
-                isWaiting = false;
-                waitTimer = 0f;
-                speed = baseSpeed + Random.Range(-speedVariance, speedVariance);
-                DirectionChange();
-            }
-            return;
-        }
-
         if (movingLeft)
         {
             if (enemy.position.x > leftEdge.position.x)
             {
                 MoveInDirection(-1);
-            }
-            else
-            {
-                if (Random.value < pauseChance && waitCooldownTimer <= 0f)
-                    StartRandomWait();
-                else
-                    DirectionChange();
             }
         }
         else
@@ -84,17 +56,10 @@ public class EnemyPatrol : MonoBehaviour
             {
                 MoveInDirection(1);
             }
-            else
-            {
-                if (Random.value < pauseChance && waitCooldownTimer <= 0f)
-                    StartRandomWait();
-                else
-                    DirectionChange();
-            }
         }
 
         float movedDistance = Mathf.Abs(enemy.position.x - prev_x);
-        if (movedDistance < stuckThreshold && !isWaiting)
+        if (movedDistance < stuckThreshold)
         {
             stuckTimer += Time.deltaTime;
             if (stuckTimer >= stuckCheckInterval)
@@ -121,12 +86,5 @@ public class EnemyPatrol : MonoBehaviour
     private void DirectionChange()
     {
         movingLeft = !movingLeft;
-    }
-
-    private void StartRandomWait()
-    {
-        isWaiting = true;
-        waitDuration = Random.Range(minWait, maxWait);
-        waitCooldownTimer = waitCooldownDuration;
     }
 }
