@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class PlayerMovment : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private int speed = 5;
     [SerializeField] private float jumpForce = 6f;
     [SerializeField] private float dashSpeed = 20f; 
     [SerializeField] private float dashCooldown = 0.5f;
@@ -19,27 +19,25 @@ public class PlayerMovment : MonoBehaviour
     private Rigidbody2D body;
     private Transform mainCamera;
     private int jumpCount = 0;
-    private int maxJumps = 2;
+    private readonly int maxJumps = 2;
 
-    private char lastKeyPressed;
-    private float lastKeyPressTime = -Mathf.Infinity;
     private bool CanDash = true;
     private bool isDashing = false;
-    private float DashPower = 2f;
-    private float DashTime = 0.5f;
-    private float DashCooldown = 1.5f;
-    
+    private readonly float DashPower = 2f;
+    private readonly float DashTime = 0.5f;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         mainCamera = Camera.main.transform;
-        
     }
 
     private void Update()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        speed = SkillManager.Instance.GetLevel("surge_motion") + 1;
 
         if (mainCamera != null)
         {
@@ -51,7 +49,7 @@ public class PlayerMovment : MonoBehaviour
         }
 
         float horizontalInput = Input.GetAxis("Horizontal");
-        var new_speed = body.velocity.x + horizontalInput * speed;
+        var new_speed = body.velocity.x + 2 * horizontalInput * speed;
         var curr_vel = new Vector2(Mathf.Abs(new_speed) > maxSpeed ? horizontalInput * maxSpeed : new_speed, body.velocity.y);
         bool isWalking = Mathf.Abs(horizontalInput) > 0.01f && Mathf.Abs(body.velocity.x) > 0.1f && jumpCount == 0 && !isDashing;
 
@@ -76,7 +74,7 @@ public class PlayerMovment : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        if ((Input.GetKeyDown(KeyCode.W)) && jumpCount < maxJumps)
+        if (Input.GetKeyDown(KeyCode.W) && jumpCount < maxJumps)
         {
             Jump();
         }

@@ -11,7 +11,9 @@ public class Projectile : MonoBehaviour
 
     private float direction;
 
-    private float lifetime; 
+    private float lifetime;
+
+    private float damage;
 
     private void Awake()
     {
@@ -38,7 +40,8 @@ public class Projectile : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<Health>().TakeDamage(1f);
+            damage = SkillManager.Instance.GetLevel("spike_force") + 1;
+            collision.GetComponent<Health>().TakeDamage(damage);
         }
     }
 

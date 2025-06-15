@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float startingHealth;
+    private float StartingHealth { get; set; }
     [SerializeField] private float regenRate = 0.01f;
     [SerializeField] private float regenDelay = 10f;
 
@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
 
 
 
-    public float currentHealth { get; private set; }
+    public float CurrentHealth { get; private set; }
 
     private bool isDead = false;
     private float lastDamageTime;
@@ -27,15 +27,23 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
-        currentHealth = startingHealth;
+        if (GetComponent<PlayerMovment>() != null)
+        {
+            StartingHealth = SkillManager.Instance.GetLevel("toughen_shell") + 1;
+        } else if (GetComponent<Enemy>() != null)
+        {
+            StartingHealth = 5;
+        }
+        
+        CurrentHealth = StartingHealth;
     }
 
     public void TakeDamage(float _damage)
     {
-        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+        CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 0, StartingHealth);
         lastDamageTime = Time.time;
 
-        if (currentHealth > 0)
+        if (CurrentHealth > 0)
         {
             if (Time.time - lastHurtSoundTime >= hurtSoundCooldown)
             {
@@ -63,7 +71,7 @@ public class Health : MonoBehaviour
 
                 if (GetComponent<Enemy>() != null)
                 {
-                    EnemyManager.Instance.EnemyKilled();
+                    EnemyManager.Instance.EnemyKilled(100);
                     SoundManager.instance.PlaySound(deathSoundEnemy);
                     GetComponent<Enemy>().enabled = false;
                     gameObject.SetActive(false);
@@ -80,12 +88,12 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (GetComponent<PlayerMovment>() != null)
         {
-            TakeDamage(0.25f);
-        }
+            StartingHealth = SkillManager.Instance.GetLevel("toughen_shell") + 1;
 
-        if (!isDead && Time.time - lastDamageTime >= regenDelay && currentHealth < startingHealth)
+        }
+        if (!isDead && Time.time - lastDamageTime >= regenDelay && CurrentHealth < StartingHealth)
         {
             RegenerateHealth();
         }
@@ -93,7 +101,7 @@ public class Health : MonoBehaviour
 
     private void RegenerateHealth()
     {
-        currentHealth = Mathf.Clamp(currentHealth + regenRate * Time.deltaTime, 0, startingHealth);
+        CurrentHealth = Mathf.Clamp(CurrentHealth + regenRate * Time.deltaTime, 0, StartingHealth);
     }
 
     private IEnumerator HandleDeath()
@@ -110,7 +118,7 @@ public class Health : MonoBehaviour
 
     public void ResetStats()
     {
-        currentHealth = startingHealth;
+        CurrentHealth = StartingHealth;
         isDead = false;
 
         if (GetComponent<PlayerMovment>() != null)

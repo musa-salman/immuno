@@ -18,9 +18,14 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void RegisterEnemy() => enemyCount++;
-    public void EnemyKilled()
+
+    public void EnemyKilled(int scoreValue = 0)
     {
         enemyCount--;
+
+        if (scoreValue > 0 && ScoreManager.Instance != null)
+            ScoreManager.Instance.AddPoints(scoreValue);
+
         if (enemyCount <= 0)
             Debug.Log("All enemies defeated");
     }
