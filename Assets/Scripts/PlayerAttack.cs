@@ -10,19 +10,21 @@ public class PlayerAttack : MonoBehaviour
 
     private Animator animator;
     private PlayerMovment playerMovement;
+    private Health health;
 
     private float cooldownTimer = Mathf.Infinity;
 
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovment>();
+        health = GetComponent<Health>();
 
         animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer > attackCooldown && playerMovement.canAttack())
+        if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer > attackCooldown && health.CurrentHealth > 0 && playerMovement.canAttack())
         {
            animator.SetTrigger("Attack");
 
