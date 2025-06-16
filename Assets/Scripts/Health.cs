@@ -13,9 +13,7 @@ public class Health : MonoBehaviour
     [SerializeField] private AudioClip deathSoundPlayer;
     [SerializeField] private AudioClip deathSoundEnemy;
 
-
-
-
+    private EnemyManager enemyManager;
 
     public float CurrentHealth { get; private set; }
 
@@ -27,14 +25,16 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
+        enemyManager = FindObjectOfType<EnemyManager>();
         if (GetComponent<PlayerMovment>() != null)
         {
             StartingHealth = SkillManager.Instance.GetLevel("toughen_shell") + 1;
-        } else if (GetComponent<Enemy>() != null)
+        }
+        else if (GetComponent<Enemy>() != null)
         {
             StartingHealth = 5;
         }
-        
+
         CurrentHealth = StartingHealth;
     }
 
@@ -71,7 +71,7 @@ public class Health : MonoBehaviour
 
                 if (GetComponent<Enemy>() != null)
                 {
-                    EnemyManager.Instance.EnemyKilled(100);
+                    enemyManager.EnemyKilled(100);
                     SoundManager.instance.PlaySound(deathSoundEnemy);
                     GetComponent<Enemy>().enabled = false;
                     gameObject.SetActive(false);

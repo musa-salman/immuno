@@ -664,6 +664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 225788991}
+  - component: {fileID: 225788992}
   m_Layer: 0
   m_Name: enemies
   m_TagString: Untagged
@@ -712,6 +713,19 @@ Transform:
   - {fileID: 207019111}
   m_Father: {fileID: 1478323116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &225788992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225788990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def4cac5d06afe88c85300263fd7a882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCount: 0
 --- !u!4 &231656722 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
@@ -11658,7 +11672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.929985
+      value: 48.52
       objectReference: {fileID: 0}
     - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -114033,6 +114047,7 @@ MonoBehaviour:
   checkPoint: {fileID: 1667267856}
   targetSceneName: lungs
   stayTimeRequired: 0.5
+  enemyManager: {fileID: 225788992}
 --- !u!4 &1885909550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
@@ -114298,6 +114313,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 225788991}
     m_Modifications:
+    - target: {fileID: 51780317640282516, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 459989983506420825, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: hurtSoundEnemy
       value: 
@@ -114324,7 +114343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47.459526
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 6338689059219844631, guid: 72210b644e567dbb6be9928ad24e498c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -115280,6 +115299,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.582
       objectReference: {fileID: 0}
+    - target: {fileID: 6469094021375132495, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: enemyManager
+      value: 
+      objectReference: {fileID: 225788992}
     - target: {fileID: 6469094021375132495, guid: 28d853960d90b766da18afb912ece87d, type: 3}
       propertyPath: hurtSoundEnemy
       value: 

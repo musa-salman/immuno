@@ -86,7 +86,6 @@ GameObject:
   - component: {fileID: 4823229902370201750}
   - component: {fileID: 3150457696340076897}
   - component: {fileID: 2380302774128235836}
-  - component: {fileID: 8277570104953805261}
   - component: {fileID: 2786376774707143083}
   - component: {fileID: 984610444463119899}
   - component: {fileID: 655195503805958645}
@@ -141,19 +140,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalDeaths: 0
   lastOrgan: 
---- !u!114 &8277570104953805261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7031516152327300468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: def4cac5d06afe88c85300263fd7a882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyCount: 0
 --- !u!114 &2786376774707143083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d7131774a4a6b45942c4977fdf16b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentScore: 0
 --- !u!114 &984610444463119899
 MonoBehaviour:
   m_ObjectHideFlags: 0

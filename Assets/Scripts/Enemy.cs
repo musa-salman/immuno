@@ -35,10 +35,11 @@ public class Enemy : MonoBehaviour
     private bool hasSeenPlayer = false;
     private Transform playerTransform;
     private Vector3 initialScale;
+    
 
     private void Start()
     {
-        EnemyManager.Instance.RegisterEnemy();
+        FindObjectOfType<EnemyManager>().RegisterEnemy();
         initialScale = transform.localScale;
         if (spriteRenderer != null)
             spriteRenderer.color = patrolColor;

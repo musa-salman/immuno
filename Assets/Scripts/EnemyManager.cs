@@ -1,21 +1,11 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemyManager : MonoBehaviour
 {
-    public static EnemyManager Instance;
-
-    [SerializeField]
     [Header("Enemy Management")]
     [Tooltip("The total number of enemies currently in the scene.")]
-    private int enemyCount;
-
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
+    [SerializeField] private int enemyCount;
 
     public void RegisterEnemy() => enemyCount++;
 
@@ -23,9 +13,7 @@ public class EnemyManager : MonoBehaviour
     {
         enemyCount--;
 
-        if (scoreValue > 0 && ScoreManager.Instance != null)
-            ScoreManager.Instance.AddPoints(scoreValue);
-
+        ScoreManager.Instance.AddPoints(scoreValue);
         if (enemyCount <= 0)
             Debug.Log("All enemies defeated");
     }

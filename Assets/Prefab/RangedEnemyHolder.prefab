@@ -436,6 +436,11 @@ MonoBehaviour:
   damage: 0.5
   rangeX: 5
   rangeY: 3
+  chaseDuration: 2
+  chaseSpeed: 2
+  spriteRenderer: {fileID: 0}
+  patrolColor: {r: 1, g: 1, b: 1, a: 1}
+  alertColor: {r: 1, g: 0, b: 0, a: 1}
   boxCollider: {fileID: 4471582188211703944}
   playerLayer:
     serializedVersion: 2
@@ -465,13 +470,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d105b506d170044cb4a71275562b4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 5
   regenRate: 0
   regenDelay: 9
   hurtSoundPlayer: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
   hurtSoundEnemy: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
   deathSoundPlayer: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
   deathSoundEnemy: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+  hurtSoundCooldown: 0.5
 --- !u!50 &7294858900533094692
 Rigidbody2D:
   serializedVersion: 4
