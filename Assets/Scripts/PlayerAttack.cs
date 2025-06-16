@@ -26,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer > attackCooldown && health.CurrentHealth > 0 && playerMovement.canAttack())
         {
-           animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack");
 
             Attack();
         }

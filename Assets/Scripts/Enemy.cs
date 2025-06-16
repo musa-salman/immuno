@@ -30,12 +30,14 @@ public class Enemy : MonoBehaviour
     [Header("Attack Sound")]
     [SerializeField] private AudioClip attackSound;
 
+    [SerializeField] private LayerMask obstacleLayer;
+
     private float cooldownTimer = Mathf.Infinity;
     private float chaseTimer = 0f;
     private bool hasSeenPlayer = false;
     private Transform playerTransform;
     private Vector3 initialScale;
-    
+
 
     private void Start()
     {
@@ -86,20 +88,26 @@ public class Enemy : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (player != null)
-        {
-            float dx = player.transform.position.x - transform.position.x;
-            float dy = Mathf.Abs(player.transform.position.y - transform.position.y);
+        float dx = player.transform.position.x - transform.position.x;
+        float dy = Mathf.Abs(player.transform.position.y - transform.position.y);
 
-            if (Mathf.Abs(dx) <= rangeX &&
-                Mathf.Sign(dx) == Mathf.Sign(transform.localScale.x) &&
-                dy <= rangeY)
+        if (Mathf.Abs(dx) <= rangeX &&
+            Mathf.Sign(dx) == Mathf.Sign(transform.localScale.x) &&
+            dy <= rangeY)
+        {
+            Vector2 direction = (player.transform.position - transform.position).normalized;
+            float distance = Vector2.Distance(transform.position, player.transform.position);
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, obstacleLayer);
+
+            if (hit.collider == null)
             {
                 return true;
             }
         }
         return false;
     }
+
 
     private void ChasePlayer()
     {
@@ -113,12 +121,12 @@ public class Enemy : MonoBehaviour
     private void RangedAttack()
     {
         SoundManager.instance.PlaySound(attackSound);
-        
+
         int index = FindBullet();
         if (index >= bullets.Length || playerTransform == null)
             return;
 
-       Vector2 playerPos = playerTransform.position;
+        Vector2 playerPos = playerTransform.position;
 
         if (index < bullets.Length)
         {

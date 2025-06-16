@@ -458,6 +458,9 @@ MonoBehaviour:
   - {fileID: 1444561530197856124}
   - {fileID: 6642300714399091327}
   attackSound: {fileID: 8300000, guid: 3e2f50f7fede2374bb8f8cc8fc493be4, type: 3}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &459989983506420825
 MonoBehaviour:
   m_ObjectHideFlags: 0
