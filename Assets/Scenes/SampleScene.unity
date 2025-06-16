@@ -115149,6 +115149,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 664996486569346284, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: maxVolume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 664996486569346284, guid: 28d853960d90b766da18afb912ece87d, type: 3}
       propertyPath: lavaTilemap
       value: 
       objectReference: {fileID: 957294188}

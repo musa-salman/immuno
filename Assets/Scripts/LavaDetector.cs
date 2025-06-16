@@ -6,7 +6,7 @@ public class LavaDetector : MonoBehaviour
     public Health playerHealth;
     public Tilemap lavaTilemap;
     public Transform checkPoint;
-    public AudioSource lavaAudioSource;
+    private AudioSource lavaAudioSource;
 
     [Header("Sound Settings")]
     public float maxVolume = 1f;
