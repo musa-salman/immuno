@@ -66,6 +66,19 @@ public class Health : MonoBehaviour
                 if (GetComponent<PlayerMovment>() != null)
                 {
                     SoundManager.instance.PlaySound(deathSoundPlayer);
+                    Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        rb.velocity = Vector2.zero;
+                        rb.bodyType = RigidbodyType2D.Kinematic;
+                        rb.simulated = false;
+                    }
+
+                    Animator animator = GetComponent<Animator>();
+                    if (animator != null)
+                    {
+                        animator.SetTrigger("isDead");
+                    }
                     GetComponent<PlayerMovment>().enabled = false;
                 }
 
@@ -107,6 +120,7 @@ public class Health : MonoBehaviour
     private IEnumerator HandleDeath()
     {
         GameManager.Instance?.RegisterDeath();
+
         yield return new WaitForSeconds(1f);
 
         string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;

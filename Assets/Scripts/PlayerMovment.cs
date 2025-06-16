@@ -5,7 +5,7 @@ public class PlayerMovment : MonoBehaviour
 {
     [SerializeField] private int speed = 5;
     [SerializeField] private float jumpForce = 6f;
-    [SerializeField] private float dashSpeed = 20f; 
+    [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private float maxSpeed = 5f;
 
@@ -104,7 +104,7 @@ public class PlayerMovment : MonoBehaviour
         isDashing = true;
         float og_gravity = body.gravityScale;
         body.gravityScale = 0f;
-        body.velocity = new Vector2(Mathf.Abs(body.velocity.x) > 0.1f? body.velocity.x * DashPower : speed * direction * DashPower, body.velocity.y);
+        body.velocity = new Vector2(Mathf.Abs(body.velocity.x) > 0.1f ? body.velocity.x * DashPower : speed * direction * DashPower, body.velocity.y);
         Debug.Log(body.velocity.x);
         yield return new WaitForSeconds(DashTime);
         body.gravityScale = og_gravity;
@@ -115,7 +115,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
             jumpCount = 0;
         foreach (ContactPoint2D contact in collision.contacts)
         {
@@ -129,15 +129,15 @@ public class PlayerMovment : MonoBehaviour
 
     }
 
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
         animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
         animator.SetFloat("yVelocity", body.velocity.y);
     }
 
-    public bool canAttack()
+    public bool CanAttack()
     {
         return true;
-    } 
+    }
 
 }
