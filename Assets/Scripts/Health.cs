@@ -66,16 +66,14 @@ public class Health : MonoBehaviour
                 if (GetComponent<PlayerMovment>() != null)
                 {
                     SoundManager.instance.PlaySound(deathSoundPlayer);
-                    Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                    if (rb != null)
+                    if (TryGetComponent<Rigidbody2D>(out var rb))
                     {
                         rb.velocity = Vector2.zero;
                         rb.bodyType = RigidbodyType2D.Kinematic;
                         rb.simulated = false;
                     }
 
-                    Animator animator = GetComponent<Animator>();
-                    if (animator != null)
+                    if (TryGetComponent<Animator>(out var animator))
                     {
                         animator.SetTrigger("isDead");
                     }
@@ -84,10 +82,7 @@ public class Health : MonoBehaviour
 
                 if (GetComponent<Enemy>() != null)
                 {
-                    enemyManager.EnemyKilled(100);
-                    SoundManager.instance.PlaySound(deathSoundEnemy);
-                    GetComponent<Enemy>().enabled = false;
-                    gameObject.SetActive(false);
+                    GetComponent<Enemy>().Die();
                 }
                 isDead = true;
 

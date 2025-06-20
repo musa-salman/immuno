@@ -32,11 +32,16 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private LayerMask obstacleLayer;
 
+    private Animator animator;
+
     private float cooldownTimer = Mathf.Infinity;
     private float chaseTimer = 0f;
     private bool hasSeenPlayer = false;
     private Transform playerTransform;
     private Vector3 initialScale;
+
+    private bool isDead = false;
+    public bool IsDead => isDead;
 
 
     private void Start()
@@ -45,6 +50,8 @@ public class Enemy : MonoBehaviour
         initialScale = transform.localScale;
         if (spriteRenderer != null)
             spriteRenderer.color = patrolColor;
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -111,8 +118,6 @@ public class Enemy : MonoBehaviour
 
     private void ChasePlayer()
     {
-        if (playerTransform == null) return;
-
         float direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
         transform.localScale = new Vector3(Mathf.Abs(initialScale.x) * direction, initialScale.y, initialScale.z);
         transform.position += new Vector3(direction * Time.deltaTime * chaseSpeed, 0, 0);
@@ -137,7 +142,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     private int FindBullet()
     {
         for (int i = 0; i < bullets.Length; i++)
@@ -148,6 +152,18 @@ public class Enemy : MonoBehaviour
 
         Debug.LogWarning("No available bullets found!");
         return 0;
+    }
+
+    public void Die()
+    {
+        isDead = true;
+        animator.SetTrigger("isDeath");
+    }
+
+    public void DestroySelf()
+    {
+        FindObjectOfType<EnemyManager>().EnemyKilled(100);
+        gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos()

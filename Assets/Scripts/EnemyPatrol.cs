@@ -23,15 +23,6 @@ public class EnemyPatrol : MonoBehaviour
     private Vector3 initScale;
     private bool movingLeft;
 
-    [Header("Random Pause Settings")]
-    [Range(0f, 1f)]
-    [SerializeField] private float pauseChance = 0.5f;
-    [SerializeField] private float minWait = 0.2f;
-    [SerializeField] private float maxWait = 1.0f;
-
-    [Header("Pause Cooldown")]
-    [SerializeField] private float waitCooldownDuration = 5f;
-
     private float speed;
 
     private void Awake()
