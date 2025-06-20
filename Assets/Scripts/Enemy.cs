@@ -154,7 +154,7 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Vector3 center = transform.position + Vector3.right * rangeX / 2 * (transform.localScale.x / Mathf.Abs(transform.localScale.x));
-        Vector3 size = new Vector3(rangeX, rangeY * 2, 0);
+        Vector3 size = new(rangeX, rangeY * 2, 0);
         Gizmos.DrawWireCube(center, size);
     }
 }
