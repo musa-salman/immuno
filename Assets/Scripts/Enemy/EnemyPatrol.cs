@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
@@ -24,6 +25,8 @@ public class EnemyPatrol : MonoBehaviour
 
     private float speed;
 
+    private bool isPaused = false;
+
     private void Awake()
     {
         initScale = enemy.localScale;
@@ -33,6 +36,8 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
     {
+        if (isPaused) return;
+
         if (movingLeft)
         {
             if (enemy.position.x > leftEdge.position.x)
@@ -66,6 +71,18 @@ public class EnemyPatrol : MonoBehaviour
         prev_x = enemy.position.x;
     }
 
+    public void PausePatrol(float duration)
+    {
+        StartCoroutine(PauseCoroutine(duration));
+    }
+
+    private IEnumerator PauseCoroutine(float duration)
+    {
+        isPaused = true;
+        yield return new WaitForSeconds(duration);
+        isPaused = false;
+    }
+
     private void MoveInDirection(int _direction)
     {
         enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction, initScale.y, initScale.z);
@@ -73,8 +90,9 @@ public class EnemyPatrol : MonoBehaviour
                                      enemy.position.y, enemy.position.z);
     }
 
-    private void DirectionChange()
-    {
-        movingLeft = !movingLeft;
-    }
+    private void DirectionChange() => movingLeft = !movingLeft;
+
+    public void StopMovement() => isPaused = true;
+
+    public void ResumeMovement() => isPaused = false;
 }
