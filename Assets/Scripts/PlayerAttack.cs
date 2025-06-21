@@ -9,15 +9,15 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private AudioClip bulletSound;
 
     private Animator animator;
-    private PlayerMovment playerMovement;
-    private Health health;
+    private PlayerMovement playerMovement;
+    private PlayerHealth health;
 
     private float cooldownTimer = Mathf.Infinity;
 
     private void Awake()
     {
-        playerMovement = GetComponent<PlayerMovment>();
-        health = GetComponent<Health>();
+        playerMovement = GetComponent<PlayerMovement>();
+        health = GetComponent<PlayerHealth>();
 
         animator = GetComponent<Animator>();
     }

@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
         float moveSpeed = speed * Time.deltaTime * direction;
         transform.Translate(moveSpeed, 0, 0);
         lifetime += Time.deltaTime;
-        if (lifetime >= 2) 
+        if (lifetime >= 2)
         {
             Deactivate();
         }
@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             damage = SkillManager.Instance.GetLevel("spike_force") + 1;
-            collision.GetComponent<Health>().TakeDamage(damage);
+            collision.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
     }
 

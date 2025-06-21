@@ -11,7 +11,6 @@ public class EnemyPatrol : MonoBehaviour
 
     [Header("Movement Parameters")]
     [SerializeField] private float baseSpeed = 2f;
-    [SerializeField] private float speedVariance = 0.5f;
 
     [Header("Stuck Detection")]
     private float stuckTimer = 0f;

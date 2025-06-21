@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3218083604485152119}
   - component: {fileID: 5847054171578760744}
-  - component: {fileID: 4252627331146012062}
   - component: {fileID: 2049810220055651964}
   - component: {fileID: 6972349218081253677}
   - component: {fileID: 4148049338639843534}
   - component: {fileID: 2584139466926132856}
-  - component: {fileID: 6469094021375132495}
+  - component: {fileID: 6335032897990406418}
+  - component: {fileID: 2274608752689997025}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -93,26 +93,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4252627331146012062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215676345885150863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fac62afe46bfecc54a9fdc6368f30ae2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  jumpForce: 6
-  dashSpeed: 20
-  dashCooldown: 0.5
-  maxSpeed: 5
-  jumpSound: {fileID: 8300000, guid: 8b4c9ee06f5558642b303a76471be95c, type: 3}
-  dashSound: {fileID: 8300000, guid: 8b4c9ee06f5558642b303a76471be95c, type: 3}
-  floatingSound: {fileID: 0}
 --- !u!50 &2049810220055651964
 Rigidbody2D:
   serializedVersion: 4
@@ -285,7 +265,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   bulletSound: {fileID: 8300000, guid: 928283315828f8d4788e50961bb1ebc5, type: 3}
---- !u!114 &6469094021375132495
+--- !u!114 &6335032897990406418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,15 +274,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 215676345885150863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d105b506d170044cb4a71275562b4c6, type: 3}
+  m_Script: {fileID: 11500000, guid: fac62afe46bfecc54a9fdc6368f30ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regenRate: 0.1
-  regenDelay: 10
+  speed: 5
+  jumpForce: 6
+  dashSpeed: 20
+  dashCooldown: 0.5
+  maxSpeed: 5
+  jumpSound: {fileID: 8300000, guid: 8b4c9ee06f5558642b303a76471be95c, type: 3}
+  dashSound: {fileID: 0}
+  floatingSound: {fileID: 0}
+--- !u!114 &2274608752689997025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215676345885150863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff72f7a2256c4a865a8db7e960e231be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regenerationRate: 0.1
+  regenerationDelay: 10
   hurtSoundPlayer: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
-  hurtSoundEnemy: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
   deathSoundPlayer: {fileID: 8300000, guid: aadf0396a6024e64c9eab83ff6800604, type: 3}
-  deathSoundEnemy: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
   hurtSoundCooldown: 0.5
 --- !u!1 &241110542337114039
 GameObject:
@@ -379,9 +377,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8804cdc48267f230b0db61b1a5a1018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 6469094021375132495}
+  playerHealth: {fileID: 0}
   lavaTilemap: {fileID: 0}
   checkPoint: {fileID: 3218083604485152119}
+  maxVolume: 1
+  minVolume: 0
+  detectionRadius: 5
 --- !u!1 &5139039762427503207
 GameObject:
   m_ObjectHideFlags: 0

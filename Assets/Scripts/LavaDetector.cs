@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class LavaDetector : MonoBehaviour
 {
-    public Health playerHealth;
+    private PlayerHealth playerHealth;
     public Tilemap lavaTilemap;
     public Transform checkPoint;
     private AudioSource lavaAudioSource;
@@ -16,6 +16,7 @@ public class LavaDetector : MonoBehaviour
     private void Start()
     {
         lavaAudioSource = GetComponent<AudioSource>();
+        playerHealth = FindObjectOfType<PlayerHealth>();
     }
 
     void Update()

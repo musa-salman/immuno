@@ -7,6 +7,6 @@ public class EnemyDamage : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-            collision.GetComponent<Health>().TakeDamage(damage);
+            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 }
