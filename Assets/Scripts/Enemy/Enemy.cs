@@ -93,6 +93,11 @@ public class Enemy : MonoBehaviour
 
     private bool PlayerInSight()
     {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        if (CheatManager.GhostMode)
+            return false;
+#endif
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         float dx = player.transform.position.x - transform.position.x;
