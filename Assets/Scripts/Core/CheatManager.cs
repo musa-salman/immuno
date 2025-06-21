@@ -15,11 +15,6 @@ public class CheatManager : MonoBehaviour
     private GUIStyle headerStyle;
     private GUIStyle buttonStyle;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>();
@@ -56,7 +51,6 @@ public class CheatManager : MonoBehaviour
         float buttonHeight = 45;
         float spacing = 8;
 
-        // ─── CHEAT TOGGLES ─────────────────────────
         GUI.Label(new Rect(boxRect.x + 20, y, width - 40, 30), "<b>CHEAT TOGGLES</b>", headerStyle);
         y += 30 + spacing;
 
@@ -76,7 +70,6 @@ public class CheatManager : MonoBehaviour
             FullPower();
         y += buttonHeight + spacing * 2;
 
-        // ─── TELEPORTATION ─────────────────────────
         GUI.Label(new Rect(boxRect.x + 20, y, width - 40, 30), "<b>TELEPORT TO LOCATION</b>", headerStyle);
         y += 30 + spacing;
 

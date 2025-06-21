@@ -221,6 +221,10 @@ public class Boss : MonoBehaviour
         {
             if (summonedMinions[i] == null || !summonedMinions[i].activeInHierarchy)
             {
+                if (summonedMinions[i] != null)
+                {
+                    Destroy(summonedMinions[i]);
+                }
                 GameObject minion = Instantiate(minionPrefab, summonPoints[i].position, Quaternion.identity);
                 summonedMinions[i] = minion;
             }

@@ -40,14 +40,14 @@ public class EnemyPatrol : MonoBehaviour
 
         if (movingLeft)
         {
-            if (enemy.position.x > leftEdge.position.x)
+            if (leftEdge == null || enemy.position.x > leftEdge.position.x)
             {
                 MoveInDirection(-1);
             }
         }
         else
         {
-            if (enemy.position.x < rightEdge.position.x)
+            if (rightEdge == null || enemy.position.x < rightEdge.position.x)
             {
                 MoveInDirection(1);
             }

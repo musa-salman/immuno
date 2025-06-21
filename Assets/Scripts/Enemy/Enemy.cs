@@ -163,6 +163,7 @@ public class Enemy : MonoBehaviour
     {
         FindObjectOfType<EnemyManager>().EnemyKilled(100);
         gameObject.SetActive(false);
+        transform.parent.gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos()
