@@ -115864,6 +115864,7 @@ GameObject:
   - component: {fileID: 2140317509}
   - component: {fileID: 2140317508}
   - component: {fileID: 2140317512}
+  - component: {fileID: 2140317513}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Enemy
@@ -115973,7 +115974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afeec6e87f2b97644b4101f6fb282fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
   attackCooldown: 2
   attackPrefab: {fileID: 7813286225293935645, guid: 9a59a758cfa68b244a50a520dba551d1, type: 3}
   bulletPoolSize: 40
@@ -116046,8 +116046,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8b972ecd8c6a72cb3660c7da5c00e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 1000
+  currentHealth: 0
   hurtSound: {fileID: 8300000, guid: 21eb2fb556a37c34b8710eb087958a6b, type: 3}
   deathSound: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+--- !u!95 &2140317513
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140317505}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d284581a8bdb722bd96b3e8c95ec15ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2354464566442469479
 PrefabInstance:
   m_ObjectHideFlags: 0

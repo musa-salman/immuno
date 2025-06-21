@@ -3,7 +3,6 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     [Header("Boss Settings")]
-    [SerializeField] private float maxHealth = 100;
     [SerializeField] private float attackCooldown = 2f;
     [SerializeField] private GameObject attackPrefab;
     [Header("Projectile Pooling")]
@@ -14,14 +13,15 @@ public class Boss : MonoBehaviour
     [Header("Minion Summon")]
     [SerializeField] private GameObject minionPrefab;
     [SerializeField] private Transform[] summonPoints;
+
+    private Animator animator;
+
     private GameObject[] summonedMinions;
 
-    private float currentHealth;
     private float attackTimer;
 
     private void Start()
     {
-        currentHealth = maxHealth;
         bulletPool = new GameObject[bulletPoolSize];
 
         for (int i = 0; i < bulletPoolSize; i++)
@@ -31,6 +31,8 @@ public class Boss : MonoBehaviour
         }
 
         summonedMinions = new GameObject[summonPoints.Length];
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -111,15 +113,14 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float amount)
+    public void Die()
     {
-        currentHealth -= amount;
-        if (currentHealth <= 0)
-            Die();
+        animator.SetTrigger("isDeath");
     }
 
-    private void Die()
+    public void DestroySelf()
     {
-        Destroy(gameObject);
+        FindObjectOfType<EnemyManager>().EnemyKilled(500);
+        gameObject.SetActive(false);
     }
 }

@@ -40,10 +40,6 @@ public class Enemy : MonoBehaviour
     private Transform playerTransform;
     private Vector3 initialScale;
 
-    private bool isDead = false;
-    public bool IsDead => isDead;
-
-
     private void Start()
     {
         FindObjectOfType<EnemyManager>().RegisterEnemy();
@@ -120,7 +116,6 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-
     private void ChasePlayer()
     {
         float direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
@@ -161,7 +156,6 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-        isDead = true;
         animator.SetTrigger("isDeath");
     }
 
