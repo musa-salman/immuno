@@ -20,7 +20,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
-        Debug.Log($"Enemy took damage: {CurrentHealth} - {_damage}");
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        _damage = CheatManager.OneShotKill ? CurrentHealth + 1 : _damage;
+#endif
         CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 0, StartingHealth);
 
         if (CurrentHealth > 0)
@@ -29,7 +31,10 @@ public class EnemyHealth : MonoBehaviour
         }
         else if (!isDead)
         {
-            GetComponent<Enemy>().Die();
+            if (TryGetComponent<Enemy>(out var enemy))
+            {
+                enemy.Die();
+            }
             isDead = true;
         }
     }

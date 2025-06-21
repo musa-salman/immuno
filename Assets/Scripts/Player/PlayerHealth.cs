@@ -25,7 +25,15 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
-        CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 1, StartingHealth);
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        if (CheatManager.UndeadMode)
+        {
+            CurrentHealth = StartingHealth;
+            return;
+        }
+#endif
+
+        CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 0, StartingHealth);
         lastDamageTime = Time.time;
 
         if (CurrentHealth > 0)
