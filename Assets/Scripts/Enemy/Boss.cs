@@ -236,7 +236,7 @@ public class Boss : MonoBehaviour
 
     public void Die() => animator.SetTrigger("isDeath");
 
-    public void DestroySelf()
+    public void DestroyBoss()
     {
         FindObjectOfType<EnemyManager>().EnemyKilled(500);
         gameObject.SetActive(false);
