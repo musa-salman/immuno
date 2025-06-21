@@ -42,7 +42,7 @@ public class CheatManager : MonoBehaviour
         InitStyles();
 
         int width = 400;
-        int height = 350;
+        int height = 600;
         Rect boxRect = new Rect(
             (Screen.width - width) / 2,
             (Screen.height - height) / 2,
@@ -53,26 +53,43 @@ public class CheatManager : MonoBehaviour
         GUI.Box(boxRect, "CHEAT MENU", headerStyle);
 
         float y = boxRect.y + 40;
-        float buttonHeight = 50;
-        float spacing = 10;
+        float buttonHeight = 45;
+        float spacing = 8;
+
+        // ─── CHEAT TOGGLES ─────────────────────────
+        GUI.Label(new Rect(boxRect.x + 20, y, width - 40, 30), "<b>CHEAT TOGGLES</b>", headerStyle);
+        y += 30 + spacing;
 
         if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), $"Undead Mode: {(UndeadMode ? "ON" : "OFF")}", buttonStyle))
             UndeadMode = !UndeadMode;
-
         y += buttonHeight + spacing;
 
         if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), $"One Shot Kill: {(OneShotKill ? "ON" : "OFF")}", buttonStyle))
             OneShotKill = !OneShotKill;
-
         y += buttonHeight + spacing;
 
         if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), $"Ghost Mode: {(GhostMode ? "ON" : "OFF")}", buttonStyle))
             GhostMode = !GhostMode;
-
         y += buttonHeight + spacing;
 
         if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "Full Power", buttonStyle))
             FullPower();
+        y += buttonHeight + spacing * 2;
+
+        // ─── TELEPORTATION ─────────────────────────
+        GUI.Label(new Rect(boxRect.x + 20, y, width - 40, 30), "<b>TELEPORT TO LOCATION</b>", headerStyle);
+        y += 30 + spacing;
+
+        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "⤳ Start Area", buttonStyle))
+            TeleportTo("Teleport_Start");
+        y += buttonHeight + spacing;
+
+        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "⤳ Boss Room", buttonStyle))
+            TeleportTo("Teleport_Boss");
+        y += buttonHeight + spacing;
+
+        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "⤳ Exit Portal", buttonStyle))
+            TeleportTo("Teleport_Exit");
     }
 
     private void InitStyles()
@@ -97,6 +114,21 @@ public class CheatManager : MonoBehaviour
 
         foreach (var skill in SkillManager.Instance.skills)
             skill.level = skill.maxLevel;
+    }
+
+
+    private void TeleportTo(string locationName)
+    {
+        GameObject target = GameObject.Find(locationName);
+        if (target != null && player != null)
+        {
+            player.transform.position = target.transform.position;
+            Debug.Log($"Teleported to {locationName}.");
+        }
+        else
+        {
+            Debug.LogWarning($"Teleport failed. Missing: {locationName} or player.");
+        }
     }
 }
 #endif
