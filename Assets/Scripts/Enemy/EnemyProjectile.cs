@@ -33,6 +33,7 @@ public class EnemyProjectile : EnemyDamage
     private new void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        gameObject.SetActive(false);
+        if (collision.CompareTag("Player") || collision.CompareTag("Ground"))
+            gameObject.SetActive(false);
     }
 }

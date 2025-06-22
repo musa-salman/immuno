@@ -6,13 +6,13 @@ public class Skill : MonoBehaviour
 {
     public Image fillBar;
     public TMP_Text xpText;
-    public Button upgradeButton;       // reference to the upgrade button
-    private Image buttonImage;         // reference to the button background
+    public Button upgradeButton;
+    private Image buttonImage;
 
     [Header("Colors")]
-    public Color canUpgradeColor = new Color32(255, 184, 0, 255);   // yellow
-    public Color cannotUpgradeColor = new Color32(100, 40, 40, 255); // muted red
-    public Color maxedColor = new Color32(120, 120, 120, 255);      // gray
+    public Color canUpgradeColor = new Color32(255, 184, 0, 255);
+    public Color cannotUpgradeColor = new Color32(100, 40, 40, 255);
+    public Color maxedColor = new Color32(120, 120, 120, 255);
 
     void Awake()
     {

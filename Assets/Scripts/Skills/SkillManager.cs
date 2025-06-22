@@ -11,7 +11,7 @@ public class SkillManager : MonoBehaviour
     {
         public string skillName;
         public int level = 0;
-        public int maxLevel = 3;
+        public int maxLevel = 5;
 
         public int[] costPerLevel = { 100, 150, 200 };
         public Skill ui;
@@ -38,7 +38,7 @@ public class SkillManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     private void Update()
     {
         foreach (var skill in skills)

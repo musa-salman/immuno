@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
@@ -11,7 +12,6 @@ public class EnemyPatrol : MonoBehaviour
 
     [Header("Movement Parameters")]
     [SerializeField] private float baseSpeed = 2f;
-    [SerializeField] private float speedVariance = 0.5f;
 
     [Header("Stuck Detection")]
     private float stuckTimer = 0f;
@@ -23,16 +23,9 @@ public class EnemyPatrol : MonoBehaviour
     private Vector3 initScale;
     private bool movingLeft;
 
-    [Header("Random Pause Settings")]
-    [Range(0f, 1f)]
-    [SerializeField] private float pauseChance = 0.5f;
-    [SerializeField] private float minWait = 0.2f;
-    [SerializeField] private float maxWait = 1.0f;
-
-    [Header("Pause Cooldown")]
-    [SerializeField] private float waitCooldownDuration = 5f;
-
     private float speed;
+
+    private bool isPaused = false;
 
     private void Awake()
     {
@@ -43,16 +36,18 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
     {
+        if (isPaused) return;
+
         if (movingLeft)
         {
-            if (enemy.position.x > leftEdge.position.x)
+            if (leftEdge == null || enemy.position.x > leftEdge.position.x)
             {
                 MoveInDirection(-1);
             }
         }
         else
         {
-            if (enemy.position.x < rightEdge.position.x)
+            if (rightEdge == null || enemy.position.x < rightEdge.position.x)
             {
                 MoveInDirection(1);
             }
@@ -76,6 +71,18 @@ public class EnemyPatrol : MonoBehaviour
         prev_x = enemy.position.x;
     }
 
+    public void PausePatrol(float duration)
+    {
+        StartCoroutine(PauseCoroutine(duration));
+    }
+
+    private IEnumerator PauseCoroutine(float duration)
+    {
+        isPaused = true;
+        yield return new WaitForSeconds(duration);
+        isPaused = false;
+    }
+
     private void MoveInDirection(int _direction)
     {
         enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction, initScale.y, initScale.z);
@@ -83,8 +90,9 @@ public class EnemyPatrol : MonoBehaviour
                                      enemy.position.y, enemy.position.z);
     }
 
-    private void DirectionChange()
-    {
-        movingLeft = !movingLeft;
-    }
+    private void DirectionChange() => movingLeft = !movingLeft;
+
+    public void StopMovement() => isPaused = true;
+
+    public void ResumeMovement() => isPaused = false;
 }

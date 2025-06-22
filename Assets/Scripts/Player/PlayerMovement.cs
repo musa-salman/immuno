@@ -1,11 +1,10 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-public class PlayerMovment : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private int speed = 5;
     [SerializeField] private float jumpForce = 6f;
-    [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private float maxSpeed = 5f;
 
