@@ -18,7 +18,7 @@ public class SkillManager : MonoBehaviour
     }
 
     public SkillData[] skills;
-    private Dictionary<string, SkillData> skillDict = new();
+    private readonly Dictionary<string, SkillData> skillDict = new();
 
     void Awake()
     {

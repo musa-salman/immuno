@@ -33,6 +33,7 @@ public class EnemyHealth : MonoBehaviour
         }
         else if (!isDead)
         {
+            SoundManager.instance.PlaySound(deathSound);
             if (TryGetComponent<Enemy>(out var enemy))
             {
                 enemy.Die();
@@ -40,6 +41,14 @@ public class EnemyHealth : MonoBehaviour
             else if (TryGetComponent<Boss>(out var boss))
             {
                 boss.Die();
+            }
+            else if (TryGetComponent<StomachEnemy>(out var stomachEnemy))
+            {
+                stomachEnemy.Die();
+            }
+            else if (TryGetComponent<StomachBoss>(out var stomachBoss))
+            {
+                stomachBoss.Die();
             }
             isDead = true;
         }

@@ -1,12 +1,25 @@
+
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class StomachEnemy : MonoBehaviour
 {
     [Header("Attack Parameters")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private float damage;
     [SerializeField] private float rangeX;
     [SerializeField] private float rangeY;
+
+    [Header("Spin Attack Parameters")]
+    [SerializeField] private float maxSpinRange = 2f;
+    [SerializeField] private float spinSpeed = 4f;
+    [SerializeField] private float spinDuration = 1.5f;
+
+    [SerializeField] private float spinCooldown = 1.5f;
+
+    private float spinCooldownTimer = 0f;
+    private bool isSpinning = false;
+    private float spinTimer = 0f;
+
 
     [Header("Chase Parameters")]
     [SerializeField] private float chaseDuration = 2f;
@@ -17,9 +30,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Color patrolColor = Color.white;
     [SerializeField] private Color alertColor = Color.red;
 
-    [Header("Range Attack")]
-    [SerializeField] private Transform bulletPoint;
-    [SerializeField] private GameObject[] bullets;
+    [Header("Player Layer")]
+    [SerializeField] private LayerMask playerLayer;
 
     [Header("Attack Sound")]
     [SerializeField] private AudioClip attackSound;
@@ -47,6 +59,12 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         transform.rotation = Quaternion.identity;
+        if (isSpinning)
+        {
+            SpinAttack();
+            return;
+        }
+
         cooldownTimer += Time.deltaTime;
 
         if (PlayerInSight())
@@ -54,15 +72,29 @@ public class Enemy : MonoBehaviour
             hasSeenPlayer = true;
             chaseTimer = chaseDuration;
             playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            float verticalDistanceToPlayer = Mathf.Abs(playerTransform.position.y - transform.position.y);
+            if (verticalDistanceToPlayer <= maxSpinRange)
+            {
+                if (isSpinning)
+                    return;
+
+                if (spinCooldownTimer > 0f)
+                {
+                    spinCooldownTimer -= Time.deltaTime;
+                    if (spinCooldownTimer <= 0f)
+                    {
+                        spinCooldownTimer = 0f;
+                    }
+                }
+                else if (cooldownTimer >= spinCooldown)
+                {
+                    SpinAttack();
+                    return;
+                }
+            }
 
             if (spriteRenderer != null)
                 spriteRenderer.color = alertColor;
-
-            if (cooldownTimer >= attackCooldown)
-            {
-                cooldownTimer = 0;
-                RangedAttack();
-            }
         }
         else if (hasSeenPlayer)
         {
@@ -78,6 +110,36 @@ public class Enemy : MonoBehaviour
                 if (spriteRenderer != null)
                     spriteRenderer.color = patrolColor;
             }
+        }
+    }
+
+    private void SpinAttack()
+    {
+        if (playerTransform == null)
+        {
+            isSpinning = false;
+            return;
+        }
+
+        if (!isSpinning)
+        {
+            isSpinning = true;
+            spinTimer = spinDuration;
+            spinCooldownTimer = spinCooldown;
+            animator.SetBool("isSpin", true);
+        }
+
+        spinTimer -= Time.deltaTime;
+        float direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
+        transform.localScale = new Vector3(Mathf.Abs(initialScale.x) * direction, initialScale.y, initialScale.z);
+        transform.position += new Vector3(direction * spinSpeed * Time.deltaTime, 0, 0);
+
+        if (spinTimer <= 0f)
+        {
+            isSpinning = false;
+            animator.SetBool("isSpin", false);
+            cooldownTimer = 0f;
+            spinCooldownTimer = spinCooldown;
         }
     }
 
@@ -117,40 +179,28 @@ public class Enemy : MonoBehaviour
         transform.position += new Vector3(direction * Time.deltaTime * chaseSpeed, 0, 0);
     }
 
-    private void RangedAttack()
-    {
-        SoundManager.instance.PlaySound(attackSound);
-
-        int index = FindBullet();
-        if (index >= bullets.Length || playerTransform == null)
-            return;
-
-        Vector2 playerPos = playerTransform.position;
-
-        if (index < bullets.Length)
-        {
-            bullets[index].transform.SetParent(null);
-            bullets[index].transform.position = bulletPoint.position;
-            bullets[index].GetComponent<EnemyProjectile>().ActivateProjectile(playerPos);
-            Debug.Log("Enemy fired a projectile at: " + playerPos + " from position: " + bulletPoint.position);
-        }
-    }
-
-    private int FindBullet()
-    {
-        for (int i = 0; i < bullets.Length; i++)
-        {
-            if (!bullets[i].activeInHierarchy)
-                return i;
-        }
-
-        Debug.LogWarning("No available bullets found!");
-        return 0;
-    }
-
     public void Die()
     {
+        if (isSpinning)
+        {
+            DestroySelf();
+            return;
+        }
         animator.SetTrigger("isDeath");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isSpinning)
+            return;
+
+        if (collision.CompareTag("Player"))
+        {
+            if (collision.TryGetComponent<PlayerHealth>(out var playerHealth))
+            {
+                playerHealth.TakeDamage(damage);
+            }
+        }
     }
 
     public void DestroySelf()
@@ -159,6 +209,7 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(false);
         transform.parent.gameObject.SetActive(false);
     }
+
 
     private void OnDrawGizmos()
     {
