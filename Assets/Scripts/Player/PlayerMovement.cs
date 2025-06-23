@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
         speed = SkillManager.Instance.GetLevel("surge_motion") + 1;
+        Debug.Log("Current Speed: " + speed);
 
         if (mainCamera != null)
         {

@@ -3,7 +3,7 @@ using UnityEngine;
 public class ParallaxBackgroundLooper : MonoBehaviour
 {
     public Transform cameraTransform;
-    public Vector2 chunkSize = new Vector2(10f, 10f);
+    public Vector2 chunkSize = new(10f, 10f);
     public GameObject[] chunks;
 
     private Vector2 lastCameraPosition;

@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.000061035, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3510070290519688266
@@ -178,7 +178,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b492caf00203fb96b5310b4246ac79f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skills: []
+  skills:
+  - skillName: toughen_shell
+    level: 0
+    maxLevel: 5
+    costPerLevel: f4010000e8030000d0070000b80b0000ac0d0000
+    ui: {fileID: 0}
+  - skillName: surge_motion
+    level: 0
+    maxLevel: 5
+    costPerLevel: f4010000e8030000d0070000b80b0000ac0d0000
+    ui: {fileID: 0}
+  - skillName: spike_force
+    level: 0
+    maxLevel: 5
+    costPerLevel: f4010000e8030000d0070000b80b0000ac0d0000
+    ui: {fileID: 0}
 --- !u!1 &8779019510097343539
 GameObject:
   m_ObjectHideFlags: 0

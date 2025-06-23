@@ -27,10 +27,9 @@ public class SkillManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            foreach (var s in skills)
+            foreach (var skill in skills)
             {
-                skillDict[s.skillName] = s;
-                s.ui.SetLevel(s.level, s.maxLevel, s.costPerLevel[s.level], ScoreManager.Instance.CurrentScore);
+                skillDict[skill.skillName] = skill;
             }
         }
         else
@@ -43,11 +42,8 @@ public class SkillManager : MonoBehaviour
     {
         foreach (var skill in skills)
         {
-            if (skill.ui != null)
-            {
-                int xp = skill.level >= skill.maxLevel ? 0 : skill.costPerLevel[skill.level];
-                skill.ui.SetLevel(skill.level, skill.maxLevel, xp, ScoreManager.Instance.CurrentScore);
-            }
+            int xp = skill.level >= skill.maxLevel ? 0 : skill.costPerLevel[skill.level];
+            skill.ui.SetLevel(skill.level, skill.maxLevel, xp, ScoreManager.Instance.CurrentScore);
         }
     }
 
