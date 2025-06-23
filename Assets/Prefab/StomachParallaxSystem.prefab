@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2698115670528867629}
   - component: {fileID: 2165406845951359391}
   m_Layer: 0
-  m_Name: ParallaxTilingSystem
+  m_Name: StomachParallaxSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
