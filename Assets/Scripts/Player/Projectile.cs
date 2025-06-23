@@ -40,7 +40,7 @@ public class Projectile : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            damage = SkillManager.Instance.GetLevel("spike_force") + 1;
+            damage = SkillManager.Instance.GetEffectiveLevel("spike_force") + 1;
             collision.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
     }

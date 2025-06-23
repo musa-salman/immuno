@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e945b1547af7644aebdd4231a801da77
+guid: 398b21a6f01a08357a3e22125dc7bd0d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: main_0
+      name: tar_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,8 +124,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd29f518243967b3e9b0f2bf9defb982
-      internalID: -851133836
+      spriteID: 89d5f326700b36eb1b27179630b7ebbb
+      internalID: -610831207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tar_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17225f3208d45b08d9141b26ba84f9a2
+      internalID: 565931039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tar_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32103f0a0f1800a8484855265724f52b
+      internalID: -1649969674
       vertices: []
       indices: 
       edges: []
@@ -141,7 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      main_0: -851133836
+      tar_0: -610831207
+      tar_1: 565931039
+      tar_2: -1649969674
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

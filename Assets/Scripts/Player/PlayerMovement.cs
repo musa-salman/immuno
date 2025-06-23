@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private int speed = 5;
+    [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce = 6f;
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private float maxSpeed = 5f;
+
+    [SerializeField] private float slowDownSpeed = 1f;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip jumpSound;
@@ -32,11 +34,21 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = Camera.main.transform;
     }
 
+    private float SpeedSkillModifierFunction(int level)
+    {
+        int isNegative = level < 0 ? 1 : 0;
+
+        float speedModifier = isNegative * slowDownSpeed + (1 - isNegative) * (level + 1);
+
+        return speedModifier;
+    }
+
+
     private void Update()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        speed = SkillManager.Instance.GetLevel("surge_motion") + 1;
+        speed = SpeedSkillModifierFunction(SkillManager.Instance.GetEffectiveLevel("surge_motion"));
         Debug.Log("Current Speed: " + speed);
 
         if (mainCamera != null)
@@ -49,18 +61,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         float horizontalInput = Input.GetAxis("Horizontal");
-        var new_speed = body.velocity.x + 2 * horizontalInput * speed;
+        var new_speed = body.velocity.x + horizontalInput * speed;
         var curr_vel = new Vector2(Mathf.Abs(new_speed) > maxSpeed ? horizontalInput * maxSpeed : new_speed, body.velocity.y);
         bool isWalking = Mathf.Abs(horizontalInput) > 0.01f && Mathf.Abs(body.velocity.x) > 0.1f && jumpCount == 0 && !isDashing;
 
         if (isWalking)
         {
             SoundManager.instance.PlaySound(floatingSound);
-        }
-
-        if (Mathf.Abs(curr_vel.x) < 0.8f)
-        {
-            curr_vel.x = 0;
         }
 
         body.velocity = curr_vel;

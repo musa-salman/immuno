@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        CurrentHealth = SkillManager.Instance.GetLevel("toughen_shell") + 1;
+        CurrentHealth = SkillManager.Instance.GetEffectiveLevel("toughen_shell") + 1;
     }
 
     public void TakeDamage(float _damage)
@@ -71,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        StartingHealth = SkillManager.Instance.GetLevel("toughen_shell") + 1;
+        StartingHealth = SkillManager.Instance.GetEffectiveLevel("toughen_shell") + 1;
 
         if (!isDead && Time.time - lastDamageTime >= regenerationDelay && CurrentHealth < StartingHealth)
         {
