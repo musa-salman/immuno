@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6338689059219844631}
   m_Layer: 7
   m_Name: RangedEnemyHolder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -437,10 +437,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   patrolColor: {r: 1, g: 1, b: 1, a: 1}
   alertColor: {r: 1, g: 0, b: 0, a: 1}
-  boxCollider: {fileID: 4471582188211703944}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
   bulletPoint: {fileID: 5984834862359951994}
   bullets:
   - {fileID: 5763679974228571137}
@@ -562,6 +558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8b972ecd8c6a72cb3660c7da5c00e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 5
+  currentHealth: 0
   hurtSound: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
   deathSound: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
 --- !u!1001 &740658951395816545
