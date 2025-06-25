@@ -10,10 +10,14 @@ public class EnemyHealth : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioClip hurtSound;
     [SerializeField] private AudioClip deathSound;
+    [SerializeField] private EnemyHealthBar enemyHealthBar;
 
 
     private bool isDead = false;
-
+    private void Awake()
+    {
+        enemyHealthBar = GetComponentInChildren<EnemyHealthBar>();
+    }
     private void Start()
     {
         StartingHealth = maxHealth;
@@ -26,7 +30,7 @@ public class EnemyHealth : MonoBehaviour
         _damage = CheatManager.OneShotKill ? currentHealth + 1 : _damage;
 #endif
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, StartingHealth);
-
+        enemyHealthBar.updateHealthBar(currentHealth, maxHealth);
         if (currentHealth > 0)
         {
             SoundManager.instance.PlaySound(hurtSound);
