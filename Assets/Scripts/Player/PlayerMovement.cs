@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 6f;
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float knockbackForce = 6f;
 
     [SerializeField] private float slowDownSpeed = 1f;
 
@@ -27,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
     private readonly float DashPower = 2f;
     private readonly float DashTime = 0.5f;
 
+
+    private float knockbackTime = 0.25f;
+    private bool isTakingDamage = false;
+    public bool canTakeDamage = true;
+    private float damageCooldown = 1f;
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -55,10 +61,11 @@ public class PlayerMovement : MonoBehaviour
         {
             mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
         }
-        if (isDashing)
+        if (isDashing || isTakingDamage)
         {
             return;
         }
+
 
         float horizontalInput = Input.GetAxis("Horizontal");
         var new_speed = body.velocity.x + horizontalInput * speed;
@@ -109,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CanDash = false;
         isDashing = true;
+        canTakeDamage = false;
         float og_gravity = body.gravityScale;
         body.gravityScale = 0f;
         body.velocity = new Vector2(Mathf.Abs(body.velocity.x) > 0.1f ? body.velocity.x * DashPower : speed * direction * DashPower, body.velocity.y);
@@ -116,8 +124,22 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(DashTime);
         body.gravityScale = og_gravity;
         isDashing = false;
+        canTakeDamage = true;
         yield return new WaitForSeconds(dashCooldown);
         CanDash = true;
+    }  
+
+    public IEnumerator KnockBack(float direction)
+    {
+        CanDash = false;
+        isTakingDamage = true;
+        canTakeDamage = false;
+        body.velocity = new Vector2(body.velocity.x < 0 ? speed * -knockbackForce : speed * knockbackForce, knockbackForce);
+        yield return new WaitForSeconds(knockbackTime);
+        isTakingDamage = false;
+        CanDash = true;
+        yield return new WaitForSeconds(damageCooldown);
+        canTakeDamage = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

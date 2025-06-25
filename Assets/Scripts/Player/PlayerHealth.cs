@@ -6,11 +6,13 @@ public class PlayerHealth : MonoBehaviour
     private float StartingHealth { get; set; }
     [SerializeField] private float regenerationRate = 0.1f;
     [SerializeField] private float regenerationDelay = 10f;
+    public float flashSpeed = 0.2f; // Adjust for desired flash speed
+    private SpriteRenderer spriteRenderer;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip hurtSoundPlayer;
     [SerializeField] private AudioClip deathSoundPlayer;
-
+    [SerializeField] private PlayerMovement playerMovement;
     public float CurrentHealth { get; private set; }
 
     private bool isDead = false;
@@ -21,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         CurrentHealth = SkillManager.Instance.GetEffectiveLevel("toughen_shell") + 1;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void TakeDamage(float _damage)
@@ -32,21 +35,18 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 #endif
-
-        CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 0, StartingHealth);
-        lastDamageTime = Time.time;
-
-        if (CurrentHealth > 0)
+        if (playerMovement.canTakeDamage)
         {
-            if (Time.time - lastHurtSoundTime >= hurtSoundCooldown)
+            CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 0, StartingHealth);
+            lastDamageTime = Time.time;
+            StartCoroutine(playerMovement.KnockBack(transform.localScale.x));
+            StartCoroutine(FlashSprite());
+            if (CurrentHealth > 0)
             {
                 SoundManager.instance.PlaySound(hurtSoundPlayer);
-
-
-                lastHurtSoundTime = Time.time;
             }
         }
-        else if (!isDead)
+        if (!isDead && CurrentHealth <= 0)
         {
             SoundManager.instance.PlaySound(deathSoundPlayer);
             if (TryGetComponent<Rigidbody2D>(out var rb))
@@ -106,4 +106,18 @@ public class PlayerHealth : MonoBehaviour
 
         lastDamageTime = Time.time;
     }
+
+    IEnumerator FlashSprite()
+    {
+        while (!playerMovement.canTakeDamage)
+        {
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(flashSpeed);
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(flashSpeed);
+        }
+    }
+
 }
+
+
