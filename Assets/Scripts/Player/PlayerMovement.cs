@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         canTakeDamage = true;
         yield return new WaitForSeconds(dashCooldown);
         CanDash = true;
-    }  
+    }
 
     public IEnumerator KnockBack(float direction)
     {
