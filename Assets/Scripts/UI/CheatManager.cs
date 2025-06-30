@@ -1,4 +1,5 @@
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CheatManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class CheatManager : MonoBehaviour
     public static bool UndeadMode { get; private set; }
     public static bool OneShotKill { get; private set; }
     public static bool GhostMode { get; private set; }
+
+    private GameObject[] puzzleEntrances;
 
     private PlayerHealth playerHealth;
     private PlayerMovement player;
@@ -19,6 +22,22 @@ public class CheatManager : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>();
         if (player != null)
             playerHealth = player.GetComponent<PlayerHealth>();
+
+        puzzleEntrances = GameObject.FindGameObjectsWithTag("Puzzle_Entrance");
+
+        if (puzzleEntrances.Length == 0)
+        {
+            List<GameObject> found = new();
+            foreach (GameObject go in GameObject.FindObjectsOfType<GameObject>())
+            {
+                if (go.name.StartsWith("Puzzle_Entrance"))
+                    found.Add(go);
+            }
+            puzzleEntrances = found.ToArray();
+        }
+
+        Debug.Log($"Found {puzzleEntrances.Length} puzzle entrances.");
+
 
         Debug.Log("CheatManager initialized. Press 'C' to toggle the cheat menu.");
     }
@@ -82,6 +101,37 @@ public class CheatManager : MonoBehaviour
 
         if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "⤳ Exit Portal", buttonStyle))
             TeleportTo("Teleport_Exit");
+
+        y += buttonHeight + spacing * 2;
+
+        GUI.Label(new Rect(boxRect.x + 20, y, width - 40, 30), "<b>PUZZLE ENTRANCES</b>", headerStyle);
+        y += 30 + spacing;
+
+        foreach (GameObject entrance in puzzleEntrances)
+        {
+            if (entrance == null) continue;
+
+            string displayName = entrance.name;
+            if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), $"⤳ {displayName}", buttonStyle))
+            {
+                TeleportToPuzzleEntrance(entrance);
+            }
+            y += buttonHeight + spacing;
+        }
+
+    }
+
+    private void TeleportToPuzzleEntrance(GameObject entrance)
+    {
+        if (entrance != null && player != null)
+        {
+            player.transform.position = new Vector3(entrance.transform.position.x, entrance.transform.position.y, player.transform.position.z);
+            Debug.Log($"Teleported to {entrance.name}.");
+        }
+        else
+        {
+            Debug.LogWarning($"Teleport failed. Missing entrance or player.");
+        }
     }
 
     private void InitStyles()

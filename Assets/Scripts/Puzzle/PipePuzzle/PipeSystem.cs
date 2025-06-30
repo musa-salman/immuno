@@ -3,13 +3,6 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Collections;
 
-[System.Serializable]
-public struct TilePrefabPair
-{
-    public TileBase tile;
-    public GameObject prefab;
-}
-
 public class PipeSystem : MonoBehaviour
 {
     [Header("Tile Placement Settings")]

@@ -35,7 +35,7 @@ public class HiddenRoomRevealer : MonoBehaviour
 
     public void StartPuzzle(Transform playerTransform)
     {
-        float tolerance = 1f;
+        float tolerance = 10f;
         float minDistance = Mathf.Infinity;
         RoomPuzzlePair? closestPair = null;
 
@@ -48,7 +48,7 @@ public class HiddenRoomRevealer : MonoBehaviour
                 continue;
 
             float distance = Vector2.Distance(playerTransform.position, pair.roomTransform.position);
-
+            Debug.Log($"Checking pair: {pair.puzzleTransform.name}, distance: {distance}");
             if (distance < minDistance)
             {
                 minDistance = distance;
