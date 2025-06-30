@@ -5,6 +5,7 @@ using TMPro;
 public class Skill : MonoBehaviour
 {
     public Image fillBar;
+    public Text skillNameText; 
     public TMP_Text xpText;
     public Button upgradeButton;
     private Image buttonImage;
@@ -42,12 +43,16 @@ public class Skill : MonoBehaviour
         }
     }
 
+
+    public void SetSkillName(string name)
+    {
+        if (skillNameText != null)
+            skillNameText.text = name;
+    }
+
     private void SetButtonColor(Color c)
     {
-        if (buttonImage != null)
-            buttonImage.color = c;
-
-        if (xpText != null)
-            xpText.color = c;
+        if (buttonImage != null) buttonImage.color = c;
+        if (xpText != null) xpText.color = c;
     }
 }
