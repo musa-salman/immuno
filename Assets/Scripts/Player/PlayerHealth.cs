@@ -17,8 +17,8 @@ public class PlayerHealth : MonoBehaviour
 
     private bool isDead = false;
     private float lastDamageTime;
-    [SerializeField] private float hurtSoundCooldown = 0.5f;
-    private float lastHurtSoundTime = -1f;
+    // [SerializeField] private float hurtSoundCooldown = 0.5f;
+    // private float lastHurtSoundTime = -1f;
 
     private void Start()
     {

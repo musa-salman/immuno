@@ -34,7 +34,7 @@ public class PipeConnector : MonoBehaviour
             other.TryGetComponent<PipeConnector>(out var otherConnector) &&
             otherConnector.direction == parentPipe.GetOppositeDirection(direction))
         {
-            Debug.Log($"Disconnecting {parentPipe.name} from {otherConnector.parentPipe.name} in direction {direction}");
+            //Debug.Log($"Disconnecting {parentPipe.name} from {otherConnector.parentPipe.name} in direction {direction}");
             parentPipe.RemoveNeighbor(otherConnector.parentPipe);
         }
     }
