@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public string lastOrgan;
 
 
+
     private void Awake()
     {
         if (Instance == null)

@@ -11,7 +11,6 @@ public class CheatManager : MonoBehaviour
 
     private PlayerHealth playerHealth;
     private PlayerMovement player;
-
     private GUIStyle headerStyle;
     private GUIStyle buttonStyle;
 
@@ -105,7 +104,7 @@ public class CheatManager : MonoBehaviour
     {
         playerHealth.ResetStats();
 
-        foreach (var skill in SkillManager.Instance.skills)
+        foreach (var skill in SkillManager.Instance.GetAllSkills())
             skill.level = skill.maxLevel;
     }
 
