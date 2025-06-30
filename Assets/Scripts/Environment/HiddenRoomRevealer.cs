@@ -1,17 +1,27 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class HiddenRoomRevealer : MonoBehaviour
 {
+    [Header("Room -> Puzzle Mappings")]
+    [SerializeField] private List<RoomPuzzlePair> roomPuzzlePairs;
+
+    [Header("Hidden Room Tilemap Renderer")]
     public TilemapRenderer hiddenLayerRenderer;
     public float fadeDuration = 1f;
 
     private Material _material;
     private Coroutine _fadeCoroutine;
 
-    private void Awake()
+    private PlayerMovement playerMovement;
+
+    private void Start()
     {
+        playerMovement = FindObjectOfType<PlayerMovement>();
+
         _material = hiddenLayerRenderer.material;
     }
 
@@ -21,6 +31,64 @@ public class HiddenRoomRevealer : MonoBehaviour
         {
             StartFade(0f);
         }
+    }
+
+    public void StartPuzzle(Transform playerTransform)
+    {
+        float tolerance = 1f;
+        float minDistance = Mathf.Infinity;
+        RoomPuzzlePair? closestPair = null;
+
+
+        for (int i = 0; i < roomPuzzlePairs.Count; i++)
+        {
+            var pair = roomPuzzlePairs[i];
+
+            if (pair.isSolved)
+                continue;
+
+            float distance = Vector2.Distance(playerTransform.position, pair.roomTransform.position);
+
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestPair = pair;
+            }
+        }
+
+        if (closestPair.HasValue && minDistance <= tolerance)
+        {
+            var pair = closestPair.Value;
+            playerMovement.SetPuzzleTransform(pair.puzzleTransform);
+            Debug.Log($"Starting puzzle at {pair.puzzleTransform.name}, distance: {minDistance}");
+        }
+        else
+        {
+            Debug.LogWarning("No puzzle found within tolerance or all puzzles are already solved.");
+        }
+    }
+
+
+    public void DonePuzzle(Transform puzzleTransform)
+    {
+        for (int i = 0; i < roomPuzzlePairs.Count; i++)
+        {
+            var pair = roomPuzzlePairs[i];
+            if (pair.puzzleTransform == puzzleTransform)
+            {
+                pair.isSolved = true;
+                playerMovement.DoneSolvingPuzzle();
+
+                if (pair.barrierCollider != null)
+                {
+                    pair.barrierCollider.enabled = false;
+                }
+
+                return;
+            }
+        }
+
+        Debug.LogWarning("Puzzle transform not found in room-puzzle pairs.");
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -41,9 +109,15 @@ public class HiddenRoomRevealer : MonoBehaviour
 
     private IEnumerator FadeTo(float targetAlpha)
     {
+        if (_material == null)
+        {
+            Debug.LogWarning("Hidden room material not assigned.");
+            yield break;
+        }
+
         float elapsed = 0f;
         Color startColor = _material.color;
-        Color targetColor = new Color(startColor.r, startColor.g, startColor.b, targetAlpha);
+        Color targetColor = new(startColor.r, startColor.g, startColor.b, targetAlpha);
 
         while (elapsed < fadeDuration)
         {
@@ -54,4 +128,13 @@ public class HiddenRoomRevealer : MonoBehaviour
 
         _material.color = targetColor;
     }
+}
+
+[Serializable]
+public struct RoomPuzzlePair
+{
+    public Transform roomTransform;
+    public Transform puzzleTransform;
+    public Collider2D barrierCollider;
+    public bool isSolved;
 }

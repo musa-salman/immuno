@@ -28,12 +28,15 @@ public class PlayerMovement : MonoBehaviour
     private readonly float DashPower = 2f;
     private readonly float DashTime = 0.5f;
 
+    private float originalCameraSize;
 
     private float knockbackTime = 0.25f;
     private bool isTakingDamage = false;
     public bool canTakeDamage = true;
-    private float damageCooldown = 1f;
-    private void Awake()
+    private readonly float damageCooldown = 1f;
+    private bool isSolvingPuzzle = false;
+
+    private void Start()
     {
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -53,14 +56,15 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (isSolvingPuzzle)
+        {
+            return;
+        }
 
         speed = SpeedSkillModifierFunction(SkillManager.Instance.GetEffectiveLevel("surge_motion"));
-        Debug.Log("Current Speed: " + speed);
 
-        if (mainCamera != null)
-        {
-            mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
-        }
+        mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
+
         if (isDashing || isTakingDamage)
         {
             return;
@@ -120,7 +124,6 @@ public class PlayerMovement : MonoBehaviour
         float og_gravity = body.gravityScale;
         body.gravityScale = 0f;
         body.velocity = new Vector2(Mathf.Abs(body.velocity.x) > 0.1f ? body.velocity.x * DashPower : speed * direction * DashPower, body.velocity.y);
-        Debug.Log(body.velocity.x);
         yield return new WaitForSeconds(DashTime);
         body.gravityScale = og_gravity;
         isDashing = false;
@@ -162,6 +165,52 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
         animator.SetFloat("yVelocity", body.velocity.y);
+    }
+
+    public void SetPuzzleTransform(Transform puzzleTransform)
+    {
+        StartCoroutine(TransportWithFade(puzzleTransform));
+    }
+
+    private IEnumerator TransportWithFade(Transform puzzleTransform)
+    {
+        yield return FadeManager.Instance.FadeOut();
+
+        isSolvingPuzzle = true;
+        body.velocity = Vector2.zero;
+        body.isKinematic = true;
+
+        mainCamera.position = new Vector3(puzzleTransform.position.x, puzzleTransform.position.y, mainCamera.position.z);
+
+        if (mainCamera.TryGetComponent<Camera>(out var cam))
+        {
+            originalCameraSize = cam.orthographicSize;
+            cam.orthographicSize = originalCameraSize * 2f;
+        }
+
+        yield return FadeManager.Instance.FadeIn();
+    }
+
+    public void DoneSolvingPuzzle()
+    {
+        StartCoroutine(ExitPuzzleWithFade());
+    }
+
+    private IEnumerator ExitPuzzleWithFade()
+    {
+        yield return FadeManager.Instance.FadeOut();
+
+        mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
+
+        if (mainCamera.TryGetComponent<Camera>(out var cam))
+        {
+            cam.orthographicSize = originalCameraSize;
+        }
+
+        body.isKinematic = false;
+        isSolvingPuzzle = false;
+
+        yield return FadeManager.Instance.FadeIn();
     }
 
     public bool CanAttack()
