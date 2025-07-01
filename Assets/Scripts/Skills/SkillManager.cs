@@ -41,7 +41,13 @@ public class SkillManager : MonoBehaviour
         AddSkill("Power", 0, 5, new int[] { 100, 150, 200, 250, 300 });
         AddSkill("toughen_shell", 1, 4, new int[] { 120, 180, 240, 300 });
         AddSkill("Speed", 0, 3, new int[] { 80, 110, 160 });
-        AddSkill("Speed23", 0, 3, new int[] { 80, 110, 160 });
+        AddSkill("Speed1", 0, 3, new int[] { 80, 110, 160 });
+        AddSkill("Speed2", 0, 3, new int[] { 80, 110, 160 });
+        AddSkill("Speed3", 0, 3, new int[] { 80, 110, 160 });
+        AddSkill("Speed4", 0, 3, new int[] { 80, 110, 160 });
+        AddSkill("Speed4", 0, 3, new int[] { 80, 110, 160 });
+        AddSkill("Speed4", 0, 3, new int[] { 80, 110, 160 });
+
     }
 
     void Update()
