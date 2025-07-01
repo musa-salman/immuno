@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7282935192452659262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3088646095963481062}
+  - component: {fileID: 8236536129672015960}
+  - component: {fileID: 5090223142890662251}
+  m_Layer: 0
+  m_Name: ThermoPuzzel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3088646095963481062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282935192452659262}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.97, y: -18.96, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8236536129672015960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282935192452659262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdaad25503cb277081eafbbe65de870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 0}
+  tilePrefabMappings:
+  - tile: {fileID: 11400000, guid: 11c2fb46301dd39bc878adaaecff0da2, type: 2}
+    prefab: {fileID: 3762913560814700145, guid: 8a4d02884cb0fa8b6b6f6822f96a7638, type: 3}
+  - tile: {fileID: 11400000, guid: 8914c3ca94fcfd8358befb1438b72d53, type: 2}
+    prefab: {fileID: 7232590423906348538, guid: d85289381e061b926b04eeba5c13f856, type: 3}
+  - tile: {fileID: 11400000, guid: 00f4f82715fcf794d8379761094d0961, type: 2}
+    prefab: {fileID: 6888050453214270513, guid: 9e6d41bff9e469718b1040bd8371ebd6, type: 3}
+  - tile: {fileID: 11400000, guid: a43a7ef538a63ec13852292aeaf8e6d5, type: 2}
+    prefab: {fileID: 9195248081118196122, guid: 9d52abc4a961eb1fd9e9c5e72195eac2, type: 3}
+  - tile: {fileID: 11400000, guid: e0e729268ba86988caf390d10ae7cdb5, type: 2}
+    prefab: {fileID: 6249584233814494592, guid: 68cce5ef934d544d58221099a26d7dc7, type: 3}
+  - tile: {fileID: 11400000, guid: 81db372db581e2427a4e9d333ecff74c, type: 2}
+    prefab: {fileID: 4942666002959950396, guid: 22a528ff86479155db4a411683c24a2d, type: 3}
+  - tile: {fileID: 11400000, guid: 1a809d5058ac7c93295dd328f5658a15, type: 2}
+    prefab: {fileID: 9195248081118196122, guid: 706a29b5d324c19c19dd2e9c41a9c123, type: 3}
+  - tile: {fileID: 11400000, guid: d45bffd9f7f3a4b9fbcc494857144ec4, type: 2}
+    prefab: {fileID: 6888050453214270513, guid: 15395dd49e5a4ffd9822a4e7d16d1fed, type: 3}
+  - tile: {fileID: 11400000, guid: 61625b73ab7b67d9b8914631319c5a43, type: 2}
+    prefab: {fileID: 4942666002959950396, guid: 2cf97f3e469174130b0491d97a2792bc, type: 3}
+  - tile: {fileID: 11400000, guid: 2411e4600b202cff495d1fb6e2ded608, type: 2}
+    prefab: {fileID: 6249584233814494592, guid: 5db3f3d8a3de48b8ab95d028f21b7a4b, type: 3}
+  thermometers: []
+--- !u!114 &5090223142890662251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282935192452659262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865678020c6086f1ea85a149f9e8919f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rowClues: 02000000020000000200000001000000
+  columnClues: 02000000020000000100000002000000
+  gridRows: 4
+  gridColumns: 4
+  puzzleTilemap: {fileID: 0}

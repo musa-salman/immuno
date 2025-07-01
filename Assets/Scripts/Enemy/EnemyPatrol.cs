@@ -29,6 +29,10 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Awake()
     {
+        if (enemy == null)
+        {
+            return;
+        }
         initScale = enemy.localScale;
         speed = baseSpeed;
         prev_x = enemy.position.x;

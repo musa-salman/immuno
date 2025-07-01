@@ -194,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
         if (mainCamera.TryGetComponent<Camera>(out var cam))
         {
             originalCameraSize = cam.orthographicSize;
-            cam.orthographicSize = originalCameraSize * 1.3f;
+            cam.orthographicSize = originalCameraSize * 2f;
         }
 
         yield return FadeManager.Instance.FadeIn();
