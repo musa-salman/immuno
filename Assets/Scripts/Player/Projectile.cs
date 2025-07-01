@@ -40,7 +40,8 @@ public class Projectile : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            damage = SkillManager.Instance.GetEffectiveLevel("spike_force") + 1;
+            damage = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.Spike);
+            Debug.Log($"Projectile hit enemy: {collision.name} with damage: {damage}");
             collision.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
     }

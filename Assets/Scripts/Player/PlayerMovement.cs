@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip dashSound;
     [SerializeField] private AudioClip floatingSound;
 
-    CollectionsMannger collectionsMannger;
+    CollectionsManager collectionsMannger;
 
     private Animator animator;
 
@@ -44,25 +44,7 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         mainCamera = Camera.main.transform;
-        collectionsMannger = CollectionsMannger.Instance;
-    }
-
-    private float SpeedSkillModifierFunction(int level)
-    {
-        int isNegative = level < 0 ? 1 : 0;
-
-        float speedModifier = isNegative * slowDownSpeed + (1 - isNegative) * (level + 1);
-
-        return speedModifier;
-    }
-
-    public void speedUpEffect()
-    {
-        slowDownSpeed *=0.5f;
-    }
-    public void speedDownEffect()
-    {
-        slowDownSpeed *= 2f;
+        collectionsMannger = CollectionsManager.Instance;
     }
 
     private void Update()
@@ -72,8 +54,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        int speed_level = SkillManager.Instance.GetEffectiveLevel("surge_motion");
-        speed = SpeedSkillModifierFunction(speed_level);
+        float speed_level = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.Speed);
         float speed_limit = maxSpeed + (speed_level * 0.2f);
         mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
 
@@ -116,20 +97,20 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
         {
-            collectionsMannger.handlePowerUp(PowerUpType.DamageUp);
+            collectionsMannger.HandlePowerUp(PowerUpType.DamageUp);
         }
         else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
         {
-            collectionsMannger.handlePowerUp(PowerUpType.SpeedUp);
+            collectionsMannger.HandlePowerUp(PowerUpType.SpeedUp);
         }
         else if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
         {
-            collectionsMannger.handlePowerUp(PowerUpType.UltraShield);
+            collectionsMannger.HandlePowerUp(PowerUpType.UltraShield);
         }
         else if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
         {
-            collectionsMannger.handlePowerUp(PowerUpType.InstantHealth);
-          
+            collectionsMannger.HandlePowerUp(PowerUpType.InstantHealth);
+
         }
     }
 

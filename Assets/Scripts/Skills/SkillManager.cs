@@ -2,27 +2,37 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance;
 
-    [System.Serializable]
+    public enum SkillType
+    {
+        Spike,
+        ToughenShell,
+        Speed,
+    }
+
+    [Serializable]
     public class SkillData
     {
-        public string skillName;
+        public SkillType skillType;
         public int level;
         public int maxLevel;
         public int[] costPerLevel;
         [HideInInspector] public Skill ui;
+        public Func<int, float, float> computeEffectiveLevel;
     }
+
 
     [Header("UI References")]
     public Transform skillsContainer;
     public GameObject skillUIPrefab;
 
-    private readonly Dictionary<string, SkillData> skillDict = new();
-    private readonly Dictionary<string, int> tempModifiers = new();
+    private readonly Dictionary<SkillType, SkillData> skillDict = new();
+    private readonly Dictionary<SkillType, float> tempModifiers = new();
 
     void Awake()
     {
@@ -36,18 +46,15 @@ public class SkillManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void Start()
     {
-        AddSkill("Power", 0, 5, new int[] { 100, 150, 200, 250, 300 });
-        AddSkill("toughen_shell", 1, 4, new int[] { 120, 180, 240, 300 });
-        AddSkill("Speed", 0, 3, new int[] { 80, 110, 160 });
-        AddSkill("Speed1", 0, 3, new int[] { 80, 110, 160 });
-        AddSkill("Speed2", 0, 3, new int[] { 80, 110, 160 });
-        AddSkill("Speed3", 0, 3, new int[] { 80, 110, 160 });
-        AddSkill("Speed4", 0, 3, new int[] { 80, 110, 160 });
-        AddSkill("Speed4", 0, 3, new int[] { 80, 110, 160 });
-        AddSkill("Speed4", 0, 3, new int[] { 80, 110, 160 });
-
+        AddSkill("Spike", SkillType.Spike, new int[] { 100, 150, 200, 250, 300 },
+            (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
+        AddSkill("Toughen Shell", SkillType.ToughenShell, new int[] { 120, 180, 240, 300 },
+            (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
+        AddSkill("Speed", SkillType.Speed, new int[] { 80, 110, 160 },
+            (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
     }
 
     void Update()
@@ -59,41 +66,42 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-    public void AddSkill(string skillName, int level, int maxLevel, int[] costPerLevel)
+    public void AddSkill(string name, SkillType skillType, int[] costPerLevel, Func<int, float, float> computeEffectiveLevel)
     {
-        if (skillDict.ContainsKey(skillName))
+        if (skillDict.ContainsKey(skillType))
         {
-            Debug.LogWarning($"Skill '{skillName}' already exists.");
+            Debug.LogWarning($"Skill '{skillType}' already exists.");
             return;
         }
 
-        SkillData newSkill = new SkillData
+        SkillData newSkill = new()
         {
-            skillName = skillName,
-            level = level,
-            maxLevel = maxLevel,
-            costPerLevel = costPerLevel
+            skillType = skillType,
+            level = 0,
+            maxLevel = costPerLevel.Length - 1,
+            costPerLevel = costPerLevel,
+            computeEffectiveLevel = computeEffectiveLevel
         };
 
-        skillDict[skillName] = newSkill;
+        skillDict[skillType] = newSkill;
 
         GameObject uiObj = Instantiate(skillUIPrefab, skillsContainer);
-        uiObj.name = skillName;
+        uiObj.name = skillType.ToString();
 
         Skill skillUI = uiObj.GetComponent<Skill>();
         newSkill.ui = skillUI;
 
-        skillUI.SetSkillName(skillName);
+        skillUI.SetSkillName(name);
 
         Button btn = skillUI.upgradeButton;
         btn.onClick.RemoveAllListeners();
-        btn.onClick.AddListener(() => TryUpgradeSkill(skillName));
+        btn.onClick.AddListener(() => TryUpgradeSkill(skillType));
 
-        int xp = level >= maxLevel ? 0 : costPerLevel[level];
-        skillUI.SetLevel(level, maxLevel, xp, ScoreManager.Instance.CurrentScore);
+        int upgradeXpCost = newSkill.level >= newSkill.maxLevel ? 0 : costPerLevel[newSkill.level];
+        skillUI.SetLevel(newSkill.level, newSkill.maxLevel, upgradeXpCost, ScoreManager.Instance.CurrentScore);
     }
 
-    public void TryUpgradeSkill(string skillName)
+    public void TryUpgradeSkill(SkillType skillName)
     {
         if (!skillDict.ContainsKey(skillName)) return;
 
@@ -110,75 +118,69 @@ public class SkillManager : MonoBehaviour
         skill.ui?.SetLevel(skill.level, skill.maxLevel, requiredXP, ScoreManager.Instance.CurrentScore);
     }
 
-    public int GetLevel(string skillName) =>
-        skillDict.ContainsKey(skillName) ? skillDict[skillName].level : -1;
-
-    public int GetEffectiveLevel(string skillName)
+    public float GetEffectiveLevel(SkillType skillName)
     {
-        if (!skillDict.TryGetValue(skillName, out var skill)) return -1;
+        if (!skillDict.TryGetValue(skillName, out var skill)) return -1f;
         int baseLevel = skill.level;
-        int mod = tempModifiers.ContainsKey(skillName) ? tempModifiers[skillName] : 0;
-        return Mathf.Clamp(baseLevel + mod, 0, skill.maxLevel);
+        float multiplier = tempModifiers.ContainsKey(skillName) ? tempModifiers[skillName] : 1f;
+        Debug.Log($"Effective level for {skillName}: baseLevel={baseLevel}, multiplier={multiplier}");
+        return skill.computeEffectiveLevel != null
+            ? skill.computeEffectiveLevel(baseLevel, multiplier)
+            : baseLevel * multiplier;
     }
 
-        public IEnumerable<SkillData> GetAllSkills()
+    public IEnumerable<SkillData> GetAllSkills()
     {
         return skillDict.Values;
     }
+
     public void GenerateUI()
     {
         foreach (var skill in skillDict.Values)
         {
             GameObject uiObj = Instantiate(skillUIPrefab, skillsContainer);
-            uiObj.name = skill.skillName;
+            uiObj.name = skill.skillType.ToString();
 
             Skill skillUI = uiObj.GetComponent<Skill>();
             skill.ui = skillUI;
 
             Button btn = skillUI.upgradeButton;
             btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => TryUpgradeSkill(skill.skillName));
+            btn.onClick.AddListener(() => TryUpgradeSkill(skill.skillType));
 
             int xp = skill.level >= skill.maxLevel ? 0 : skill.costPerLevel[skill.level];
             skillUI.SetLevel(skill.level, skill.maxLevel, xp, ScoreManager.Instance.CurrentScore);
         }
     }
 
-    public void SetSkillFor(string skillName, int newLevel, float duration)
+    public void BoostFor(SkillType skillName, float percent, float duration)
+    {
+        ModifyTemporarily(skillName, 1f + Mathf.Abs(percent), duration);
+    }
+
+    public void NerfFor(SkillType skillName, float percent, float duration)
+    {
+        ModifyTemporarily(skillName, 1f - Mathf.Abs(percent), duration);
+    }
+
+    private void ModifyTemporarily(SkillType skillName, float multiplier, float duration)
     {
         if (!skillDict.ContainsKey(skillName)) return;
-        int baseLevel = skillDict[skillName].level;
-        int currentModifier = tempModifiers.ContainsKey(skillName) ? tempModifiers[skillName] : 0;
-        int currentEffective = Mathf.Clamp(baseLevel + currentModifier, 0, skillDict[skillName].maxLevel);
-        int diff = newLevel - currentEffective;
-        StartCoroutine(ApplyModifierTemporarily(skillName, diff, duration));
+        StartCoroutine(ApplyModifierTemporarily(skillName, multiplier, duration));
     }
 
-    public void BoostFor(string skillName, int amount, float duration) {
-        ModifyTemporarily(skillName, Mathf.Abs(amount), duration);
-    }
-
-    public void NerfFor(string skillName, int amount, float duration) {
-
-        ModifyTemporarily(skillName, -Mathf.Abs(amount), duration);
-    }
-
-    private void ModifyTemporarily(string skillName, int modValue, float duration)
-    {
-        if (!skillDict.ContainsKey(skillName)) return;
-        StartCoroutine(ApplyModifierTemporarily(skillName, modValue, duration));
-    }
-
-    private IEnumerator ApplyModifierTemporarily(string skillName, int modValue, float duration)
+    private IEnumerator ApplyModifierTemporarily(SkillType skillName, float multiplier, float duration)
     {
         if (!tempModifiers.ContainsKey(skillName))
-            tempModifiers[skillName] = 0;
+            tempModifiers[skillName] = 1f;
 
-        tempModifiers[skillName] += modValue;
+        tempModifiers[skillName] *= multiplier;
+
         yield return new WaitForSeconds(duration);
-        tempModifiers[skillName] -= modValue;
 
-        if (tempModifiers[skillName] == 0)
+        tempModifiers[skillName] /= multiplier;
+
+        if (Mathf.Approximately(tempModifiers[skillName], 1f))
             tempModifiers.Remove(skillName);
     }
 }

@@ -14,6 +14,9 @@ public class CheatManager : MonoBehaviour
 
     private PlayerHealth playerHealth;
     private PlayerMovement player;
+
+    private string scoreInput = "0";
+
     private GUIStyle headerStyle;
     private GUIStyle buttonStyle;
 
@@ -55,8 +58,8 @@ public class CheatManager : MonoBehaviour
         InitStyles();
 
         int width = 400;
-        int height = 600;
-        Rect boxRect = new Rect(
+        int height = 750;
+        Rect boxRect = new(
             (Screen.width - width) / 2,
             (Screen.height - height) / 2,
             width,
@@ -119,6 +122,54 @@ public class CheatManager : MonoBehaviour
             y += buttonHeight + spacing;
         }
 
+        GUI.Label(new Rect(boxRect.x + 20, y, width - 40, 30), "<b>SCORE CHEATS</b>", headerStyle);
+        y += 30 + spacing;
+
+        scoreInput = GUI.TextField(new Rect(boxRect.x + 20, y, width - 40, 30), scoreInput);
+        y += 30 + spacing;
+
+        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "Add Score", buttonStyle))
+        {
+            if (int.TryParse(scoreInput, out int amount))
+            {
+                ScoreManager.Instance.AddPoints(amount);
+                Debug.Log($"Added {amount} points. New score: {ScoreManager.Instance.CurrentScore}");
+            }
+            else
+            {
+                Debug.LogWarning("Invalid score input.");
+            }
+        }
+        y += buttonHeight + spacing;
+
+        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "Subtract Score", buttonStyle))
+        {
+            if (int.TryParse(scoreInput, out int amount))
+            {
+                ScoreManager.Instance.AddPoints(-amount);
+                Debug.Log($"Subtracted {amount} points. New score: {ScoreManager.Instance.CurrentScore}");
+            }
+            else
+            {
+                Debug.LogWarning("Invalid score input.");
+            }
+        }
+        y += buttonHeight + spacing;
+
+        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "Set Score", buttonStyle))
+        {
+            if (int.TryParse(scoreInput, out int amount))
+            {
+                ScoreManager.Instance.ResetScore();
+                ScoreManager.Instance.AddPoints(amount);
+                Debug.Log($"Score set to {amount}.");
+            }
+            else
+            {
+                Debug.LogWarning("Invalid score input.");
+            }
+        }
+        y += buttonHeight + spacing * 2;
     }
 
     private void TeleportToPuzzleEntrance(GameObject entrance)

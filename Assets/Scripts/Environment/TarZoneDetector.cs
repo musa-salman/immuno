@@ -6,7 +6,7 @@ public class TarZoneDetector : MonoBehaviour
     public Tilemap tarTilemap;
     private Transform playerTransform;
     public string speedSkillName = "surge_motion";
-    public int slowLevel = -1;
+    public float slowDown = 0.59f;
     public float slowDuration = 2f;
 
     private bool inTar = false;
@@ -32,7 +32,7 @@ public class TarZoneDetector : MonoBehaviour
                 inTar = true;
                 lastSlowTime = Time.time;
 
-                SkillManager.Instance.SetSkillFor(speedSkillName, slowLevel, slowDuration);
+                SkillManager.Instance.NerfFor(SkillManager.SkillType.Speed, slowDown, slowDuration);
             }
         }
         else

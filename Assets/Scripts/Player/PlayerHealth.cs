@@ -22,10 +22,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        CurrentHealth = SkillManager.Instance.GetEffectiveLevel("toughen_shell") + 1;
+        CurrentHealth = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.ToughenShell);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    public void addHealth(float amount)
+
+    public void AddHealth(float amount)
     {
         CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, StartingHealth);
         if (CurrentHealth > StartingHealth)
@@ -33,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
             CurrentHealth = StartingHealth;
         }
     }
+
     public void TakeDamage(float _damage)
     {
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
@@ -78,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        StartingHealth = SkillManager.Instance.GetEffectiveLevel("toughen_shell") + 1;
+        StartingHealth = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.ToughenShell);
 
         if (!isDead && Time.time - lastDamageTime >= regenerationDelay && CurrentHealth < StartingHealth)
         {
