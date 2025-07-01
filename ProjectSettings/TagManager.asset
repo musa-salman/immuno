@@ -11,6 +11,7 @@ TagManager:
   - toughen_shell
   - spike_force
   - surge_motion
+  - Puzzle_Entrance
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - UI
   - platform
   - Enemy
-  - 
+  - Connector
   - 
   - 
   - 

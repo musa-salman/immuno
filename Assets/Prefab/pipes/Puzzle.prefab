@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7206875870420639921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7303137337958077512}
+  - component: {fileID: 1281624709603891429}
+  m_Layer: 0
+  m_Name: Puzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7303137337958077512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7206875870420639921}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -33.2, y: -106.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1281624709603891429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7206875870420639921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ee9d43210b558e6b4804e936370b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 0}
+  tilePrefabMappings:
+  - tile: {fileID: 11400000, guid: 3515dd20e599312f3ac1e9d22a565d90, type: 2}
+    prefab: {fileID: 4431960686282277801, guid: d38cc438848acd77ea961f46a65c03a4, type: 3}
+  - tile: {fileID: 11400000, guid: 892993f10a13f867f9dbf4b891a29e27, type: 2}
+    prefab: {fileID: 4926900894869108416, guid: 136a533fc921c3311aa1497935982bca, type: 3}
+  - tile: {fileID: 11400000, guid: eef683586d976f615bd2529b1cb16857, type: 2}
+    prefab: {fileID: 5799974735071387988, guid: 2e5b04e1e43fc6708826ef1fc7f37933, type: 3}
+  - tile: {fileID: 11400000, guid: 71252181cb8a0ea7ba23ba8515ae61cd, type: 2}
+    prefab: {fileID: 7979390612146824263, guid: e7ab391f928dd0a5d8992ed400f001e8, type: 3}
+  - tile: {fileID: 11400000, guid: dbb9ab54c8ddc975bb08c4474e91ba30, type: 2}
+    prefab: {fileID: 6745825125278048014, guid: 91dece2722a2ebd55b1a7cc0286a76e0, type: 3}
+  - tile: {fileID: 11400000, guid: 4c33a51e28ff1095ebc46674e6e4c995, type: 2}
+    prefab: {fileID: 5101445790324270969, guid: e46e2d9bfb363b8f28695877548742ff, type: 3}
+  - tile: {fileID: 11400000, guid: e2bffc38c889cd23aaba8b49aee46c53, type: 2}
+    prefab: {fileID: 1861841554187075997, guid: ff37a99671ff2f7c09f1462ee197ae4b, type: 3}
+  - tile: {fileID: 11400000, guid: 5b675bd79fd6e875daa519aa54d91f4d, type: 2}
+    prefab: {fileID: 2011488146681005509, guid: 01b4094f323aa957e96a8bee87fbcee9, type: 3}
+  - tile: {fileID: 11400000, guid: 0839ef3402eeb4581b6df4d30b09ab44, type: 2}
+    prefab: {fileID: 6026650301821619008, guid: cbb7d88e3e17a86ecb3cb88f697eda6b, type: 3}
+  - tile: {fileID: 11400000, guid: d2d2e206e42d17a9fb339587b767f14e, type: 2}
+    prefab: {fileID: 1577928515958728726, guid: 481625b714834bae381953218ef217ac, type: 3}
+  - tile: {fileID: 11400000, guid: df85fb0febfdeee168d8e19ab6ed1f66, type: 2}
+    prefab: {fileID: 3884437201314274766, guid: a417ae9b428f05725a5c58c0bfe73d81, type: 3}
+  - tile: {fileID: 11400000, guid: 16e1d523fb495a9b284d8675a4a7ece3, type: 2}
+    prefab: {fileID: 1685864197602703644, guid: a1d0be67f7615bfe4b58ad4115797bf9, type: 3}
+  - tile: {fileID: 11400000, guid: 68f781ec751a5f345b380184d7b8d113, type: 2}
+    prefab: {fileID: 2358304537673013282, guid: cf325f6be96a5dc59a2cf588e4dedc2c, type: 3}
+  - tile: {fileID: 11400000, guid: 553fdaa70ee348bed8ce52ea9e148a16, type: 2}
+    prefab: {fileID: 5605869692252980745, guid: 7e9dadce3762f138a860b5c43b0056f7, type: 3}
+  - tile: {fileID: 11400000, guid: c1ede28e058f4419eaae73bcc165713f, type: 2}
+    prefab: {fileID: 2686160191908798868, guid: 5ae025eebdf8b923589d513a8e59e2ad, type: 3}
+  - tile: {fileID: 11400000, guid: 8e513d1ef3bd5033ab56a8c55fd8c098, type: 2}
+    prefab: {fileID: 5605869692252980745, guid: 632788b4f2ca7cf489404250dd1987da, type: 3}
+  pipes: []

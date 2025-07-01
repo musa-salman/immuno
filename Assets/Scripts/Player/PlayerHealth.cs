@@ -17,15 +17,22 @@ public class PlayerHealth : MonoBehaviour
 
     private bool isDead = false;
     private float lastDamageTime;
-    [SerializeField] private float hurtSoundCooldown = 0.5f;
-    private float lastHurtSoundTime = -1f;
+    // [SerializeField] private float hurtSoundCooldown = 0.5f;
+    // private float lastHurtSoundTime = -1f;
 
     private void Start()
     {
         CurrentHealth = SkillManager.Instance.GetEffectiveLevel("toughen_shell") + 1;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
+    public void addHealth(float amount)
+    {
+        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, StartingHealth);
+        if (CurrentHealth > StartingHealth)
+        {
+            CurrentHealth = StartingHealth;
+        }
+    }
     public void TakeDamage(float _damage)
     {
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
@@ -107,7 +114,7 @@ public class PlayerHealth : MonoBehaviour
         lastDamageTime = Time.time;
     }
 
-    IEnumerator FlashSprite()
+    public IEnumerator FlashSprite()
     {
         while (!playerMovement.canTakeDamage)
         {

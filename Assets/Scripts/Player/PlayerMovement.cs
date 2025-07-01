@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5;
@@ -16,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip dashSound;
     [SerializeField] private AudioClip floatingSound;
 
+    CollectionsMannger collectionsMannger;
+
     private Animator animator;
 
     private Rigidbody2D body;
@@ -28,16 +31,20 @@ public class PlayerMovement : MonoBehaviour
     private readonly float DashPower = 2f;
     private readonly float DashTime = 0.5f;
 
+    private float originalCameraSize;
 
     private float knockbackTime = 0.25f;
     private bool isTakingDamage = false;
     public bool canTakeDamage = true;
-    private float damageCooldown = 1f;
-    private void Awake()
+    private readonly float damageCooldown = 1f;
+    private bool isSolvingPuzzle = false;
+
+    private void Start()
     {
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         mainCamera = Camera.main.transform;
+        collectionsMannger = CollectionsMannger.Instance;
     }
 
     private float SpeedSkillModifierFunction(int level)
@@ -49,18 +56,27 @@ public class PlayerMovement : MonoBehaviour
         return speedModifier;
     }
 
+    public void speedUpEffect()
+    {
+        slowDownSpeed *=0.5f;
+    }
+    public void speedDownEffect()
+    {
+        slowDownSpeed *= 2f;
+    }
 
     private void Update()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
-
-        speed = SpeedSkillModifierFunction(SkillManager.Instance.GetEffectiveLevel("surge_motion"));
-        Debug.Log("Current Speed: " + speed);
-
-        if (mainCamera != null)
+        if (isSolvingPuzzle)
         {
-            mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
+            return;
         }
+        int speed_level = SkillManager.Instance.GetEffectiveLevel("surge_motion");
+        speed = SpeedSkillModifierFunction(speed_level);
+        float speed_limit = maxSpeed + (speed_level * 0.2f);
+        mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
+
         if (isDashing || isTakingDamage)
         {
             return;
@@ -69,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
         float horizontalInput = Input.GetAxis("Horizontal");
         var new_speed = body.velocity.x + horizontalInput * speed;
-        var curr_vel = new Vector2(Mathf.Abs(new_speed) > maxSpeed ? horizontalInput * maxSpeed : new_speed, body.velocity.y);
+        var curr_vel = new Vector2(Mathf.Abs(new_speed) > speed_limit ? horizontalInput * speed_limit : new_speed, body.velocity.y);
         bool isWalking = Mathf.Abs(horizontalInput) > 0.01f && Mathf.Abs(body.velocity.x) > 0.1f && jumpCount == 0 && !isDashing;
 
         if (isWalking)
@@ -94,6 +110,27 @@ public class PlayerMovement : MonoBehaviour
         }
 
         HandleDash();
+        if (collectionsMannger.powerUpActive)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            collectionsMannger.handlePowerUp(PowerUpType.DamageUp);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            collectionsMannger.handlePowerUp(PowerUpType.SpeedUp);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            collectionsMannger.handlePowerUp(PowerUpType.UltraShield);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            collectionsMannger.handlePowerUp(PowerUpType.InstantHealth);
+          
+        }
     }
 
     private void Jump()
@@ -120,7 +157,6 @@ public class PlayerMovement : MonoBehaviour
         float og_gravity = body.gravityScale;
         body.gravityScale = 0f;
         body.velocity = new Vector2(Mathf.Abs(body.velocity.x) > 0.1f ? body.velocity.x * DashPower : speed * direction * DashPower, body.velocity.y);
-        Debug.Log(body.velocity.x);
         yield return new WaitForSeconds(DashTime);
         body.gravityScale = og_gravity;
         isDashing = false;
@@ -162,6 +198,52 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
         animator.SetFloat("yVelocity", body.velocity.y);
+    }
+
+    public void SetPuzzleTransform(Transform puzzleTransform)
+    {
+        StartCoroutine(TransportWithFade(puzzleTransform));
+    }
+
+    private IEnumerator TransportWithFade(Transform puzzleTransform)
+    {
+        yield return FadeManager.Instance.FadeOut();
+
+        isSolvingPuzzle = true;
+        body.velocity = Vector2.zero;
+        body.isKinematic = true;
+
+        mainCamera.position = new Vector3(puzzleTransform.position.x, puzzleTransform.position.y, mainCamera.position.z);
+
+        if (mainCamera.TryGetComponent<Camera>(out var cam))
+        {
+            originalCameraSize = cam.orthographicSize;
+            cam.orthographicSize = originalCameraSize * 1.3f;
+        }
+
+        yield return FadeManager.Instance.FadeIn();
+    }
+
+    public void DoneSolvingPuzzle()
+    {
+        StartCoroutine(ExitPuzzleWithFade());
+    }
+
+    private IEnumerator ExitPuzzleWithFade()
+    {
+        yield return FadeManager.Instance.FadeOut();
+
+        mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
+
+        if (mainCamera.TryGetComponent<Camera>(out var cam))
+        {
+            cam.orthographicSize = originalCameraSize;
+        }
+
+        body.isKinematic = false;
+        isSolvingPuzzle = false;
+
+        yield return FadeManager.Instance.FadeIn();
     }
 
     public bool CanAttack()

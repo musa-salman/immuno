@@ -407,6 +407,7 @@ MonoBehaviour:
   currentHealth: 0
   hurtSound: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
   deathSound: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
+  enemyHealthBar: {fileID: 0}
 --- !u!61 &2805529272445449132
 BoxCollider2D:
   m_ObjectHideFlags: 0

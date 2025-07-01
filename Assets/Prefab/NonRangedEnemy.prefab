@@ -393,7 +393,7 @@ MonoBehaviour:
   currentHealth: 0
   hurtSound: {fileID: 8300000, guid: 298ee812823c72c42a5eb08aea7c874f, type: 3}
   deathSound: {fileID: 8300000, guid: 8805e4c036b000746a9971cf1718998b, type: 3}
-  enemyHealthBar: {fileID: 0}
+  enemyHealthBar: {fileID: 5957532698971905715}
 --- !u!1001 &740658951395816545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -912,6 +912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: health_ui
       objectReference: {fileID: 0}
+    - target: {fileID: 6834784948003699216, guid: fcf74f2f1b920f90894436eb25b9286e, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7132949873781883520, guid: fcf74f2f1b920f90894436eb25b9286e, type: 3}
       propertyPath: offset.y
       value: 0.8
@@ -934,6 +938,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 596208803981847020, guid: fcf74f2f1b920f90894436eb25b9286e, type: 3}
   m_PrefabInstance: {fileID: 3481348974975212595}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5957532698971905715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7132949873781883520, guid: fcf74f2f1b920f90894436eb25b9286e, type: 3}
+  m_PrefabInstance: {fileID: 3481348974975212595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1176b5b26523d24f9bc1d8ec37b1984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4914615526723251297
 PrefabInstance:
   m_ObjectHideFlags: 0
