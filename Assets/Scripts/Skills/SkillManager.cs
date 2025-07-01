@@ -10,14 +10,21 @@ public class SkillManager : MonoBehaviour
 
     public enum SkillType
     {
-        Spike,
         ToughenShell,
         Speed,
+        DoubleJump,
+        DashCooldownReduction,
+        HealthRegenerationRate,
+        ProjectilePower,
+        AttackSpeed,
+        RegenerationDelayReduction,
     }
 
     [Serializable]
     public class SkillData
     {
+        public string name;
+        public string description;
         public SkillType skillType;
         public int level;
         public int maxLevel;
@@ -49,12 +56,43 @@ public class SkillManager : MonoBehaviour
 
     void Start()
     {
-        AddSkill("Spike", SkillType.Spike, new int[] { 100, 150, 200, 250, 300 },
+        AddSkill("Iron Plating", "Increase defense with hardened cell walls.", SkillType.ToughenShell, new int[] { 120, 180, 240, 300, 400, 500 },
             (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
-        AddSkill("Toughen Shell", SkillType.ToughenShell, new int[] { 120, 180, 240, 300 },
+
+        AddSkill("Cytoblast Surge", "Move faster to evade threats.", SkillType.Speed, new int[] { 80, 110, 160 },
             (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
-        AddSkill("Speed", SkillType.Speed, new int[] { 80, 110, 160 },
+
+        AddSkill("Leaping Division", "Gain extra jumps for aerial mobility.", SkillType.DoubleJump, new int[] { 150, 250, 400 },
             (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
+
+        AddSkill("Histamine Reflex", "Reduces cooldown between dashes.", SkillType.DashCooldownReduction, new int[] { 100, 150, 200 },
+(baseLevel, multiplier) => Mathf.Max(0.1f, 0.5f - 0.1f * baseLevel * multiplier));
+
+
+        AddSkill("Cellular Renewal", "Regenerate health over time.", SkillType.HealthRegenerationRate, new int[] { 100, 150, 250, 350 },
+            (baseLevel, multiplier) => (baseLevel + 1) * 0.2f * multiplier);
+
+        AddSkill("Primed Recovery", "Reduces delay before health regeneration begins.", SkillType.RegenerationDelayReduction, new int[] { 90, 140, 220, 300, 400 },
+(baseLevel, multiplier) => Mathf.Max(0f, 10f - (baseLevel * 1f * multiplier)));
+
+        AddSkill("Enzyme Spike", "Enhance projectile attack damage.", SkillType.ProjectilePower, new int[] { 90, 130, 200, 300 },
+            (baseLevel, multiplier) => 1f + 0.15f * baseLevel * multiplier);
+
+        AddSkill("Rapid Synthesis", "Reduce attack cooldown for faster strikes.", SkillType.AttackSpeed, new int[] { 110, 160, 240, 320, 500 },
+            (baseLevel, multiplier) => Mathf.Max(0f, 1f - 0.2f * baseLevel * multiplier));
+
+        // TODO: MOVE ENABLING THE SKILLS TO BE WHEN THE PLAYER COLLECTS THE REQUIRED ITEM
+        EnableSkillUpgrade(SkillType.ToughenShell);
+        EnableSkillUpgrade(SkillType.Speed);
+
+        EnableSkillUpgrade(SkillType.DoubleJump);
+        EnableSkillUpgrade(SkillType.DashCooldownReduction);
+
+        EnableSkillUpgrade(SkillType.HealthRegenerationRate);
+        EnableSkillUpgrade(SkillType.RegenerationDelayReduction);
+
+        EnableSkillUpgrade(SkillType.ProjectilePower);
+        EnableSkillUpgrade(SkillType.AttackSpeed);
     }
 
     void Update()
@@ -66,7 +104,8 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-    public void AddSkill(string name, SkillType skillType, int[] costPerLevel, Func<int, float, float> computeEffectiveLevel)
+
+    private void AddSkill(string name, string description, SkillType skillType, int[] costPerLevel, Func<int, float, float> computeEffectiveLevel)
     {
         if (skillDict.ContainsKey(skillType))
         {
@@ -76,6 +115,8 @@ public class SkillManager : MonoBehaviour
 
         SkillData newSkill = new()
         {
+            name = name,
+            description = description,
             skillType = skillType,
             level = 0,
             maxLevel = costPerLevel.Length - 1,
@@ -84,6 +125,16 @@ public class SkillManager : MonoBehaviour
         };
 
         skillDict[skillType] = newSkill;
+    }
+
+    public void EnableSkillUpgrade(SkillType skillType)
+    {
+        var newSkill = skillDict[skillType];
+        if (newSkill.ui != null)
+        {
+            Debug.LogWarning($"Skill UI for '{skillType}' already exists.");
+            return;
+        }
 
         GameObject uiObj = Instantiate(skillUIPrefab, skillsContainer);
         uiObj.name = skillType.ToString();
@@ -91,13 +142,14 @@ public class SkillManager : MonoBehaviour
         Skill skillUI = uiObj.GetComponent<Skill>();
         newSkill.ui = skillUI;
 
-        skillUI.SetSkillName(name);
+        skillUI.SetSkillName(newSkill.name);
+        skillUI.SetDescription(newSkill.description);
 
         Button btn = skillUI.upgradeButton;
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener(() => TryUpgradeSkill(skillType));
 
-        int upgradeXpCost = newSkill.level >= newSkill.maxLevel ? 0 : costPerLevel[newSkill.level];
+        int upgradeXpCost = newSkill.level >= newSkill.maxLevel ? 0 : newSkill.costPerLevel[newSkill.level];
         skillUI.SetLevel(newSkill.level, newSkill.maxLevel, upgradeXpCost, ScoreManager.Instance.CurrentScore);
     }
 

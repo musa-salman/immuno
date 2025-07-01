@@ -6,6 +6,7 @@ public class Skill : MonoBehaviour
 {
     public Image fillBar;
     public Text skillNameText;
+    public Text skillDescriptionText;
     public TMP_Text xpText;
     public Button upgradeButton;
     private Image buttonImage;
@@ -48,6 +49,12 @@ public class Skill : MonoBehaviour
     {
         if (skillNameText != null)
             skillNameText.text = name;
+    }
+
+    public void SetDescription(string description)
+    {
+        if (skillDescriptionText != null)
+            skillDescriptionText.text = description;
     }
 
     private void SetButtonColor(Color c)

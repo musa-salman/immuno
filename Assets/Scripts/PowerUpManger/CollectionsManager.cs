@@ -76,7 +76,7 @@ public class CollectionsManager : MonoBehaviour
             case PowerUpType.DamageUp:
                 if (dmgUps > 0)
                 {
-                    skillManager.BoostFor(SkillManager.SkillType.Spike, damageUpBoostLevels, damageUpDuration);
+                    skillManager.BoostFor(SkillManager.SkillType.ProjectilePower, damageUpBoostLevels, damageUpDuration);
                     dmgUps--;
                     damageUpUI.setCounterText(dmgUps);
                     StartCoroutine(PowerUpCooldown());

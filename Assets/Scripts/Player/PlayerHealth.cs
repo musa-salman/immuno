@@ -4,8 +4,6 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     private float StartingHealth { get; set; }
-    [SerializeField] private float regenerationRate = 0.1f;
-    [SerializeField] private float regenerationDelay = 10f;
     public float flashSpeed = 0.2f; // Adjust for desired flash speed
     private SpriteRenderer spriteRenderer;
 
@@ -82,7 +80,9 @@ public class PlayerHealth : MonoBehaviour
     {
         StartingHealth = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.ToughenShell);
 
-        if (!isDead && Time.time - lastDamageTime >= regenerationDelay && CurrentHealth < StartingHealth)
+        if (!isDead &&
+            Time.time - lastDamageTime >= SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.RegenerationDelayReduction) &&
+            CurrentHealth < StartingHealth)
         {
             RegenerateHealth();
         }
@@ -90,7 +90,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void RegenerateHealth()
     {
-        CurrentHealth = Mathf.Clamp(CurrentHealth + regenerationRate * Time.deltaTime, 0, StartingHealth);
+        CurrentHealth = Mathf.Clamp(CurrentHealth + SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.HealthRegenerationRate) * Time.deltaTime,
+                                    0, StartingHealth);
     }
 
     private IEnumerator HandleDeath()

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown = 0.5f;
     [SerializeField] private Transform bulletPoint;
     [SerializeField] private GameObject[] bullets;
 
@@ -24,7 +23,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer > attackCooldown && health.CurrentHealth > 0 && playerMovement.CanAttack())
+        if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer > SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.AttackSpeed) &&
+            health.CurrentHealth > 0 && playerMovement.CanAttack())
         {
             animator.SetTrigger("Attack");
 

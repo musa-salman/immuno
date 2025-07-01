@@ -1,30 +1,25 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
+
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce = 6f;
-    [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float knockbackForce = 6f;
-
-    [SerializeField] private float slowDownSpeed = 1f;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip dashSound;
     [SerializeField] private AudioClip floatingSound;
 
-    CollectionsManager collectionsMannger;
+    CollectionsManager collectionsManager;
 
     private Animator animator;
 
     private Rigidbody2D body;
     private Transform mainCamera;
     private int jumpCount = 0;
-    private readonly int maxJumps = 2;
 
     private bool CanDash = true;
     private bool isDashing = false;
@@ -44,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         mainCamera = Camera.main.transform;
-        collectionsMannger = CollectionsManager.Instance;
+        collectionsManager = CollectionsManager.Instance;
     }
 
     private void Update()
@@ -85,31 +80,31 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && jumpCount < maxJumps)
+        if (Input.GetKeyDown(KeyCode.W) && jumpCount < SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.DoubleJump))
         {
             Jump();
         }
 
         HandleDash();
-        if (collectionsMannger.powerUpActive)
+        if (collectionsManager.powerUpActive)
         {
             return;
         }
         if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
         {
-            collectionsMannger.HandlePowerUp(PowerUpType.DamageUp);
+            collectionsManager.HandlePowerUp(PowerUpType.DamageUp);
         }
         else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
         {
-            collectionsMannger.HandlePowerUp(PowerUpType.SpeedUp);
+            collectionsManager.HandlePowerUp(PowerUpType.SpeedUp);
         }
         else if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
         {
-            collectionsMannger.HandlePowerUp(PowerUpType.UltraShield);
+            collectionsManager.HandlePowerUp(PowerUpType.UltraShield);
         }
         else if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
         {
-            collectionsMannger.HandlePowerUp(PowerUpType.InstantHealth);
+            collectionsManager.HandlePowerUp(PowerUpType.InstantHealth);
 
         }
     }
@@ -142,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         body.gravityScale = og_gravity;
         isDashing = false;
         canTakeDamage = true;
-        yield return new WaitForSeconds(dashCooldown);
+        yield return new WaitForSeconds(SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.DashCooldownReduction));
         CanDash = true;
     }
 
@@ -168,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (contact.normal.y < -0.5f)
             {
-                jumpCount = maxJumps;
+                jumpCount = (int)SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.DoubleJump);
             }
         }
 
