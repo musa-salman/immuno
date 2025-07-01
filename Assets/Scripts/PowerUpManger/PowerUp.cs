@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    private CollectionsMannger collectionsMannger;
+    private CollectionsManager collectionsMannger;
     // Start is called before the first frame update
     [SerializeField] private PowerUpType powerUpType;
     void Start()
     {
-        if (CollectionsMannger.Instance == null)
+        if (CollectionsManager.Instance == null)
         {
             Debug.LogError("CollectionsMannger instance is not set.");
             return;
         }
-        collectionsMannger = CollectionsMannger.Instance;
+        collectionsMannger = CollectionsManager.Instance;
     }
     void OnTriggerEnter2D(Collider2D other)
     {

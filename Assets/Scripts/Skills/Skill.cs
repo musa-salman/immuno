@@ -5,7 +5,7 @@ using TMPro;
 public class Skill : MonoBehaviour
 {
     public Image fillBar;
-    public Text skillNameText; 
+    public Text skillNameText;
     public TMP_Text xpText;
     public Button upgradeButton;
     private Image buttonImage;
