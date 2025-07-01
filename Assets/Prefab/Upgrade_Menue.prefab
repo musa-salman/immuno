@@ -994,7 +994,7 @@ GameObject:
   - component: {fileID: 5828578412623268101}
   - component: {fileID: 7721529534040239299}
   m_Layer: 5
-  m_Name: Upgrade_Menue 1
+  m_Name: Upgrade_Menue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
