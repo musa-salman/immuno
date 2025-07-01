@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioClip hurtSoundPlayer;
     [SerializeField] private AudioClip deathSoundPlayer;
-    [SerializeField] private PlayerMovement playerMovement;
+    private PlayerMovement playerMovement;
     public float CurrentHealth { get; private set; }
 
     private bool isDead = false;
@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     {
         CurrentHealth = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.ToughenShell);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     public void AddHealth(float amount)

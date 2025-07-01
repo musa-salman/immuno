@@ -5,18 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PowerUpUI : MonoBehaviour
 {
-    [SerializeField] private PowerUpType Id = PowerUpType.None;
+    public PowerUpType Id = PowerUpType.None;
     [SerializeField] private Image powerUpImage;
     [SerializeField] private Image powerKeyImage;
-    [SerializeField] private TMP_Text  powerUpText;
-    [SerializeField] private TMP_Text  counterText;
+    [SerializeField] private TMP_Text powerUpText;
+    [SerializeField] private TMP_Text counterText;
     private Material imageMaterial;
 
     private string enabledTextColor = "#FFB800";
 
     public void EnableUI()
     {
-        if (powerUpImage == null || powerKeyImage == null ||powerUpText == null || counterText == null) 
+        if (powerUpImage == null || powerKeyImage == null || powerUpText == null || counterText == null)
         {
             Debug.LogError("PowerUpUI: PowerUpImage or PowerUpText is not assigned.");
             return;
@@ -32,7 +32,7 @@ public class PowerUpUI : MonoBehaviour
     {
         if (counterText != null)
         {
-            counterText.text = "x"+ count.ToString();
+            counterText.text = "x" + count.ToString();
         }
         else
         {
@@ -52,6 +52,6 @@ public class PowerUpUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

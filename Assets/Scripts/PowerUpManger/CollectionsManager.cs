@@ -37,16 +37,13 @@ public class CollectionsManager : MonoBehaviour
 
     [SerializeField] private float instantHealthAmount = 50f;
 
-    [Header("PLayer scripts")]
-    [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerHealth playerHealth;
-    [SerializeField] private SkillManager skillManager;
+    private PlayerMovement playerMovement;
+    private PlayerHealth playerHealth;
 
-    [Header("UI elements")]
-    [SerializeField] private PowerUpUI damageUpUI;
-    [SerializeField] private PowerUpUI speedUpUI;
-    [SerializeField] private PowerUpUI ultraShieldUI;
-    [SerializeField] private PowerUpUI instantHealthUI;
+    private PowerUpUI damageUpUI;
+    private PowerUpUI speedUpUI;
+    private PowerUpUI ultraShieldUI;
+    private PowerUpUI instantHealthUI;
 
     void Awake()
     {
@@ -58,6 +55,32 @@ public class CollectionsManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+        playerHealth = GetComponent<PlayerHealth>();
+
+        PowerUpUI[] powerUpUIs = FindObjectsOfType<PowerUpUI>();
+        foreach (PowerUpUI powerUpUI in powerUpUIs)
+        {
+            switch (powerUpUI.Id)
+            {
+                case PowerUpType.DamageUp:
+                    damageUpUI = powerUpUI;
+                    break;
+                case PowerUpType.SpeedUp:
+                    speedUpUI = powerUpUI;
+                    break;
+                case PowerUpType.UltraShield:
+                    ultraShieldUI = powerUpUI;
+                    break;
+                case PowerUpType.InstantHealth:
+                    instantHealthUI = powerUpUI;
+                    break;
+            }
         }
     }
 
@@ -76,7 +99,7 @@ public class CollectionsManager : MonoBehaviour
             case PowerUpType.DamageUp:
                 if (dmgUps > 0)
                 {
-                    skillManager.BoostFor(SkillManager.SkillType.ProjectilePower, damageUpBoostLevels, damageUpDuration);
+                    SkillManager.Instance.BoostFor(SkillManager.SkillType.ProjectilePower, damageUpBoostLevels, damageUpDuration);
                     dmgUps--;
                     damageUpUI.setCounterText(dmgUps);
                     StartCoroutine(PowerUpCooldown());
@@ -98,7 +121,7 @@ public class CollectionsManager : MonoBehaviour
             case PowerUpType.SpeedUp:
                 if (speedUps > 0)
                 {
-                    skillManager.BoostFor(SkillManager.SkillType.Speed, speedUpLevelsBoost, speedUpDuration);
+                    SkillManager.Instance.BoostFor(SkillManager.SkillType.Speed, speedUpLevelsBoost, speedUpDuration);
                     speedUps--;
                     speedUpUI.setCounterText(speedUps);
                     StartCoroutine(PowerUpCooldown());
@@ -195,5 +218,29 @@ public class CollectionsManager : MonoBehaviour
         }
         powerUpActive = false;
 
+    }
+
+
+    public void RefreshUI()
+    {
+        PowerUpUI[] powerUpUIs = FindObjectsOfType<PowerUpUI>();
+        foreach (PowerUpUI powerUpUI in powerUpUIs)
+        {
+            switch (powerUpUI.Id)
+            {
+                case PowerUpType.DamageUp:
+                    powerUpUI.setCounterText(dmgUps);
+                    break;
+                case PowerUpType.SpeedUp:
+                    powerUpUI.setCounterText(speedUps);
+                    break;
+                case PowerUpType.UltraShield:
+                    powerUpUI.setCounterText(remainingUltraShields);
+                    break;
+                case PowerUpType.InstantHealth:
+                    powerUpUI.setCounterText(instaHealth);
+                    break;
+            }
+        }
     }
 }

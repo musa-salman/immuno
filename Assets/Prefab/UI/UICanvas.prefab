@@ -981,6 +981,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 927000172059533133}
     m_Modifications:
+    - target: {fileID: 1219114546217607396, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
+      propertyPath: Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808096085994778028, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
+      propertyPath: Id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715283756834135434, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
+      propertyPath: Id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6455124364003439228, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1064,6 +1076,10 @@ PrefabInstance:
     - target: {fileID: 6844740950483435560, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
       propertyPath: m_Name
       value: PowerUps
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917141689861313580, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
+      propertyPath: Id
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

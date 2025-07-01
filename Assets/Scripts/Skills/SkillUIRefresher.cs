@@ -17,5 +17,8 @@ public class SkillUIRefresher : MonoBehaviour
     {
         if (SkillManager.Instance != null)
             SkillManager.Instance.GenerateUI();
+
+        if (CollectionsManager.Instance != null)
+            CollectionsManager.Instance.RefreshUI();
     }
 }

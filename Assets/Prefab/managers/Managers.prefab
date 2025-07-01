@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 2786376774707143083}
   - component: {fileID: 984610444463119899}
   - component: {fileID: 655195503805958645}
+  - component: {fileID: 2715454006986960065}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -178,22 +179,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b492caf00203fb96b5310b4246ac79f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skills:
-  - skillName: toughen_shell
-    level: 0
-    maxLevel: 5
-    costPerLevel: f4010000e8030000d0070000b80b0000ac0d0000
-    ui: {fileID: 0}
-  - skillName: surge_motion
-    level: 0
-    maxLevel: 5
-    costPerLevel: f4010000e8030000d0070000b80b0000ac0d0000
-    ui: {fileID: 0}
-  - skillName: spike_force
-    level: 0
-    maxLevel: 5
-    costPerLevel: f4010000e8030000d0070000b80b0000ac0d0000
-    ui: {fileID: 0}
+  skillsContainer: {fileID: 0}
+  skillUIPrefab: {fileID: 8767983567028421669, guid: f7983b21491f66f42bf720bbf71580d2, type: 3}
+--- !u!114 &2715454006986960065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7031516152327300468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e855134cd8a0946bce352fb6d516d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpActive: 0
+  speedUpDuration: 10
+  speedUpLevelsBoost: 2
+  ultraShieldDuration: 5
+  damageUpDuration: 5
+  damageUpBoostLevels: 0.25
+  instantHealthAmount: 50
 --- !u!1 &8779019510097343539
 GameObject:
   m_ObjectHideFlags: 0
