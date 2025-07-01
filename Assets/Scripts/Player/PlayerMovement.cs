@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5;
@@ -15,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip dashSound;
     [SerializeField] private AudioClip floatingSound;
+
+    CollectionsMannger collectionsMannger;
 
     private Animator animator;
 
@@ -41,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         mainCamera = Camera.main.transform;
+        collectionsMannger = CollectionsMannger.Instance;
     }
 
     private float SpeedSkillModifierFunction(int level)
@@ -52,6 +56,14 @@ public class PlayerMovement : MonoBehaviour
         return speedModifier;
     }
 
+    public void speedUpEffect()
+    {
+        slowDownSpeed *=0.5f;
+    }
+    public void speedDownEffect()
+    {
+        slowDownSpeed *= 2f;
+    }
 
     private void Update()
     {
@@ -60,9 +72,9 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-
-        speed = SpeedSkillModifierFunction(SkillManager.Instance.GetEffectiveLevel("surge_motion"));
-
+        int speed_level = SkillManager.Instance.GetEffectiveLevel("surge_motion");
+        speed = SpeedSkillModifierFunction(speed_level);
+        float speed_limit = maxSpeed + (speed_level * 0.2f);
         mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
 
         if (isDashing || isTakingDamage)
@@ -73,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
         float horizontalInput = Input.GetAxis("Horizontal");
         var new_speed = body.velocity.x + horizontalInput * speed;
-        var curr_vel = new Vector2(Mathf.Abs(new_speed) > maxSpeed ? horizontalInput * maxSpeed : new_speed, body.velocity.y);
+        var curr_vel = new Vector2(Mathf.Abs(new_speed) > speed_limit ? horizontalInput * speed_limit : new_speed, body.velocity.y);
         bool isWalking = Mathf.Abs(horizontalInput) > 0.01f && Mathf.Abs(body.velocity.x) > 0.1f && jumpCount == 0 && !isDashing;
 
         if (isWalking)
@@ -98,6 +110,27 @@ public class PlayerMovement : MonoBehaviour
         }
 
         HandleDash();
+        if (collectionsMannger.powerUpActive)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            collectionsMannger.handlePowerUp(PowerUpType.DamageUp);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            collectionsMannger.handlePowerUp(PowerUpType.SpeedUp);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            collectionsMannger.handlePowerUp(PowerUpType.UltraShield);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            collectionsMannger.handlePowerUp(PowerUpType.InstantHealth);
+          
+        }
     }
 
     private void Jump()

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8785081171977146572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5800596909189970113}
+  - component: {fileID: 5458016876064509078}
+  m_Layer: 0
+  m_Name: PowerUpManger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5800596909189970113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785081171977146572}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -52.421665, y: 26.363235, z: -1.0625495}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5458016876064509078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785081171977146572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e855134cd8a0946bce352fb6d516d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedUpDuration: 10
+  speedUpLevelsBoost: 3
+  ultraShieldDuration: 5
+  damageUpDuration: 5
+  damageUpBoostLevels: 3
+  instantHealthAmount: 50
+  playerMovement: {fileID: 0}
+  playerHealth: {fileID: 0}
+  skillManager: {fileID: 0}
+  damageUpUI: {fileID: 0}
+  instantHealthUI: {fileID: 0}
+  speedUpUI: {fileID: 0}
+  ultraShieldUI: {fileID: 0}

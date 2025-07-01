@@ -148,11 +148,14 @@ public class SkillManager : MonoBehaviour
         StartCoroutine(ApplyModifierTemporarily(skillName, diff, duration));
     }
 
-    public void BoostFor(string skillName, int amount, float duration) =>
+    public void BoostFor(string skillName, int amount, float duration) {
         ModifyTemporarily(skillName, Mathf.Abs(amount), duration);
+    }
 
-    public void NerfFor(string skillName, int amount, float duration) =>
+    public void NerfFor(string skillName, int amount, float duration) {
+
         ModifyTemporarily(skillName, -Mathf.Abs(amount), duration);
+    }
 
     private void ModifyTemporarily(string skillName, int modValue, float duration)
     {
