@@ -6,7 +6,7 @@ public class Skill : MonoBehaviour
 {
     public Image fillBar;
     public Text skillNameText;
-    public Text skillDescriptionText;
+    public TMP_Text skillDescriptionText;
     public TMP_Text xpText;
     public Button upgradeButton;
     private Image buttonImage;
