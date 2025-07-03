@@ -221,18 +221,18 @@ public class SkillManager : MonoBehaviour
         StartCoroutine(ApplyModifierTemporarily(skillName, multiplier, duration));
     }
 
-    private IEnumerator ApplyModifierTemporarily(SkillType skillName, float multiplier, float duration)
+    private IEnumerator ApplyModifierTemporarily(SkillType skillType, float multiplier, float duration)
     {
-        if (!tempModifiers.ContainsKey(skillName))
-            tempModifiers[skillName] = 1f;
+        if (!tempModifiers.ContainsKey(skillType))
+            tempModifiers[skillType] = 1f;
 
-        tempModifiers[skillName] *= multiplier;
+        tempModifiers[skillType] *= multiplier;
 
         yield return new WaitForSeconds(duration);
 
-        tempModifiers[skillName] /= multiplier;
+        tempModifiers[skillType] /= multiplier;
 
-        if (Mathf.Approximately(tempModifiers[skillName], 1f))
-            tempModifiers.Remove(skillName);
+        if (Mathf.Approximately(tempModifiers[skillType], 1f))
+            tempModifiers.Remove(skillType);
     }
 }
