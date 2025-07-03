@@ -1,41 +1,71 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class BrightnessController : MonoBehaviour
 {
+    public static BrightnessController Instance;
+
     [SerializeField] private Slider brightnessSlider;
     private Image brightnessOverlay;
-    private Image[] backgroundImages;
+    private List<Image> backgroundImages = new();
+    private float currentBrightness;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
+        currentBrightness = PlayerPrefs.GetFloat("Brightness", 0.5f);
+
+        if (brightnessSlider != null)
+        {
+            brightnessSlider.value = currentBrightness;
+            brightnessSlider.onValueChanged.AddListener(ApplyBrightness);
+        }
+
+        ScanScene();
+        ApplyBrightness(currentBrightness);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ScanScene();
+        ApplyBrightness(currentBrightness);
+    }
+
+    private void ScanScene()
+    {
         GameObject overlayObj = GameObject.FindGameObjectWithTag("BrightnessOverlay");
-        if (overlayObj != null)
-            brightnessOverlay = overlayObj.GetComponent<Image>();
+        brightnessOverlay = overlayObj != null ? overlayObj.GetComponent<Image>() : null;
 
+        backgroundImages.Clear();
         Image[] allImages = Resources.FindObjectsOfTypeAll<Image>();
-        var backgroundList = new System.Collections.Generic.List<Image>();
-
         foreach (Image img in allImages)
         {
             if (img != null && img.CompareTag("BrightnessOverlay"))
             {
-                backgroundList.Add(img);
+                backgroundImages.Add(img);
             }
         }
-
-        backgroundImages = backgroundList.ToArray();
-
-        float savedBrightness = PlayerPrefs.GetFloat("Brightness", 0.5f);
-        brightnessSlider.value = savedBrightness;
-        ApplyBrightness(savedBrightness);
-
-        brightnessSlider.onValueChanged.AddListener(ApplyBrightness);
     }
 
     private void ApplyBrightness(float value)
     {
-        // Apply to main overlay
+        currentBrightness = value;
+
         if (brightnessOverlay != null)
         {
             Color c = brightnessOverlay.color;
