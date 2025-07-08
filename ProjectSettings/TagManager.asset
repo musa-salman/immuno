@@ -12,6 +12,7 @@ TagManager:
   - spike_force
   - surge_motion
   - Puzzle_Entrance
+  - BrightnessOverlay
   layers:
   - Default
   - TransparentFX
