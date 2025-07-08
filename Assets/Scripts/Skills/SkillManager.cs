@@ -175,7 +175,6 @@ public class SkillManager : MonoBehaviour
         if (!skillDict.TryGetValue(skillName, out var skill)) return -1f;
         int baseLevel = skill.level;
         float multiplier = tempModifiers.ContainsKey(skillName) ? tempModifiers[skillName] : 1f;
-        Debug.Log($"Effective level for {skillName}: baseLevel={baseLevel}, multiplier={multiplier}");
         return skill.computeEffectiveLevel != null
             ? skill.computeEffectiveLevel(baseLevel, multiplier)
             : baseLevel * multiplier;
