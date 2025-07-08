@@ -22,6 +22,7 @@ public class ThermometerPlacementSystem : MonoBehaviour
     private void PlaceAllSegments()
     {
         BoundsInt bounds = tilemap.cellBounds;
+        ThermometerPuzzleManager puzzleManager = GetComponent<ThermometerPuzzleManager>();
 
         foreach (Vector3Int pos in bounds.allPositionsWithin)
         {
@@ -40,6 +41,7 @@ public class ThermometerPlacementSystem : MonoBehaviour
                         placedSegments[pos] = segment;
                         segment.gridCol = pos.x;
                         segment.gridRow = pos.y;
+                        segment.puzzleManager = puzzleManager;
                         tilemap.SetTile(pos, null);
                     }
                 }

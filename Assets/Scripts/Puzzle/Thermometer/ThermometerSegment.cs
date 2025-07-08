@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ThermometerSegment : MonoBehaviour
 {
+    [HideInInspector]
+    public ThermometerPuzzleManager puzzleManager;
+
     public enum SegmentType { Head, Tail, MiddleHorizontal, MiddleVertical }
     public enum Direction { Up, Down, Left, Right }
 
@@ -31,6 +34,7 @@ public class ThermometerSegment : MonoBehaviour
         {
             Fill();
         }
+        puzzleManager.ValidateSolution();
     }
 
     private void Fill()

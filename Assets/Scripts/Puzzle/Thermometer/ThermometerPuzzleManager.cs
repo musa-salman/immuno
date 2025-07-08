@@ -25,38 +25,8 @@ public class ThermometerPuzzleManager : MonoBehaviour
         hiddenRoomRevealer = FindObjectOfType<HiddenRoomRevealer>();
     }
 
-    private void Update()
+    public void ValidateSolution()
     {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            if (!isValidating)
-            {
-                isValidating = true;
-                ValidateAndReveal();
-            }
-        }
-    }
-
-    private void ValidateAndReveal()
-    {
-        bool solved = ValidateSolution();
-
-        if (solved)
-        {
-            Debug.Log("Thermometer Puzzle Solved!");
-            hiddenRoomRevealer.DonePuzzle(transform);
-        }
-        else
-        {
-            Debug.Log("Thermometer Puzzle not solved yet.");
-        }
-
-        isValidating = false;
-    }
-
-    public bool ValidateSolution()
-    {
-        bool valid = true;
 
         // Validate rows
         for (int r = 0; r < gridRows; r++)
@@ -65,7 +35,7 @@ public class ThermometerPuzzleManager : MonoBehaviour
             if (filled != rowClues[r])
             {
                 Debug.Log($"Row {r} invalid: Expected {rowClues[r]}, found {filled}");
-                valid = false;
+                return;
             }
         }
 
@@ -76,11 +46,38 @@ public class ThermometerPuzzleManager : MonoBehaviour
             if (filled != columnClues[c])
             {
                 Debug.Log($"Column {c} invalid: Expected {columnClues[c]}, found {filled}");
-                valid = false;
+                return;
             }
         }
 
-        return valid;
+        foreach (var thermo in thermometers)
+        {
+            bool anyFilled = false;
+            bool foundUnfilledAfterFilled = false;
+
+            foreach (var seg in thermo.segments)
+            {
+                if (seg.isFilled)
+                {
+                    anyFilled = true;
+                    if (foundUnfilledAfterFilled)
+                    {
+                        Debug.Log($"Thermometer continuity invalid in thermometer starting at ({thermo.segments[0].gridRow}, {thermo.segments[0].gridCol})");
+                        return;
+                    }
+                }
+                else
+                {
+                    if (anyFilled)
+                    {
+                        foundUnfilledAfterFilled = true;
+                    }
+                }
+            }
+        }
+
+
+        hiddenRoomRevealer.DonePuzzle(transform);
     }
 
     private int CountFilledInRow(int row)

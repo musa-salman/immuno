@@ -9,7 +9,7 @@ public class BrightnessController : MonoBehaviour
 
     [SerializeField] private Slider brightnessSlider;
     private Image brightnessOverlay;
-    private List<Image> backgroundImages = new();
+    private readonly List<Image> backgroundImages = new();
     private float currentBrightness;
 
     private void Awake()
