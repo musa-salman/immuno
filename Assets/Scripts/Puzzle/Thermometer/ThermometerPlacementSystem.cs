@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
+using System;
 
 public class ThermometerPlacementSystem : MonoBehaviour
 {
@@ -8,21 +9,11 @@ public class ThermometerPlacementSystem : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private List<TilePrefabPair> tilePrefabMappings;
 
-    [Header("Runtime References")]
-    public List<Thermometer> thermometers = new List<Thermometer>();
-
     private Dictionary<Vector3Int, ThermometerSegment> placedSegments = new();
 
-    private void Start()
-    {
-        PlaceAllSegments();
-        GroupThermometers();
-    }
-
-    private void PlaceAllSegments()
+    public void PlaceAllSegments(ThermometerPuzzleManager puzzleManager)
     {
         BoundsInt bounds = tilemap.cellBounds;
-        ThermometerPuzzleManager puzzleManager = GetComponent<ThermometerPuzzleManager>();
 
         foreach (Vector3Int pos in bounds.allPositionsWithin)
         {
@@ -77,10 +68,12 @@ public class ThermometerPlacementSystem : MonoBehaviour
 
             placedSegments = updatedSegments;
         }
+
+        GroupThermometers(puzzleManager);
     }
 
 
-    private void GroupThermometers()
+    private void GroupThermometers(ThermometerPuzzleManager puzzleManager)
     {
         foreach (var kvp in placedSegments)
         {
@@ -88,7 +81,7 @@ public class ThermometerPlacementSystem : MonoBehaviour
 
             if (segment.type == ThermometerSegment.SegmentType.Head && segment.parentThermometer == null)
             {
-                Thermometer thermo = CreateNewThermometer();
+                Thermometer thermo = CreateNewThermometer($"Thermometer_{kvp.Key.x}_{kvp.Key.y}");
                 segment.parentThermometer = thermo;
                 thermo.AddSegment(segment);
 
@@ -118,7 +111,7 @@ public class ThermometerPlacementSystem : MonoBehaviour
                     nextPos = GetNextPos(nextPos, segment.openingDirection);
                 }
 
-                thermometers.Add(thermo);
+                puzzleManager.thermometers.Add(thermo);
             }
         }
     }
@@ -144,9 +137,9 @@ public class ThermometerPlacementSystem : MonoBehaviour
         };
     }
 
-    private Thermometer CreateNewThermometer()
+    private Thermometer CreateNewThermometer(String name)
     {
-        GameObject thermoObj = new GameObject($"Thermometer_{thermometers.Count}");
+        GameObject thermoObj = new(name);
         thermoObj.transform.parent = transform;
         return thermoObj.AddComponent<Thermometer>();
     }

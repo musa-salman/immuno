@@ -15,13 +15,13 @@ public class ThermometerPuzzleManager : MonoBehaviour
     [Header("Tilemap Reference")]
     public Tilemap puzzleTilemap;
 
-    private List<Thermometer> thermometers;
+    [HideInInspector]
+    public List<Thermometer> thermometers;
     private HiddenRoomRevealer hiddenRoomRevealer;
-    private bool isValidating = false;
 
     private void Start()
     {
-        thermometers = GetComponent<ThermometerPlacementSystem>().thermometers;
+        GetComponent<ThermometerPlacementSystem>().PlaceAllSegments(this);
         hiddenRoomRevealer = FindObjectOfType<HiddenRoomRevealer>();
     }
 

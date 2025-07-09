@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
-using System.Collections;
 
 public class PipeSystem : MonoBehaviour
 {
@@ -9,24 +8,20 @@ public class PipeSystem : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private List<TilePrefabPair> tilePrefabMappings;
 
-    [Header("Runtime References")]
-    [SerializeField] private Pipe[] pipes;
+    public Pipe[,] grid;
+    public int rows;
+    public int cols;
 
     private HiddenRoomRevealer hiddenRoomRevealer;
-    private int totalPipes = 0;
+
     private bool isPropagating = false;
+    private int startRow;
+    private int startCol;
+
 
     private void Start()
     {
         PlacePrefabsFromTilemap();
-
-        totalPipes = transform.childCount;
-        pipes = new Pipe[totalPipes];
-
-        for (int i = 0; i < totalPipes; i++)
-        {
-            pipes[i] = transform.GetChild(i).GetComponent<Pipe>();
-        }
 
         hiddenRoomRevealer = FindObjectOfType<HiddenRoomRevealer>();
     }
@@ -34,6 +29,26 @@ public class PipeSystem : MonoBehaviour
     private void PlacePrefabsFromTilemap()
     {
         BoundsInt bounds = tilemap.cellBounds;
+
+        int minX = int.MaxValue, minY = int.MaxValue;
+        int maxX = int.MinValue, maxY = int.MinValue;
+
+        foreach (Vector3Int pos in bounds.allPositionsWithin)
+        {
+            TileBase tile = tilemap.GetTile(pos);
+            if (tile != null)
+            {
+                if (pos.x < minX) minX = pos.x;
+                if (pos.y < minY) minY = pos.y;
+                if (pos.x > maxX) maxX = pos.x;
+                if (pos.y > maxY) maxY = pos.y;
+            }
+        }
+
+        cols = maxX - minX + 1;
+        rows = maxY - minY + 1;
+
+        grid = new Pipe[rows, cols];
 
         foreach (Vector3Int pos in bounds.allPositionsWithin)
         {
@@ -47,6 +62,22 @@ public class PipeSystem : MonoBehaviour
                 {
                     GameObject spawned = Instantiate(prefabToSpawn, worldPos, Quaternion.identity, transform);
                     spawned.transform.position = new Vector3(spawned.transform.position.x, spawned.transform.position.y, 1f);
+
+                    Pipe pipe = spawned.GetComponent<Pipe>();
+                    pipe.pipeSystem = this;
+
+                    int gridRow = maxY - pos.y;
+                    int gridCol = pos.x - minX;
+
+                    if (pipe.isStartPoint)
+                    {
+                        startRow = gridRow;
+                        startCol = gridCol;
+                    }
+                    pipe.row = gridRow;
+                    pipe.col = gridCol;
+
+                    grid[gridRow, gridCol] = pipe;
                 }
 
                 tilemap.SetTile(pos, null);
@@ -64,29 +95,20 @@ public class PipeSystem : MonoBehaviour
         return null;
     }
 
-    private void Update()
+    public void PropagateAcid()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (isPropagating)
-            {
-                Debug.LogWarning("Acid propagation is already in progress.");
-                return;
-            }
-            isPropagating = true;
-            EmptyPipes();
-            StartCoroutine(PropagateAcidBFSConcurrent(0.1f));
-        }
-    }
+        if (isPropagating)
+            return;
+        isPropagating = true;
+        EmptyPipes();
 
-    private IEnumerator PropagateAcidBFSConcurrent(float delayPerStep)
-    {
         Queue<Pipe> queue = new();
         HashSet<Pipe> visited = new();
 
-        foreach (Pipe pipe in pipes)
+        // Enqueue all start point pipes
+        foreach (Pipe pipe in grid)
         {
-            if (pipe.isFilled)
+            if (pipe != null && pipe.isFilled)
             {
                 queue.Enqueue(pipe);
             }
@@ -101,16 +123,11 @@ public class PipeSystem : MonoBehaviour
 
             visited.Add(current);
 
-            foreach (Pipe neighbor in current.cachedNeighbors)
-            {
-                if (!neighbor.isFilled)
-                {
-                    neighbor.SetFilled(true);
-                    queue.Enqueue(neighbor);
-                }
-            }
-
-            yield return new WaitForSeconds(delayPerStep);
+            // Check four neighbors
+            TryPropagateToNeighbor(current, Pipe.Direction.Up, current.row - 1, current.col, queue, visited);
+            TryPropagateToNeighbor(current, Pipe.Direction.Down, current.row + 1, current.col, queue, visited);
+            TryPropagateToNeighbor(current, Pipe.Direction.Left, current.row, current.col - 1, queue, visited);
+            TryPropagateToNeighbor(current, Pipe.Direction.Right, current.row, current.col + 1, queue, visited);
         }
 
         if (IsPuzzleSolved())
@@ -120,9 +137,26 @@ public class PipeSystem : MonoBehaviour
         isPropagating = false;
     }
 
+    private void TryPropagateToNeighbor(Pipe current, Pipe.Direction dir, int neighborRow, int neighborCol, Queue<Pipe> queue,
+                                        HashSet<Pipe> visited)
+    {
+        if (neighborRow >= 0 && neighborRow < rows && neighborCol >= 0 && neighborCol < cols)
+        {
+            Pipe neighbor = grid[neighborRow, neighborCol];
+            if (neighbor != null && !visited.Contains(neighbor))
+            {
+                if (current.HasConnection(dir) && neighbor.HasConnection(current.GetOppositeDirection(dir)))
+                {
+                    neighbor.SetFilled(true);
+                    queue.Enqueue(neighbor);
+                }
+            }
+        }
+    }
+
     private void EmptyPipes()
     {
-        foreach (Pipe pipe in pipes)
+        foreach (Pipe pipe in grid)
         {
             if (!pipe.isStartPoint)
             {
@@ -133,34 +167,94 @@ public class PipeSystem : MonoBehaviour
 
     private bool IsPuzzleSolved()
     {
-        foreach (Pipe pipe in pipes)
+        foreach (Pipe pipe in grid)
         {
-            if (!pipe.isFilled || !pipe.IsAllConnectorsConnected())
+            if (!pipe.isFilled)
+            {
+                return false;
+            }
+
+            if (!IsAllConnectorsConnected(pipe))
+            {
+                return false;
+
+            }
+        }
+
+        return !HasCycle(grid[startRow, startCol], null, new HashSet<Pipe>());
+    }
+
+    private bool IsAllConnectorsConnected(Pipe pipe)
+    {
+        foreach (Pipe.Direction dir in pipe.currentConnections)
+        {
+            int neighborRow = pipe.row;
+            int neighborCol = pipe.col;
+
+            switch (dir)
+            {
+                case Pipe.Direction.Up: neighborRow -= 1; break;
+                case Pipe.Direction.Down: neighborRow += 1; break;
+                case Pipe.Direction.Left: neighborCol -= 1; break;
+                case Pipe.Direction.Right: neighborCol += 1; break;
+            }
+
+            if (neighborRow < 0 || neighborRow >= rows || neighborCol < 0 || neighborCol >= cols)
+            {
+                return false;
+            }
+
+            Pipe neighbor = grid[neighborRow, neighborCol];
+            if (neighbor == null)
+            {
+                return false;
+            }
+
+            if (!neighbor.HasConnection(pipe.GetOppositeDirection(dir)))
             {
                 return false;
             }
         }
-
-        return !HasCycle(pipes[0], null, new HashSet<Pipe>());
+        return true;
     }
 
     private bool HasCycle(Pipe current, Pipe parent, HashSet<Pipe> visited)
     {
         visited.Add(current);
 
-        foreach (Pipe neighbor in current.cachedNeighbors)
+        foreach (Pipe.Direction dir in current.currentConnections)
         {
-            if (!visited.Contains(neighbor))
+            int neighborRow = current.row;
+            int neighborCol = current.col;
+
+            switch (dir)
             {
-                if (HasCycle(neighbor, current, visited))
-                    return true;
+                case Pipe.Direction.Up: neighborRow -= 1; break;
+                case Pipe.Direction.Down: neighborRow += 1; break;
+                case Pipe.Direction.Left: neighborCol -= 1; break;
+                case Pipe.Direction.Right: neighborCol += 1; break;
             }
-            else if (neighbor != parent)
+
+            if (neighborRow < 0 || neighborRow >= rows || neighborCol < 0 || neighborCol >= cols)
             {
-                return true;
+                continue;
+            }
+
+            Pipe neighbor = grid[neighborRow, neighborCol];
+            if (neighbor != null && neighbor.HasConnection(current.GetOppositeDirection(dir)))
+            {
+                if (!visited.Contains(neighbor))
+                {
+                    if (HasCycle(neighbor, current, visited))
+                        return true;
+                }
+                else if (neighbor != parent)
+                {
+                    return true;
+                }
             }
         }
+
         return false;
     }
-
 }
