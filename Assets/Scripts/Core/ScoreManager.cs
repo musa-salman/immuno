@@ -8,6 +8,9 @@ public class ScoreManager : MonoBehaviour
     [Tooltip("Current score of the player. You can edit this in the Inspector.")]
     public int currentScore;
 
+    [SerializeField]
+    private int pointsPerPuzzle = 500;
+
     public int CurrentScore => currentScore;
 
     private void Awake()
@@ -28,6 +31,11 @@ public class ScoreManager : MonoBehaviour
         currentScore += points;
         HUD.Instance.UpdateScore(currentScore);
     }
+
+    public bool CanPayForPuzzle() => currentScore >= pointsPerPuzzle;
+
+    public int GetPointsPerPuzzle => pointsPerPuzzle;
+
 
     public void ResetScore()
     {

@@ -18,9 +18,12 @@ public class HiddenRoomRevealer : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
+    private PuzzleButtonController puzzleButtonController;
+
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
+        puzzleButtonController = FindObjectOfType<PuzzleButtonController>();
 
         _material = hiddenLayerRenderer.material;
     }
@@ -60,11 +63,31 @@ public class HiddenRoomRevealer : MonoBehaviour
         {
             var pair = closestPair.Value;
             playerMovement.SetPuzzleTransform(pair.puzzleTransform);
+            puzzleButtonController.SetCurrentPuzzle(pair.puzzleTransform);
             Debug.Log($"Starting puzzle at {pair.puzzleTransform.name}, distance: {minDistance}");
         }
         else
         {
             Debug.LogWarning("No puzzle found within tolerance or all puzzles are already solved.");
+        }
+    }
+
+
+    public void CancelPuzzle()
+    {
+        Debug.Log("Puzzle cancelled by player. Skipping puzzle.");
+        playerMovement.DoneSolvingPuzzle();
+    }
+
+
+    public void PayExpertToSolvePuzzle(Transform puzzleTransform)
+    {
+        if (ScoreManager.Instance.CanPayForPuzzle())
+        {
+            // Deduct cost
+            ScoreManager.Instance.CanPayForPuzzle();
+
+            DonePuzzle(puzzleTransform);
         }
     }
 
