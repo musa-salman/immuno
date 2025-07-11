@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7150198344606777428}
   - component: {fileID: 6990854109066260433}
   - component: {fileID: 7627349717996533803}
+  - component: {fileID: 6479403769546594107}
   m_Layer: 0
   m_Name: PowerUp
   m_TagString: Untagged
@@ -92,6 +93,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &6479403769546594107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746532501236531649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edca6352d6429624eb7f500258834a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitud: 0.002
+  hoverSpeed: 1.2
 --- !u!1 &6514585206948542644
 GameObject:
   m_ObjectHideFlags: 0
