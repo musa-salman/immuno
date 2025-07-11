@@ -85,7 +85,7 @@ public class HiddenRoomRevealer : MonoBehaviour
         if (ScoreManager.Instance.CanPayForPuzzle())
         {
             // Deduct cost
-            ScoreManager.Instance.CanPayForPuzzle();
+            ScoreManager.Instance.PayForPuzzle();
 
             DonePuzzle(puzzleTransform);
         }

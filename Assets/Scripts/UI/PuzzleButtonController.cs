@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PuzzleButtonController : MonoBehaviour
 {
@@ -20,28 +21,37 @@ public class PuzzleButtonController : MonoBehaviour
         payExpertButton.interactable = ScoreManager.Instance.CanPayForPuzzle();
         payExpertButton.onClick.AddListener(OnPayExpertClicked);
 
-
         expertCostText = payExpertButton.GetComponentInChildren<TMP_Text>();
-
         expertCostText.text = $"Pay: {ScoreManager.Instance.GetPointsPerPuzzle}";
 
         payExpertButton.gameObject.SetActive(false);
-        currentPuzzleTransform = null;
         cancelButton.gameObject.SetActive(false);
+        currentPuzzleTransform = null;
     }
 
     public void SetCurrentPuzzle(Transform puzzleTransform)
     {
         currentPuzzleTransform = puzzleTransform;
         payExpertButton.interactable = ScoreManager.Instance.CanPayForPuzzle();
+        expertCostText.text = $"Pay: {ScoreManager.Instance.GetPointsPerPuzzle}";
+
+        StartCoroutine(ShowButtonsWithDelay(3f));
+
+        Debug.Log($"Current puzzle position: {currentPuzzleTransform.position}, interactable: {payExpertButton.interactable}");
+    }
+
+    private IEnumerator ShowButtonsWithDelay(float delay)
+    {
+        payExpertButton.gameObject.SetActive(false);
+        cancelButton.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(delay);
 
         payExpertButton.gameObject.SetActive(true);
         cancelButton.gameObject.SetActive(true);
         cancelButton.interactable = true;
-        expertCostText.text = $"Pay: {ScoreManager.Instance.GetPointsPerPuzzle}";
-        Debug.Log($"Cancel button interactable: {cancelButton.interactable}");
 
-        Debug.Log($"Current puzzle position: {currentPuzzleTransform.position}, interactable: {payExpertButton.interactable}");
+        Debug.Log("Buttons activated after delay.");
     }
 
     public void OnCancelClicked()
@@ -64,6 +74,5 @@ public class PuzzleButtonController : MonoBehaviour
         payExpertButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(false);
         hiddenRoomRevealer.PayExpertToSolvePuzzle(currentPuzzleTransform);
-
     }
 }

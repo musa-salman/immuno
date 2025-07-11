@@ -32,6 +32,20 @@ public class ScoreManager : MonoBehaviour
         HUD.Instance.UpdateScore(currentScore);
     }
 
+    public void PayForPuzzle()
+    {
+        if (CanPayForPuzzle())
+        {
+            currentScore -= pointsPerPuzzle;
+            pointsPerPuzzle *= 2;
+            HUD.Instance.UpdateScore(currentScore);
+        }
+        else
+        {
+            Debug.LogWarning("Not enough points to pay for the puzzle.");
+        }
+    }
+
     public bool CanPayForPuzzle() => currentScore >= pointsPerPuzzle;
 
     public int GetPointsPerPuzzle => pointsPerPuzzle;
