@@ -38,8 +38,8 @@ public class CollectionsManager : MonoBehaviour
     [SerializeField] private float instantHealthAmount = 50f;
 
     private PlayerMovement playerMovement;
+    private UpgradeMenuToggle upgradeMenuToggle;
     private PlayerHealth playerHealth;
-
     private PowerUpUI damageUpUI;
     private PowerUpUI speedUpUI;
     private PowerUpUI ultraShieldUI;
@@ -62,7 +62,7 @@ public class CollectionsManager : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerHealth = GetComponent<PlayerHealth>();
-
+        upgradeMenuToggle = FindObjectOfType<UpgradeMenuToggle>();
         PowerUpUI[] powerUpUIs = FindObjectsOfType<PowerUpUI>();
         foreach (PowerUpUI powerUpUI in powerUpUIs)
         {
@@ -88,14 +88,7 @@ public class CollectionsManager : MonoBehaviour
     {
         switch (type)
         {
-            // case PowerUpType.PowerUp:
-            //     powerUpsCollected++;
-            //     if (powerUpsCollected >= 5 && !powerUpActive)
-            //     {
-            //         playerMovement.ActivatePowerUp();
-            //         powerUpActive = true;
-            //     }
-            //     break;
+            
             case PowerUpType.DamageUp:
                 if (dmgUps > 0)
                 {
@@ -143,7 +136,16 @@ public class CollectionsManager : MonoBehaviour
     {
         switch (type)
         {
-
+            case PowerUpType.PowerUp:
+                if (ScoreManager.Instance != null)
+                {
+                    ScoreManager.Instance.AddPoints(500);
+                }
+                if (upgradeMenuToggle != null)
+                {
+                    upgradeMenuToggle.show_menu();
+                }
+                break;
             case PowerUpType.DamageUp:
                 dmgUps++;
                 damageUpUI.setCounterText(dmgUps);

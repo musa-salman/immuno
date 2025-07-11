@@ -9,7 +9,15 @@ public class UpgradeMenuToggle : MonoBehaviour
     {
         upgradeMenuUI.SetActive(false);
     }
+    public void show_menu()
+    {   
+        upgradeMenuUI.SetActive(true);
+    }
 
+    public void hide_menu()
+    {
+        upgradeMenuUI.SetActive(false);
+    }
     private void Update()
     {
         if (Input.GetKeyDown(toggleKey))
