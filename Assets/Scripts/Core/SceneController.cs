@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class SceneController : MonoBehaviour {
+    [SerializeField] GameObject loadingScreen;
     public static SceneController Instance;
     public CanvasGroup fadeCanvasGroup;
     public float fadeDuration = 1f;
@@ -27,9 +28,14 @@ public class SceneController : MonoBehaviour {
     public IEnumerator LoadSceneCoroutine(string sceneName, Action onComplete = null) {
         OnSceneTransitionStart?.Invoke();
         yield return FadeOut(fadeDuration);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        loadingScreen.SetActive(true);
+        while (!asyncLoad.isDone)
+        {
 
-        yield return SceneManager.LoadSceneAsync(sceneName);
-
+            yield return null;
+        }
+        loadingScreen.SetActive(false);
         yield return FadeIn(fadeDuration);
 
         OnSceneTransitionEnd?.Invoke();
