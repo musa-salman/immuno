@@ -12258,6 +12258,23 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 927000172059533133, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
   m_PrefabInstance: {fileID: 4614003671455593241}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1188442756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2216977197609359501, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
+  m_PrefabInstance: {fileID: 4614003671455593241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1188442759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188442756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5bd26d784d048108075ab5d97b9e35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1199358608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2040216497490531067, guid: 2d419aab76a9d5d1c9917b7f51d5ebf8, type: 3}
@@ -119093,6 +119110,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2216977197609359501, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8439357668216232179, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
       propertyPath: m_Name
       value: UICanvas
@@ -119104,7 +119125,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2216977197609359501, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1188442759}
   m_SourcePrefab: {fileID: 100100000, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
 --- !u!1001 &7826446820020705483
 PrefabInstance:

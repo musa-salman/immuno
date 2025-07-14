@@ -34,8 +34,7 @@ public class SkillManager : MonoBehaviour
     }
 
 
-    [Header("UI References")]
-    public Transform skillsContainer;
+    private SkillsContainer skillsContainer;
     public GameObject skillUIPrefab;
 
     private readonly Dictionary<SkillType, SkillData> skillDict = new();
@@ -56,6 +55,7 @@ public class SkillManager : MonoBehaviour
 
     void Start()
     {
+        skillsContainer = FindObjectOfType<SkillsContainer>();
         AddSkill("Iron Plating", "Increase defense with hardened cell walls.", SkillType.ToughenShell, new int[] { 120, 180, 240, 300, 400, 500 },
             (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
 
@@ -127,16 +127,16 @@ public class SkillManager : MonoBehaviour
         skillDict[skillType] = newSkill;
     }
 
-    public void EnableSkillUpgrade(SkillType skillType)
+    public void EnableSkillUpgrade(SkillType skillType, bool force = false)
     {
         var newSkill = skillDict[skillType];
-        if (newSkill.ui != null)
+        if (newSkill.ui != null && newSkill.ui.gameObject.activeInHierarchy && !force)
         {
             Debug.LogWarning($"Skill UI for '{skillType}' already exists.");
             return;
         }
 
-        GameObject uiObj = Instantiate(skillUIPrefab, skillsContainer);
+        GameObject uiObj = Instantiate(skillUIPrefab, skillsContainer.transform);
         uiObj.name = skillType.ToString();
 
         Skill skillUI = uiObj.GetComponent<Skill>();
@@ -187,20 +187,15 @@ public class SkillManager : MonoBehaviour
 
     public void GenerateUi()
     {
+        skillsContainer = FindObjectOfType<SkillsContainer>();
+
+
+
+        // find the SkillsContainer in the scene not just in the current GameObject
         foreach (var skill in skillDict.Values)
         {
-            GameObject uiObj = Instantiate(skillUIPrefab, skillsContainer);
-            uiObj.name = skill.skillType.ToString();
-
-            Skill skillUI = uiObj.GetComponent<Skill>();
-            skill.ui = skillUI;
-
-            Button btn = skillUI.upgradeButton;
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => TryUpgradeSkill(skill.skillType));
-
-            int xp = skill.level >= skill.maxLevel ? 0 : skill.costPerLevel[skill.level];
-            skillUI.SetLevel(skill.level, skill.maxLevel, xp, ScoreManager.Instance.CurrentScore);
+            // TODO: move this to a more appropriate place
+            EnableSkillUpgrade(skill.skillType, true);
         }
     }
 
