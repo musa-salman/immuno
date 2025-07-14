@@ -16,9 +16,9 @@ public class SkillUIRefresher : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (SkillManager.Instance != null)
-            SkillManager.Instance.GenerateUI();
+            SkillManager.Instance.GenerateUi();
 
         if (CollectionsManager.Instance != null)
-            CollectionsManager.Instance.RefreshUI();
+            CollectionsManager.Instance.RefreshUi();
     }
 }

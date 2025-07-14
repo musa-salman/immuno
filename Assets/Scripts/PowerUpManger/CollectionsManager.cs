@@ -40,10 +40,6 @@ public class CollectionsManager : MonoBehaviour
     private PlayerMovement playerMovement;
     private UpgradeMenuToggle upgradeMenuToggle;
     private PlayerHealth playerHealth;
-    private PowerUpUI damageUpUI;
-    private PowerUpUI speedUpUI;
-    private PowerUpUI ultraShieldUI;
-    private PowerUpUI instantHealthUI;
 
     void Awake()
     {
@@ -63,38 +59,18 @@ public class CollectionsManager : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerHealth = GetComponent<PlayerHealth>();
         upgradeMenuToggle = FindObjectOfType<UpgradeMenuToggle>();
-        PowerUpUI[] powerUpUIs = FindObjectsOfType<PowerUpUI>();
-        foreach (PowerUpUI powerUpUI in powerUpUIs)
-        {
-            switch (powerUpUI.Id)
-            {
-                case PowerUpType.DamageUp:
-                    damageUpUI = powerUpUI;
-                    break;
-                case PowerUpType.SpeedUp:
-                    speedUpUI = powerUpUI;
-                    break;
-                case PowerUpType.UltraShield:
-                    ultraShieldUI = powerUpUI;
-                    break;
-                case PowerUpType.InstantHealth:
-                    instantHealthUI = powerUpUI;
-                    break;
-            }
-        }
     }
 
     public void HandlePowerUp(PowerUpType type)
     {
         switch (type)
         {
-            
+
             case PowerUpType.DamageUp:
                 if (dmgUps > 0)
                 {
                     SkillManager.Instance.BoostFor(SkillManager.SkillType.ProjectilePower, damageUpBoostLevels, damageUpDuration);
                     dmgUps--;
-                    damageUpUI.setCounterText(dmgUps);
                     StartCoroutine(PowerUpCooldown());
 
                 }
@@ -105,7 +81,6 @@ public class CollectionsManager : MonoBehaviour
                 {
                     playerHealth.AddHealth(instantHealthAmount);
                     instaHealth--;
-                    instantHealthUI.setCounterText(instaHealth);
                     StartCoroutine(PowerUpCooldown());
 
                 }
@@ -116,7 +91,6 @@ public class CollectionsManager : MonoBehaviour
                 {
                     SkillManager.Instance.BoostFor(SkillManager.SkillType.Speed, speedUpLevelsBoost, speedUpDuration);
                     speedUps--;
-                    speedUpUI.setCounterText(speedUps);
                     StartCoroutine(PowerUpCooldown());
 
                 }
@@ -130,6 +104,8 @@ public class CollectionsManager : MonoBehaviour
                 }
                 break;
         }
+
+        RefreshUi();
     }
 
     public void CollectPowerUp(PowerUpType type)
@@ -148,40 +124,22 @@ public class CollectionsManager : MonoBehaviour
                 break;
             case PowerUpType.DamageUp:
                 dmgUps++;
-                damageUpUI.setCounterText(dmgUps);
-                if (!powerUpActive)
-                {
-                    damageUpUI.EnableUI();
-                }
                 break;
 
             case PowerUpType.InstantHealth:
                 instaHealth++;
-                instantHealthUI.setCounterText(instaHealth);
-                if (!powerUpActive)
-                {
-                    instantHealthUI.EnableUI();
-                }
                 break;
 
             case PowerUpType.SpeedUp:
                 speedUps++;
-                speedUpUI.setCounterText(speedUps);
-                if (!powerUpActive)
-                {
-                    speedUpUI.EnableUI();
-                }
                 break;
 
             case PowerUpType.UltraShield:
                 remainingUltraShields++;
-                ultraShieldUI.setCounterText(remainingUltraShields);
-                if (!powerUpActive)
-                {
-                    ultraShieldUI.EnableUI();
-                }
                 break;
         }
+
+        RefreshUi();
     }
 
     private IEnumerator UltraShieldCoroutine()
@@ -190,40 +148,46 @@ public class CollectionsManager : MonoBehaviour
         playerMovement.canTakeDamage = false;
         yield return new WaitForSeconds(ultraShieldDuration);
         playerMovement.canTakeDamage = true;
-        ultraShieldUI.setCounterText(remainingUltraShields);
+
+        RefreshUi();
 
     }
 
     private IEnumerator PowerUpCooldown()
     {
         powerUpActive = true;
-        damageUpUI.DisableUI();
-        instantHealthUI.DisableUI();
-        speedUpUI.DisableUI();
-        ultraShieldUI.DisableUI();
+
+        DisableAllPowerUps();
+
         yield return new WaitForSeconds(powerUpCoolDownDuration);
-        if (dmgUps > 0)
-        {
-            damageUpUI.EnableUI();
-        }
-        if (instaHealth > 0)
-        {
-            instantHealthUI.EnableUI();
-        }
-        if (speedUps > 0)
-        {
-            speedUpUI.EnableUI();
-        }
-        if (remainingUltraShields > 0)
-        {
-            ultraShieldUI.EnableUI();
-        }
+
+        EnableAllPowerUps();
         powerUpActive = false;
 
     }
 
+    private void DisableAllPowerUps()
+    {
+        PowerUpUI[] powerUpUIs = FindObjectsOfType<PowerUpUI>();
+        foreach (PowerUpUI powerUpUI in powerUpUIs)
+        {
+            powerUpUI.DisableUI();
+        }
+    }
 
-    public void RefreshUI()
+    private void EnableIfNotEmpty(PowerUpUI powerUpUI, int count)
+    {
+        if (count > 0)
+        {
+            powerUpUI.EnableUi();
+        }
+        else
+        {
+            powerUpUI.DisableUI();
+        }
+    }
+
+    private void EnableAllPowerUps()
     {
         PowerUpUI[] powerUpUIs = FindObjectsOfType<PowerUpUI>();
         foreach (PowerUpUI powerUpUI in powerUpUIs)
@@ -231,18 +195,43 @@ public class CollectionsManager : MonoBehaviour
             switch (powerUpUI.Id)
             {
                 case PowerUpType.DamageUp:
-                    powerUpUI.setCounterText(dmgUps);
+                    EnableIfNotEmpty(powerUpUI, dmgUps);
                     break;
                 case PowerUpType.SpeedUp:
-                    powerUpUI.setCounterText(speedUps);
+                    EnableIfNotEmpty(powerUpUI, speedUps);
                     break;
                 case PowerUpType.UltraShield:
-                    powerUpUI.setCounterText(remainingUltraShields);
+                    EnableIfNotEmpty(powerUpUI, remainingUltraShields);
                     break;
                 case PowerUpType.InstantHealth:
-                    powerUpUI.setCounterText(instaHealth);
+                    EnableIfNotEmpty(powerUpUI, instaHealth);
                     break;
             }
         }
+    }
+
+    public void RefreshUi()
+    {
+        PowerUpUI[] powerUpUIs = FindObjectsOfType<PowerUpUI>();
+        foreach (PowerUpUI powerUpUI in powerUpUIs)
+        {
+            switch (powerUpUI.Id)
+            {
+                case PowerUpType.DamageUp:
+                    powerUpUI.SetCounterText(dmgUps);
+                    break;
+                case PowerUpType.SpeedUp:
+                    powerUpUI.SetCounterText(speedUps);
+                    break;
+                case PowerUpType.UltraShield:
+                    powerUpUI.SetCounterText(remainingUltraShields);
+                    break;
+                case PowerUpType.InstantHealth:
+                    powerUpUI.SetCounterText(instaHealth);
+                    break;
+            }
+        }
+
+        EnableAllPowerUps();
     }
 }

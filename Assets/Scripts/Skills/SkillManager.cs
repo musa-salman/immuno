@@ -185,7 +185,7 @@ public class SkillManager : MonoBehaviour
         return skillDict.Values;
     }
 
-    public void GenerateUI()
+    public void GenerateUi()
     {
         foreach (var skill in skillDict.Values)
         {

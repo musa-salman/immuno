@@ -12,33 +12,21 @@ public class PowerUpUI : MonoBehaviour
     [SerializeField] private TMP_Text counterText;
     private Material imageMaterial;
 
-    private string enabledTextColor = "#FFB800";
+    private readonly string enabledTextColor = "#FFB800";
 
-    public void EnableUI()
+    public void EnableUi()
     {
-        if (powerUpImage == null || powerKeyImage == null || powerUpText == null || counterText == null)
-        {
-            Debug.LogError("PowerUpUI: PowerUpImage or PowerUpText is not assigned.");
-            return;
-        }
-
         imageMaterial = powerUpImage.material;
         powerUpImage.material = null;
         powerKeyImage.material = null;
         powerUpText.color = ColorUtility.TryParseHtmlString(enabledTextColor, out Color color) ? color : Color.white;
         counterText.color = ColorUtility.TryParseHtmlString(enabledTextColor, out Color color2) ? color2 : Color.white;
     }
-    public void setCounterText(int count)
+    public void SetCounterText(int count)
     {
-        if (counterText != null)
-        {
-            counterText.text = "x" + count.ToString();
-        }
-        else
-        {
-            Debug.LogError("PowerUpUI: CounterText is not assigned.");
-        }
+        counterText.text = "x" + count.ToString();
     }
+
     public void DisableUI()
     {
         if (imageMaterial != null)
@@ -48,10 +36,5 @@ public class PowerUpUI : MonoBehaviour
             powerUpText.color = Color.white;
             counterText.color = Color.white;
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
