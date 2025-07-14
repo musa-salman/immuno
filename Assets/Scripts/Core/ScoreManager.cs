@@ -29,7 +29,7 @@ public class ScoreManager : MonoBehaviour
     public void AddPoints(int points)
     {
         currentScore += points;
-        HUD.Instance.UpdateScore(currentScore);
+        FindFirstObjectByType<ScoreText>().UpdateScore(currentScore);
     }
 
     public void PayForPuzzle()
@@ -38,7 +38,7 @@ public class ScoreManager : MonoBehaviour
         {
             currentScore -= pointsPerPuzzle;
             pointsPerPuzzle *= 2;
-            HUD.Instance.UpdateScore(currentScore);
+            FindFirstObjectByType<ScoreText>().UpdateScore(currentScore);
         }
         else
         {
@@ -54,6 +54,6 @@ public class ScoreManager : MonoBehaviour
     public void ResetScore()
     {
         currentScore = 0;
-        HUD.Instance.UpdateScore(currentScore);
+        FindFirstObjectByType<ScoreText>().UpdateScore(currentScore);
     }
 }

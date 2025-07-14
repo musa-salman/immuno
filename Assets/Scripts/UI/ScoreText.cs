@@ -4,12 +4,11 @@ using UnityEngine;
 
 class ScoreText : MonoBehaviour
 {
-    [Header("Score Text Settings")]
-    [Tooltip("The text component that displays the score.")]
-    public TMP_Text scoreText;
+    private TMP_Text scoreText;
 
     private void Start()
     {
+        scoreText = GetComponent<TMP_Text>();
         UpdateScore(ScoreManager.Instance.CurrentScore);
     }
 
