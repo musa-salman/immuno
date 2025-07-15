@@ -30,7 +30,7 @@ public class StomachEnemy : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Color patrolColor = Color.white;
     [SerializeField] private Color alertColor = Color.red;
-    [SerializeField] private SpriteRenderer detectionIndicator;
+    [SerializeField] private GameObject detectionIndicator;
 
     [Header("Player Layer")]
     [SerializeField] private LayerMask playerLayer;
@@ -110,6 +110,7 @@ public class StomachEnemy : MonoBehaviour
             else
             {
                 hasSeenPlayer = false;
+                detectionIndicator.SetActive(false);
                 if (spriteRenderer != null)
                     spriteRenderer.color = patrolColor;
             }
@@ -171,8 +172,8 @@ public class StomachEnemy : MonoBehaviour
             {
                 if (hasSeenPlayer == false && detectSound != null)
                 {
-                    SoundManager.instance.PlaySound(detectSound);
-                    StartCoroutine(showDetectionIndicator());
+                    StartCoroutine(ShowDetection());
+
                 }
                 return true;
             }
@@ -226,10 +227,12 @@ public class StomachEnemy : MonoBehaviour
         Vector3 size = new(rangeX, rangeY * 2, 0);
         Gizmos.DrawWireCube(center, size);
     }
-    private IEnumerator showDetectionIndicator()
+
+    private IEnumerator ShowDetection()
     {
+        SoundManager.instance.PlaySound(detectSound);
         detectionIndicator.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         detectionIndicator.SetActive(false);
     }
 }
