@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 
 public class StomachEnemy : MonoBehaviour
@@ -29,12 +30,14 @@ public class StomachEnemy : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Color patrolColor = Color.white;
     [SerializeField] private Color alertColor = Color.red;
+    [SerializeField] private SpriteRenderer detectionIndicator;
 
     [Header("Player Layer")]
     [SerializeField] private LayerMask playerLayer;
 
     [Header("Attack Sound")]
     [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip detectSound;
 
     [SerializeField] private LayerMask obstacleLayer;
 
@@ -166,6 +169,11 @@ public class StomachEnemy : MonoBehaviour
 
             if (hit.collider == null)
             {
+                if (hasSeenPlayer == false && detectSound != null)
+                {
+                    SoundManager.instance.PlaySound(detectSound);
+                    StartCoroutine(showDetectionIndicator());
+                }
                 return true;
             }
         }
@@ -217,5 +225,11 @@ public class StomachEnemy : MonoBehaviour
         Vector3 center = transform.position + Vector3.right * rangeX / 2 * (transform.localScale.x / Mathf.Abs(transform.localScale.x));
         Vector3 size = new(rangeX, rangeY * 2, 0);
         Gizmos.DrawWireCube(center, size);
+    }
+    private IEnumerator showDetectionIndicator()
+    {
+        detectionIndicator.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        detectionIndicator.SetActive(false);
     }
 }
