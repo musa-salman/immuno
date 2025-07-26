@@ -135,22 +135,24 @@ public class SkillManager : MonoBehaviour
             Debug.LogWarning($"Skill UI for '{skillType}' already exists.");
             return;
         }
+        if (skillUIPrefab != null && skillsContainer != null)
+        {
+            GameObject uiObj = Instantiate(skillUIPrefab, skillsContainer.transform);
+            uiObj.name = skillType.ToString();
 
-        GameObject uiObj = Instantiate(skillUIPrefab, skillsContainer.transform);
-        uiObj.name = skillType.ToString();
+            Skill skillUI = uiObj.GetComponent<Skill>();
+            newSkill.ui = skillUI;
 
-        Skill skillUI = uiObj.GetComponent<Skill>();
-        newSkill.ui = skillUI;
+            skillUI.SetSkillName(newSkill.name);
+            skillUI.SetDescription(newSkill.description);
 
-        skillUI.SetSkillName(newSkill.name);
-        skillUI.SetDescription(newSkill.description);
+            Button btn = skillUI.upgradeButton;
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() => TryUpgradeSkill(skillType));
 
-        Button btn = skillUI.upgradeButton;
-        btn.onClick.RemoveAllListeners();
-        btn.onClick.AddListener(() => TryUpgradeSkill(skillType));
-
-        int upgradeXpCost = newSkill.level >= newSkill.maxLevel ? 0 : newSkill.costPerLevel[newSkill.level];
-        skillUI.SetLevel(newSkill.level, newSkill.maxLevel, upgradeXpCost, ScoreManager.Instance.CurrentScore);
+            int upgradeXpCost = newSkill.level >= newSkill.maxLevel ? 0 : newSkill.costPerLevel[newSkill.level];
+            skillUI.SetLevel(newSkill.level, newSkill.maxLevel, upgradeXpCost, ScoreManager.Instance.CurrentScore);
+        }
     }
 
     public void TryUpgradeSkill(SkillType skillName)
