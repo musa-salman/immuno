@@ -118926,6 +118926,10 @@ PrefabInstance:
       propertyPath: bullets.Array.data[9]
       value: 
       objectReference: {fileID: 971181485}
+    - target: {fileID: 3076903950092772945, guid: 28d853960d90b766da18afb912ece87d, type: 3}
+      propertyPath: solidTilemap
+      value: 
+      objectReference: {fileID: 1662480451}
     - target: {fileID: 3218083604485152119, guid: 28d853960d90b766da18afb912ece87d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -56.01

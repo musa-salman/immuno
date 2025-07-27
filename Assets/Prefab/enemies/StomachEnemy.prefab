@@ -556,7 +556,7 @@ MonoBehaviour:
   rangeX: 5
   rangeY: 3
   maxSpinRange: 2
-  spinSpeed: 4
+  spinSpeed: 3
   spinDuration: 2
   spinCooldown: 1
   chaseDuration: 2
