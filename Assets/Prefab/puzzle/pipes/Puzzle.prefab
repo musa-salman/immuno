@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7303137337958077512}
   - component: {fileID: 1281624709603891429}
+  - component: {fileID: 3354708913959723495}
   m_Layer: 0
   m_Name: Puzzle
   m_TagString: Untagged
@@ -78,4 +79,23 @@ MonoBehaviour:
     prefab: {fileID: 2686160191908798868, guid: 5ae025eebdf8b923589d513a8e59e2ad, type: 3}
   - tile: {fileID: 11400000, guid: 8e513d1ef3bd5033ab56a8c55fd8c098, type: 2}
     prefab: {fileID: 5605869692252980745, guid: 632788b4f2ca7cf489404250dd1987da, type: 3}
-  pipes: []
+  rows: 0
+  cols: 0
+--- !u!114 &3354708913959723495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7206875870420639921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc5bef32e38267fda189368c9d86ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helpData:
+    title: Digestive Circuit Repair
+    bodyText: "Acid pipes are jammed, disrupting internal flow.\nRestore the system
+      by reconnecting all pipes into one open network.\n\nRules:\n- Rotate tiles
+      to form a single connected group.\n\n - No closed loops \u2014 acid must keep
+      flowing."

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6854302377287492497}
   - component: {fileID: 6502195287644906773}
   - component: {fileID: 7689194418609039677}
+  - component: {fileID: 2124933813656034088}
   m_Layer: 0
   m_Name: AirwayPuzzle
   m_TagString: Untagged
@@ -61,3 +62,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridRows: 0
   gridColumns: 0
+--- !u!114 &2124933813656034088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2262221188614600386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc5bef32e38267fda189368c9d86ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helpData:
+    title: 'The lungs are struggling '
+    bodyText: 'Adjust the airways to restore balanced breathing.
+
+
+      Rules:
+
+
+      -
+      No empty cells.
+
+
+      - No three opens or closes in a row.
+
+
+      - Equal
+      opens and closes per row/column.
+
+
+      - No repeating rows or columns.'

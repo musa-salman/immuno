@@ -13,9 +13,12 @@ public class PuzzleButtonController : MonoBehaviour
     private HiddenRoomRevealer hiddenRoomRevealer;
     private Transform currentPuzzleTransform;
 
+    private ExplanationUI explanationUI;
+
     private void Start()
     {
         hiddenRoomRevealer = FindObjectOfType<HiddenRoomRevealer>();
+        explanationUI = FindObjectOfType<ExplanationUI>();
 
         cancelButton.onClick.AddListener(OnCancelClicked);
         payExpertButton.interactable = ScoreManager.Instance.CanPayForPuzzle();
@@ -26,19 +29,22 @@ public class PuzzleButtonController : MonoBehaviour
 
         payExpertButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(false);
+        explanationUI.HideExplanation();
         currentPuzzleTransform = null;
     }
 
     public void SetCurrentPuzzle(Transform puzzleTransform)
     {
         currentPuzzleTransform = puzzleTransform;
+
+        var meta = puzzleTransform.GetComponent<PuzzleMetaData>();
+        explanationUI.ShowExplanation(meta.helpData);
+
         payExpertButton.interactable = ScoreManager.Instance.CanPayForPuzzle();
         expertCostText.text = $"Pay: {ScoreManager.Instance.GetPointsPerPuzzle}";
-
         StartCoroutine(ShowButtonsWithDelay(3f));
-
-        Debug.Log($"Current puzzle position: {currentPuzzleTransform.position}, interactable: {payExpertButton.interactable}");
     }
+
 
     private IEnumerator ShowButtonsWithDelay(float delay)
     {
@@ -65,6 +71,7 @@ public class PuzzleButtonController : MonoBehaviour
         payExpertButton.interactable = false;
         payExpertButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(false);
+        explanationUI.HideExplanation();
         hiddenRoomRevealer.CancelPuzzle();
     }
 
@@ -73,6 +80,7 @@ public class PuzzleButtonController : MonoBehaviour
         payExpertButton.interactable = false;
         payExpertButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(false);
+        explanationUI.HideExplanation();
         hiddenRoomRevealer.PayExpertToSolvePuzzle(currentPuzzleTransform);
     }
 }

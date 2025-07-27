@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8079599926017162299}
   - component: {fileID: 7511133212169925472}
   - component: {fileID: 6322263080231546286}
+  - component: {fileID: 2856178622907439447}
   m_Layer: 0
   m_Name: SmokeOutPuzzle
   m_TagString: Untagged
@@ -62,3 +63,19 @@ MonoBehaviour:
   gridOrigin: {x: 0, y: 0}
   gridRows: 3
   gridColumns: 3
+--- !u!114 &2856178622907439447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618248298286656424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc5bef32e38267fda189368c9d86ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helpData:
+    title: The lungs are filled with smoke
+    bodyText: "Tap to clear the smoke \u2014 but each move spreads it nearby.\n\nGoal:\nClear
+      all smoke from the grid."
