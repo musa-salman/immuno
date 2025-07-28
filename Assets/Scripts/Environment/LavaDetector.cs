@@ -26,7 +26,7 @@ public class LavaDetector : MonoBehaviour
 
         if (currentTile != null)
         {
-            playerHealth.TakeDamage(0.5f * Time.deltaTime);
+            playerHealth.TakeDamage(0.5f);
         }
 
         float closestDistance = detectionRadius + 1f;

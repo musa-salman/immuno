@@ -132,7 +132,6 @@ public class Enemy : MonoBehaviour
             bullets[index].transform.SetParent(null);
             bullets[index].transform.position = bulletPoint.position;
             bullets[index].GetComponent<EnemyProjectile>().ActivateProjectile(playerPos);
-            Debug.Log("Enemy fired a projectile at: " + playerPos + " from position: " + bulletPoint.position);
         }
     }
 
