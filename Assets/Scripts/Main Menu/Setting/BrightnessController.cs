@@ -10,40 +10,14 @@ public class BrightnessController : MonoBehaviour
     [SerializeField] private Slider brightnessSlider;
     private Image brightnessOverlay;
     private readonly List<Image> backgroundImages = new();
-    private float currentBrightness;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
-        currentBrightness = PlayerPrefs.GetFloat("Brightness", 0.5f);
-
-        if (brightnessSlider != null)
-        {
-            brightnessSlider.value = currentBrightness;
-            brightnessSlider.onValueChanged.AddListener(ApplyBrightness);
-        }
+        brightnessSlider.value = PauseManager.Instance.CurrentBrightness;
+        brightnessSlider.onValueChanged.AddListener(ApplyBrightness);
 
         ScanScene();
-        ApplyBrightness(currentBrightness);
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        ScanScene();
-        ApplyBrightness(currentBrightness);
+        ApplyBrightness(brightnessSlider.value);
     }
 
     private void ScanScene()
@@ -64,7 +38,7 @@ public class BrightnessController : MonoBehaviour
 
     public void ApplyBrightness(float value)
     {
-        currentBrightness = value;
+        PauseManager.Instance.SetBrightness(value);
 
         if (brightnessOverlay != null)
         {
@@ -83,17 +57,6 @@ public class BrightnessController : MonoBehaviour
             }
         }
 
-        PlayerPrefs.SetFloat("Brightness", value);
-        PlayerPrefs.Save();
-    }
-
-
-    public void UpdateUi()
-    {
-        brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 0.5f);
-
-        ApplyBrightness(brightnessSlider.value);
-
-        Debug.Log($"Brightness updated to: {brightnessSlider.value}");
+        PauseManager.Instance.SetBrightness(value);
     }
 }

@@ -11,6 +11,23 @@ public class PauseManager : MonoBehaviour
     private bool isPaused = false;
     private const float muteVolumeDb = -80f;
 
+    private float currentVolume = 0.75f;
+
+    private float currentBrightness = 0.5f;
+
+    public float CurrentVolume => currentVolume;
+    public float CurrentBrightness => currentBrightness;
+
+    public void SetVolume(float value)
+    {
+        currentVolume = value;
+    }
+
+    public void SetBrightness(float value)
+    {
+        currentBrightness = value;
+    }
+
     public static PauseManager Instance { get; private set; }
 
     private void Awake()
@@ -63,11 +80,6 @@ public class PauseManager : MonoBehaviour
             else
             {
                 PauseGame();
-
-                // update the values of brightness and volume
-                AudioVolumeController.Instance.UpdateUi();
-
-                BrightnessController.Instance.UpdateUi();
             }
         }
 

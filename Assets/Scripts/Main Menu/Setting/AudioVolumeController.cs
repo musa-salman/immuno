@@ -11,39 +11,16 @@ public class AudioVolumeController : MonoBehaviour
     [SerializeField] private Slider masterSlider;
     [SerializeField] private AudioMixer audioMixer;
 
-    private float currentVolume = 0.75f;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
 
     private void Start()
     {
-        currentVolume = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
-
-        ApplyVolume(currentVolume);
+        ApplyVolume(PauseManager.Instance.CurrentVolume);
 
         if (masterSlider != null)
         {
-            masterSlider.value = currentVolume;
+            masterSlider.value = PauseManager.Instance.CurrentVolume;
             masterSlider.onValueChanged.AddListener(ApplyVolume);
         }
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        ApplyVolume(currentVolume);
     }
 
     public void ApplyVolume(float value)
@@ -52,13 +29,7 @@ public class AudioVolumeController : MonoBehaviour
         Debug.Log($"Setting volume to: {value}");
         float volumeInDb = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20;
         audioMixer.SetFloat("MasterVolume", volumeInDb);
-        PlayerPrefs.SetFloat("MasterVolume", value);
-        PlayerPrefs.Save();
-    }
 
-    public void UpdateUi()
-    {
-        float value = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
-        ApplyVolume(1f - value);
+        PauseManager.Instance.SetVolume(value);
     }
 }
