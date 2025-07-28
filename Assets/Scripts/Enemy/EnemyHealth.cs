@@ -58,4 +58,14 @@ public class EnemyHealth : MonoBehaviour
             isDead = true;
         }
     }
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
 }
