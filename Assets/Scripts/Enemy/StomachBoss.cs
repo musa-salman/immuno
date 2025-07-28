@@ -72,9 +72,8 @@ public class StomachBoss : MonoBehaviour
 
         if (!isPhase2 && TryGetComponent<EnemyHealth>(out var health))
         {
-            if (health.GetCurrentHealth() / health.GetMaxHealth() <= 0.5f)
+            if (health.CurrentHealth / health.MaxHealth <= 0.5f)
             {
-                Debug.Log($"Current Health: {health.GetCurrentHealth()}, Max Health: {health.GetMaxHealth()}");
                 StartCoroutine(EnterPhase2());
             }
         }

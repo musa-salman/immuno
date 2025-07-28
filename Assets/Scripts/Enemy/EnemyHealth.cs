@@ -12,6 +12,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private EnemyHealthBar enemyHealthBar;
 
+    public float CurrentHealth => currentHealth;
+    public float MaxHealth => maxHealth;
 
     private bool isDead = false;
     private void Awake()
@@ -57,15 +59,5 @@ public class EnemyHealth : MonoBehaviour
             }
             isDead = true;
         }
-    }
-
-    public float GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public float GetMaxHealth()
-    {
-        return maxHealth;
     }
 }
