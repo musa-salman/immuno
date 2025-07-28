@@ -35,6 +35,7 @@ public class StomachBoss : MonoBehaviour
 
     private float attackTimer;
 
+    private bool isPhase2 = false;
 
     private enum BossState
     {
@@ -67,8 +68,17 @@ public class StomachBoss : MonoBehaviour
 
     private void Update()
     {
-        // Do not rotate the boss
         transform.rotation = Quaternion.identity;
+
+        if (!isPhase2 && TryGetComponent<EnemyHealth>(out var health))
+        {
+            if (health.GetCurrentHealth() / health.GetMaxHealth() <= 0.5f)
+            {
+                Debug.Log($"Current Health: {health.GetCurrentHealth()}, Max Health: {health.GetMaxHealth()}");
+                StartCoroutine(EnterPhase2());
+            }
+        }
+
         switch (currentState)
         {
             case BossState.Patrolling:
@@ -83,12 +93,41 @@ public class StomachBoss : MonoBehaviour
         }
     }
 
+
+    private IEnumerator EnterPhase2()
+    {
+        isPhase2 = true;
+        currentState = BossState.PreparingAttack;
+        enemyPatrol.StopMovement();
+
+        yield return PlayPreparationEffect(1.5f, 0.1f);
+
+        // Increase difficulty
+        attackCooldown *= 0.6f;
+        spinSpeed *= 1.4f;
+        spinDamage += 5f;
+
+        Debug.Log("Stomach Boss has entered Phase 2");
+
+        currentState = BossState.Patrolling;
+        enemyPatrol.ResumeMovement();
+    }
+
     private void ChooseAttack()
     {
         enemyPatrol.StopMovement();
 
-        bool canSummon = CanSummonMinions();
-        int pattern = Random.Range(0, canSummon ? 2 : 1);
+        int pattern;
+
+        if (isPhase2)
+        {
+            bool canSummon = CanSummonMinions();
+            pattern = canSummon ? Random.Range(0, 2) : 0; // 0 = spin, 1 = summon
+        }
+        else
+        {
+            pattern = 0;
+        }
 
         switch (pattern)
         {
