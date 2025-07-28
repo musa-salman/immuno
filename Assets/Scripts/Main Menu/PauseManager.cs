@@ -65,13 +65,9 @@ public class PauseManager : MonoBehaviour
                 PauseGame();
 
                 // update the values of brightness and volume
-                float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
-                AudioVolumeController.Instance.ApplyVolume(savedVolume);
+                AudioVolumeController.Instance.UpdateUi();
 
-                float brightnessValue = PlayerPrefs.GetFloat("Brightness", 0.5f);
-                BrightnessController.Instance.ApplyBrightness(brightnessValue);
-
-                Debug.Log($"[PauseManager] Pause Menu Opened: Brightness {brightnessValue}, Volume {savedVolume}");
+                BrightnessController.Instance.UpdateUi();
             }
         }
 

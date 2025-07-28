@@ -86,4 +86,14 @@ public class BrightnessController : MonoBehaviour
         PlayerPrefs.SetFloat("Brightness", value);
         PlayerPrefs.Save();
     }
+
+
+    public void UpdateUi()
+    {
+        brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 0.5f);
+
+        ApplyBrightness(brightnessSlider.value);
+
+        Debug.Log($"Brightness updated to: {brightnessSlider.value}");
+    }
 }

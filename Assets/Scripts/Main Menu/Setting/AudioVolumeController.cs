@@ -55,4 +55,10 @@ public class AudioVolumeController : MonoBehaviour
         PlayerPrefs.SetFloat("MasterVolume", value);
         PlayerPrefs.Save();
     }
+
+    public void UpdateUi()
+    {
+        float value = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
+        ApplyVolume(1f - value);
+    }
 }
