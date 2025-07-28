@@ -62,7 +62,7 @@ public class BrightnessController : MonoBehaviour
         }
     }
 
-    private void ApplyBrightness(float value)
+    public void ApplyBrightness(float value)
     {
         currentBrightness = value;
 
@@ -84,5 +84,6 @@ public class BrightnessController : MonoBehaviour
         }
 
         PlayerPrefs.SetFloat("Brightness", value);
+        PlayerPrefs.Save();
     }
 }
