@@ -48,6 +48,8 @@ public class AudioVolumeController : MonoBehaviour
 
 public void ApplyVolume(float value)
 {
+    value = 1f - value;
+    Debug.Log($"Setting volume to: {value}");
     float volumeInDb = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20;
     audioMixer.SetFloat("MasterVolume", volumeInDb);
     PlayerPrefs.SetFloat("MasterVolume", value);
