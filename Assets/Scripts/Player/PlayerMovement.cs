@@ -34,12 +34,17 @@ public class PlayerMovement : MonoBehaviour
     private readonly float damageCooldown = 1f;
     private bool isSolvingPuzzle = false;
 
+    private GameObject enemyCollider;
+
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         mainCamera = Camera.main.transform;
         collectionsManager = CollectionsManager.Instance;
+
+        /// find in children
+        enemyCollider = GameObject.Find("EnemyCollider");
     }
 
     private void Update()
@@ -130,6 +135,8 @@ public class PlayerMovement : MonoBehaviour
         CanDash = false;
         isDashing = true;
         canTakeDamage = false;
+
+        enemyCollider.SetActive(false);
         float og_gravity = body.gravityScale;
         body.gravityScale = 0f;
         body.velocity = new Vector2(Mathf.Abs(body.velocity.x) > 0.1f ? body.velocity.x * DashPower : speed * direction * DashPower, body.velocity.y);
@@ -138,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         canTakeDamage = true;
         yield return new WaitForSeconds(SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.DashCooldownReduction));
+        enemyCollider.SetActive(true);
         CanDash = true;
     }
 

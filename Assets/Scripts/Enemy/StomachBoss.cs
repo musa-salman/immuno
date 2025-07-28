@@ -241,9 +241,9 @@ public class StomachBoss : MonoBehaviour
     {
         if (!isSpinning) return;
 
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player_Health"))
         {
-            if (collision.TryGetComponent<PlayerHealth>(out var health))
+            if (collision.TryGetComponent<EnemyCollider>(out var health))
             {
                 health.TakeDamage(spinDamage);
             }

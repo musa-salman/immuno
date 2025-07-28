@@ -3612,6 +3612,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2805529272445449132, guid: 19760f511bc27db62959d9b6c5fe6047, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2805529272445449132, guid: 19760f511bc27db62959d9b6c5fe6047, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3661137757912494691, guid: 19760f511bc27db62959d9b6c5fe6047, type: 3}
       propertyPath: m_Name
       value: StomachEnemy 12
@@ -117824,17 +117832,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3845842496678753975, guid: 3fb4424d7e09dbdf58fa42fc94a8aa5b, type: 3}
   m_PrefabInstance: {fileID: 7826446820020705483}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1824341112 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6335032897990406418, guid: 28d853960d90b766da18afb912ece87d, type: 3}
-  m_PrefabInstance: {fileID: 2746886967765715554}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fac62afe46bfecc54a9fdc6368f30ae2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1826705286
 GameObject:
   m_ObjectHideFlags: 0
@@ -118878,14 +118875,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 664996486569346284, guid: 28d853960d90b766da18afb912ece87d, type: 3}
-      propertyPath: lavaTilemap
-      value: 
-      objectReference: {fileID: 957294188}
-    - target: {fileID: 2274608752689997025, guid: 28d853960d90b766da18afb912ece87d, type: 3}
-      propertyPath: playerMovement
-      value: 
-      objectReference: {fileID: 1824341112}
     - target: {fileID: 2584139466926132856, guid: 28d853960d90b766da18afb912ece87d, type: 3}
       propertyPath: bullets.Array.data[0]
       value: 
@@ -118970,14 +118959,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6510666342954465108, guid: 28d853960d90b766da18afb912ece87d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6899836170707898547, guid: 28d853960d90b766da18afb912ece87d, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: 4442f638acc382d4987889156b54c7ef, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

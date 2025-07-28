@@ -203,9 +203,10 @@ public class StomachEnemy : MonoBehaviour
         if (!isSpinning)
             return;
 
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player_Health"))
         {
-            if (collision.TryGetComponent<PlayerHealth>(out var playerHealth))
+            Debug.Log($"StomachEnemy: {collision.name} collided with {gameObject.name}");
+            if (collision.TryGetComponent<EnemyCollider>(out var playerHealth))
             {
                 playerHealth.TakeDamage(damage);
             }

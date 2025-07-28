@@ -13,6 +13,7 @@ TagManager:
   - surge_motion
   - Puzzle_Entrance
   - BrightnessOverlay
+  - Player_Health
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - platform
   - Enemy
   - Connector
-  - 
-  - 
+  - Player
+  - Player_Health
   - 
   - 
   - 

@@ -30,7 +30,8 @@ public class EnemyHealth : MonoBehaviour
         _damage = CheatManager.OneShotKill ? currentHealth + 1 : _damage;
 #endif
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, StartingHealth);
-        enemyHealthBar.UpdateHealthBar(currentHealth, maxHealth);
+        if (enemyHealthBar != null)
+            enemyHealthBar.UpdateHealthBar(currentHealth, maxHealth);
         if (currentHealth > 0)
         {
             SoundManager.instance.PlaySound(hurtSound);
