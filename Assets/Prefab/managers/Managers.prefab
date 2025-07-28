@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 2786376774707143083}
   - component: {fileID: 655195503805958645}
   - component: {fileID: 2715454006986960065}
+  - component: {fileID: 680055441903391601}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -188,6 +189,21 @@ MonoBehaviour:
   damageUpDuration: 5
   damageUpBoostLevels: 0.25
   instantHealthAmount: 50
+--- !u!114 &680055441903391601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7031516152327300468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c70bfe4525c414aadd3763242148d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 4442f638acc382d4987889156b54c7ef, type: 2}
+  exposedVolumeParam: MasterVolume
 --- !u!1 &8779019510097343539
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +334,10 @@ PrefabInstance:
     - target: {fileID: 4011049975330899736, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_Name
       value: Loading_Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4011049975330899736, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7834117078907110375, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_Pivot.x
