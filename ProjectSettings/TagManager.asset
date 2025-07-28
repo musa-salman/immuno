@@ -14,6 +14,7 @@ TagManager:
   - Puzzle_Entrance
   - BrightnessOverlay
   - Player_Health
+  - Pause_Menu
   layers:
   - Default
   - TransparentFX

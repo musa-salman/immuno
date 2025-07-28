@@ -46,13 +46,19 @@ public class AudioVolumeController : MonoBehaviour
         ApplyVolume(currentVolume);
     }
 
-public void ApplyVolume(float value)
-{
-    value = 1f - value;
-    Debug.Log($"Setting volume to: {value}");
-    float volumeInDb = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20;
-    audioMixer.SetFloat("MasterVolume", volumeInDb);
-    PlayerPrefs.SetFloat("MasterVolume", value);
-}
+    public void ApplyVolume(float value)
+    {
+        value = 1f - value;
+        Debug.Log($"Setting volume to: {value}");
+        float volumeInDb = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20;
+        audioMixer.SetFloat("MasterVolume", volumeInDb);
+        PlayerPrefs.SetFloat("MasterVolume", value);
+        PlayerPrefs.Save();
+    }
 
+    public void UpdateUi()
+    {
+        float value = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
+        ApplyVolume(1f - value);
+    }
 }
