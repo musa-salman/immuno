@@ -35,8 +35,12 @@ public class Boss : MonoBehaviour
         Summoning
     }
 
+    private bool isPhase2 = false;
+    private bool isDead = false;
+
     private BossState currentState = BossState.Patrolling;
 
+    private EnemyHealth enemyHealth;
 
     private void Start()
     {
@@ -51,10 +55,19 @@ public class Boss : MonoBehaviour
         summonedMinions = new GameObject[summonPoints.Length];
 
         animator = GetComponent<Animator>();
+
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     private void Update()
     {
+        if (isDead) return;
+
+        if (!isPhase2 && enemyHealth.CurrentHealth / enemyHealth.MaxHealth <= 0.5f)
+        {
+            StartCoroutine(EnterPhase2());
+        }
+
         switch (currentState)
         {
             case BossState.Patrolling:
@@ -72,6 +85,22 @@ public class Boss : MonoBehaviour
         }
     }
 
+    private IEnumerator EnterPhase2()
+    {
+        isPhase2 = true;
+        currentState = BossState.PreparingAttack;
+        enemyPatrol.StopMovement();
+
+        yield return PlayPreparationEffect(1.5f, 0.1f);
+
+        attackCooldown *= 0.7f;
+
+        Debug.Log("Boss entered Phase 2");
+
+        currentState = BossState.Patrolling;
+        enemyPatrol.ResumeMovement();
+    }
+
     private void RotateBoss()
     {
         float delta = 90f * Time.deltaTime;
@@ -82,7 +111,17 @@ public class Boss : MonoBehaviour
     private void ChooseAttack()
     {
         enemyPatrol.StopMovement();
-        int pattern = Random.Range(0, CanSummonMinions() ? 2 : 1);
+
+        int pattern;
+        if (isPhase2)
+        {
+            pattern = CanSummonMinions() ? Random.Range(0, 2) : 0;
+        }
+        else
+        {
+            pattern = 0;
+        }
+
         switch (pattern)
         {
             case 0:
@@ -234,7 +273,11 @@ public class Boss : MonoBehaviour
         enemyPatrol.ResumeMovement();
     }
 
-    public void Die() => animator.SetTrigger("isDeath");
+    public void Die()
+    {
+        isDead = true;
+        animator.SetTrigger("isDeath");
+    }
 
     public void DestroyBoss()
     {
