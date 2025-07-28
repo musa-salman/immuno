@@ -26,11 +26,32 @@ public class PauseManager : MonoBehaviour
         }
     }
 
+    private GameObject FindInactiveInSceneByTag(string tag)
+    {
+        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.CompareTag(tag) &&
+                !obj.activeInHierarchy &&
+                obj.hideFlags == HideFlags.None &&
+                obj.scene.IsValid() &&
+                obj.scene.isLoaded)
+            {
+                return obj;
+            }
+        }
+
+        return null;
+    }
+
+
     void Update()
     {
         if (pauseMenu == null)
         {
             Debug.Log("Pause menu is not registered. Please ensure it is set in the PauseManager.");
+            pauseMenu = FindInactiveInSceneByTag("Pause_Menu");
             return;
         }
 
