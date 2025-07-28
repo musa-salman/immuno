@@ -13947,6 +13947,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StomachBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 4088990553862519347, guid: 2df86f2a22855f481a1f9bb7f96dc397, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5557ce695a65aa788a2dbbea0c97aef0, type: 2}
     - target: {fileID: 4888200301786767485, guid: 2df86f2a22855f481a1f9bb7f96dc397, type: 3}
       propertyPath: summonPoints.Array.size
       value: 3
@@ -119518,11 +119522,11 @@ PrefabInstance:
       objectReference: {fileID: 1662480451}
     - target: {fileID: 3218083604485152119, guid: 28d853960d90b766da18afb912ece87d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 162.52
+      value: -56
       objectReference: {fileID: 0}
     - target: {fileID: 3218083604485152119, guid: 28d853960d90b766da18afb912ece87d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.57
+      value: 27.2
       objectReference: {fileID: 0}
     - target: {fileID: 3218083604485152119, guid: 28d853960d90b766da18afb912ece87d, type: 3}
       propertyPath: m_LocalPosition.z
