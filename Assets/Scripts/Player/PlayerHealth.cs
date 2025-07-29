@@ -23,13 +23,9 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-    public void AddHealth(float amount)
+    public void FullHealth()
     {
-        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, StartingHealth);
-        if (CurrentHealth > StartingHealth)
-        {
-            CurrentHealth = StartingHealth;
-        }
+        CurrentHealth = StartingHealth;
     }
 
     public void TakeDamage(float _damage)
@@ -41,18 +37,25 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 #endif
-        if (playerMovement.canTakeDamage)
+        if (!playerMovement.canTakeDamage || isDead)
         {
-            CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 0, StartingHealth);
-            lastDamageTime = Time.time;
-            StartCoroutine(playerMovement.KnockBack(transform.localScale.x));
-            StartCoroutine(FlashSprite());
-            if (CurrentHealth > 0)
-            {
-                SoundManager.instance.PlaySound(hurtSoundPlayer);
-            }
+            Debug.Log($"Player cannot take damage right now or is dead. Damage: {_damage}");
+            return;
         }
-        if (!isDead && CurrentHealth <= 0)
+        else
+        {
+            Debug.Log($"Player took damage: {_damage}. Current health before damage: {CurrentHealth}");
+        }
+
+        CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 0, StartingHealth);
+        lastDamageTime = Time.time;
+        StartCoroutine(playerMovement.KnockBack(transform.localScale.x));
+        StartCoroutine(FlashSprite());
+        if (CurrentHealth > 0)
+        {
+            SoundManager.instance.PlaySound(hurtSoundPlayer);
+        }
+        if (CurrentHealth <= 0)
         {
             SoundManager.instance.PlaySound(deathSoundPlayer);
             if (TryGetComponent<Rigidbody2D>(out var rb))

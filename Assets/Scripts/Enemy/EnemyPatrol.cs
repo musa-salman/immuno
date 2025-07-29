@@ -40,6 +40,7 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
     {
+
         if (isPaused) return;
 
         if (movingLeft)

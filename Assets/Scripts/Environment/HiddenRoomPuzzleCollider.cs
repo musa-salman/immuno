@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class HiddenRoomPuzzleCollider : MonoBehaviour
@@ -6,8 +7,17 @@ public class HiddenRoomPuzzleCollider : MonoBehaviour
 
     private bool playerInRange = false;
 
+    private string id;
+
     private void Start()
     {
+        id = GetComponent<UniqueID>().ID;
+        if (GameSaveManager.Instance.SolvedPuzzles.Contains(id))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         hiddenRoomRevealer = FindObjectOfType<HiddenRoomRevealer>();
     }
 

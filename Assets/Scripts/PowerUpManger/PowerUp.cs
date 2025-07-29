@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    private CollectionsManager collectionsMannger;
-    // Start is called before the first frame update
+    private CollectionsManager collectionsManager;
+
     [SerializeField] private PowerUpType powerUpType;
+
+    private string id;
+
     void Start()
     {
         if (CollectionsManager.Instance == null)
         {
-            Debug.LogError("CollectionsMannger instance is not set.");
+            Debug.LogError("CollectionsManager instance is not set.");
             return;
         }
-        collectionsMannger = CollectionsManager.Instance;
+
+        id = GetComponent<UniqueID>().ID;
+        if (GameSaveManager.Instance.CollectedPowerUps.Contains(id))
+        {
+            Destroy(gameObject);
+        }
+
+        collectionsManager = CollectionsManager.Instance;
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("PowerUp collected: " + powerUpType);
-            collectionsMannger.CollectPowerUp(powerUpType);
+            GameSaveManager.Instance.CollectedPowerUps.Add(id);
+            collectionsManager.CollectPowerUp(powerUpType);
             Destroy(gameObject);
         }
     }

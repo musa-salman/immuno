@@ -353,6 +353,7 @@ GameObject:
   - component: {fileID: 129029018392392299}
   - component: {fileID: 8267151778622732806}
   - component: {fileID: 2805529272445449132}
+  - component: {fileID: 7731952721128946391}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -618,6 +619,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.88239264, y: 0.78777623}
   m_EdgeRadius: 0
+--- !u!114 &7731952721128946391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106671305514112810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0837e36f6009be9aafd050336136b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueID: StomachEnemy_Enemy_e098a86d-3988-44dc-802d-bb801c7fa8f1
 --- !u!1001 &7564047687681450953
 PrefabInstance:
   m_ObjectHideFlags: 0

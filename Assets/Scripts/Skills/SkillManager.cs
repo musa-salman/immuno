@@ -31,6 +31,7 @@ public class SkillManager : MonoBehaviour
         public int[] costPerLevel;
         [HideInInspector] public Skill ui;
         public Func<int, float, float> computeEffectiveLevel;
+        public bool active;
     }
 
 
@@ -82,17 +83,17 @@ public class SkillManager : MonoBehaviour
             (baseLevel, multiplier) => Mathf.Max(0f, 1f - 0.2f * baseLevel * multiplier));
 
         // TODO: MOVE ENABLING THE SKILLS TO BE WHEN THE PLAYER COLLECTS THE REQUIRED ITEM
-        EnableSkillUpgrade(SkillType.ToughenShell);
-        EnableSkillUpgrade(SkillType.Speed);
+        // EnableSkillUpgrade(SkillType.ToughenShell);
+        // EnableSkillUpgrade(SkillType.Speed);
 
-        EnableSkillUpgrade(SkillType.DoubleJump);
-        EnableSkillUpgrade(SkillType.DashCooldownReduction);
+        // EnableSkillUpgrade(SkillType.DoubleJump);
+        // EnableSkillUpgrade(SkillType.DashCooldownReduction);
 
-        EnableSkillUpgrade(SkillType.HealthRegenerationRate);
-        EnableSkillUpgrade(SkillType.RegenerationDelayReduction);
+        // EnableSkillUpgrade(SkillType.HealthRegenerationRate);
+        // EnableSkillUpgrade(SkillType.RegenerationDelayReduction);
 
-        EnableSkillUpgrade(SkillType.ProjectilePower);
-        EnableSkillUpgrade(SkillType.AttackSpeed);
+        // EnableSkillUpgrade(SkillType.ProjectilePower);
+        // EnableSkillUpgrade(SkillType.AttackSpeed);
     }
 
     void Update()
@@ -121,7 +122,8 @@ public class SkillManager : MonoBehaviour
             level = 0,
             maxLevel = costPerLevel.Length - 1,
             costPerLevel = costPerLevel,
-            computeEffectiveLevel = computeEffectiveLevel
+            computeEffectiveLevel = computeEffectiveLevel,
+            active = false
         };
 
         skillDict[skillType] = newSkill;
@@ -135,24 +137,35 @@ public class SkillManager : MonoBehaviour
             Debug.LogWarning($"Skill UI for '{skillType}' already exists.");
             return;
         }
-        if (skillUIPrefab != null && skillsContainer != null)
+
+        if (skillsContainer == null)
         {
-            GameObject uiObj = Instantiate(skillUIPrefab, skillsContainer.transform);
-            uiObj.name = skillType.ToString();
-
-            Skill skillUI = uiObj.GetComponent<Skill>();
-            newSkill.ui = skillUI;
-
-            skillUI.SetSkillName(newSkill.name);
-            skillUI.SetDescription(newSkill.description);
-
-            Button btn = skillUI.upgradeButton;
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => TryUpgradeSkill(skillType));
-
-            int upgradeXpCost = newSkill.level >= newSkill.maxLevel ? 0 : newSkill.costPerLevel[newSkill.level];
-            skillUI.SetLevel(newSkill.level, newSkill.maxLevel, upgradeXpCost, ScoreManager.Instance.CurrentScore);
+            skillsContainer = FindObjectOfType<SkillsContainer>();
         }
+
+
+        GameObject uiObj = Instantiate(skillUIPrefab, skillsContainer.transform);
+        uiObj.name = skillType.ToString();
+
+        Skill skillUI = uiObj.GetComponent<Skill>();
+        newSkill.ui = skillUI;
+
+        skillUI.SetSkillName(newSkill.name);
+        skillUI.SetDescription(newSkill.description);
+
+        Button btn = skillUI.upgradeButton;
+        btn.onClick.RemoveAllListeners();
+        btn.onClick.AddListener(() => TryUpgradeSkill(skillType));
+
+        int upgradeXpCost = newSkill.level >= newSkill.maxLevel ? 0 : newSkill.costPerLevel[newSkill.level];
+        skillUI.SetLevel(newSkill.level, newSkill.maxLevel, upgradeXpCost, ScoreManager.Instance.CurrentScore);
+
+        newSkill.active = true;
+    }
+
+    public bool IsSkillActive(SkillType skillName)
+    {
+        return skillDict.ContainsKey(skillName) && skillDict[skillName].active;
     }
 
     public void TryUpgradeSkill(SkillType skillName)
@@ -191,13 +204,13 @@ public class SkillManager : MonoBehaviour
     {
         skillsContainer = FindObjectOfType<SkillsContainer>();
 
-
-
         // find the SkillsContainer in the scene not just in the current GameObject
         foreach (var skill in skillDict.Values)
         {
-            // TODO: move this to a more appropriate place
-            EnableSkillUpgrade(skill.skillType, true);
+            if (skill.active)
+            {
+                EnableSkillUpgrade(skill.skillType, true);
+            }
         }
     }
 

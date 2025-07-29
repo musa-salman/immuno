@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2040216497490531067}
   - component: {fileID: 2166713220614814337}
   - component: {fileID: 6348963507711854763}
+  - component: {fileID: 7409746259449699496}
   m_Layer: 0
   m_Name: Puzzle_Enterance
   m_TagString: Puzzle_Entrance
@@ -90,3 +91,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad2a42b71da3f606b92b684896a59a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7409746259449699496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191520472942311046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0837e36f6009be9aafd050336136b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueID: Puzzle_Enterance_Puzzle_Enterance_a30d6d9e-788c-42ae-90d3-7f42ae8f68e7

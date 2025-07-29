@@ -133,11 +133,6 @@ public class CheatManager : MonoBehaviour
             if (int.TryParse(scoreInput, out int amount))
             {
                 ScoreManager.Instance.AddPoints(amount);
-                Debug.Log($"Added {amount} points. New score: {ScoreManager.Instance.CurrentScore}");
-            }
-            else
-            {
-                Debug.LogWarning("Invalid score input.");
             }
         }
         y += buttonHeight + spacing;

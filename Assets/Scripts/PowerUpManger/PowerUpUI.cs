@@ -10,13 +10,13 @@ public class PowerUpUI : MonoBehaviour
     [SerializeField] private Image powerKeyImage;
     [SerializeField] private TMP_Text powerUpText;
     [SerializeField] private TMP_Text counterText;
-    private Material imageMaterial;
+
+    [SerializeField] private Material disabledImageMaterial;
 
     private readonly string enabledTextColor = "#FFB800";
 
     public void EnableUi()
     {
-        imageMaterial = powerUpImage.material;
         powerUpImage.material = null;
         powerKeyImage.material = null;
         powerUpText.color = ColorUtility.TryParseHtmlString(enabledTextColor, out Color color) ? color : Color.white;
@@ -27,14 +27,11 @@ public class PowerUpUI : MonoBehaviour
         counterText.text = "x" + count.ToString();
     }
 
-    public void DisableUI()
+    public void DisableUi()
     {
-        if (imageMaterial != null)
-        {
-            powerUpImage.material = imageMaterial;
-            powerKeyImage.material = imageMaterial;
-            powerUpText.color = Color.white;
-            counterText.color = Color.white;
-        }
+        powerUpImage.material = disabledImageMaterial;
+        powerKeyImage.material = disabledImageMaterial;
+        powerUpText.color = Color.white;
+        counterText.color = Color.white;
     }
 }

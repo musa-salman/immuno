@@ -1885,13 +1885,14 @@ GameObject:
   - component: {fileID: 711135925536345494}
   - component: {fileID: 4763304627325374162}
   - component: {fileID: 3900897591599062686}
+  - component: {fileID: 3821674347084984640}
   m_Layer: 5
   m_Name: Pause_Menu
-  m_TagString: Untagged
+  m_TagString: Pause_Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8029141582925424333
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1983,6 +1984,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3821674347084984640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657690988031880515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87a5fed7268f03938fd0e2f3f80cdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2658930098191573766
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,7 +4045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3224557258524166926, guid: 886da8bd8265eea44bc3fc7ee4f71201, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5658241301616049847, guid: 886da8bd8265eea44bc3fc7ee4f71201, type: 3}
       propertyPath: m_Pivot.x
@@ -4223,7 +4236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1461081855584951553, guid: f097712f8b9c4d9419855a23b6468437, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1975801216014997000, guid: f097712f8b9c4d9419855a23b6468437, type: 3}
       propertyPath: m_AnchorMax.x

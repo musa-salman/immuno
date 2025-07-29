@@ -5,25 +5,17 @@ public class UpgradeMenuToggle : MonoBehaviour
     [SerializeField] private GameObject upgradeMenuUI;
     [SerializeField] private KeyCode toggleKey = KeyCode.U;
 
-    private bool hasGeneratedUI = false;
-
     private void Start()
     {
         upgradeMenuUI.SetActive(false);
     }
 
-    public void show_menu()
+    public void ShowMenu()
     {
         upgradeMenuUI.SetActive(true);
-
-        if (!hasGeneratedUI && SkillManager.Instance != null)
-        {
-            SkillManager.Instance.GenerateUi();
-            hasGeneratedUI = true;
-        }
     }
 
-    public void hide_menu()
+    public void HideMenu()
     {
         upgradeMenuUI.SetActive(false);
     }
@@ -39,9 +31,9 @@ public class UpgradeMenuToggle : MonoBehaviour
                 upgradeMenuUI.SetActive(!isActive);
 
                 if (!isActive)
-                    show_menu(); 
+                    ShowMenu();
                 else
-                    hide_menu(); 
+                    HideMenu();
             }
         }
     }

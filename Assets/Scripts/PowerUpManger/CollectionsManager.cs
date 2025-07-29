@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -16,7 +15,6 @@ public enum PowerUpType
 public class CollectionsManager : MonoBehaviour
 {
     public static CollectionsManager Instance;
-    // private int powerUpsCollected = 0;
     private int dmgUps = 0;
     private int instaHealth = 0;
     private int speedUps = 0;
@@ -26,20 +24,13 @@ public class CollectionsManager : MonoBehaviour
     float powerUpCoolDownDuration = 5f;
 
     [Header("PowerUp Settings")]
-    [SerializeField] private float speedUpDuration = 10f;
-    [SerializeField] private float speedUpLevelsBoost = 2f;
+    [SerializeField] private float speedUpDuration = 30f;
+    [SerializeField] private float speedUpLevelsBoost = 30f;
 
-    [SerializeField] private float ultraShieldDuration = 5f;
-    // [SerializeField] private float powerUpAddedXp = 500f;
+    [SerializeField] private float ultraShieldDuration = 30f;
 
     [SerializeField] private float damageUpDuration = 5f;
     [SerializeField] private float damageUpBoostLevels = 0.25f;
-
-    [SerializeField] private float instantHealthAmount = 50f;
-
-    private PlayerMovement playerMovement;
-    private UpgradeMenuToggle upgradeMenuToggle;
-    private PlayerHealth playerHealth;
 
     void Awake()
     {
@@ -52,13 +43,6 @@ public class CollectionsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        playerMovement = GetComponent<PlayerMovement>();
-        playerHealth = GetComponent<PlayerHealth>();
-        upgradeMenuToggle = FindObjectOfType<UpgradeMenuToggle>();
     }
 
     public void HandlePowerUp(PowerUpType type)
@@ -79,7 +63,7 @@ public class CollectionsManager : MonoBehaviour
             case PowerUpType.InstantHealth:
                 if (instaHealth > 0)
                 {
-                    playerHealth.AddHealth(instantHealthAmount);
+                    FindAnyObjectByType<PlayerHealth>().FullHealth();
                     instaHealth--;
                     StartCoroutine(PowerUpCooldown());
 
@@ -98,7 +82,7 @@ public class CollectionsManager : MonoBehaviour
             case PowerUpType.UltraShield:
                 if (remainingUltraShields > 0)
                 {
-                    StartCoroutine(playerHealth.FlashSprite());
+                    StartCoroutine(FindAnyObjectByType<PlayerHealth>().FlashSprite());
                     StartCoroutine(UltraShieldCoroutine());
                     StartCoroutine(PowerUpCooldown());
                 }
@@ -113,14 +97,7 @@ public class CollectionsManager : MonoBehaviour
         switch (type)
         {
             case PowerUpType.PowerUp:
-                if (ScoreManager.Instance != null)
-                {
-                    ScoreManager.Instance.AddPoints(500);
-                }
-                if (upgradeMenuToggle != null)
-                {
-                    upgradeMenuToggle.show_menu();
-                }
+                ScoreManager.Instance.AddPoints(500);
                 break;
             case PowerUpType.DamageUp:
                 dmgUps++;
@@ -145,8 +122,11 @@ public class CollectionsManager : MonoBehaviour
     private IEnumerator UltraShieldCoroutine()
     {
         remainingUltraShields--;
+        PlayerMovement playerMovement = FindAnyObjectByType<PlayerMovement>();
         playerMovement.canTakeDamage = false;
+        Debug.Log("UltraShield activated. Player cannot take damage for " + ultraShieldDuration + " seconds.");
         yield return new WaitForSeconds(ultraShieldDuration);
+        Debug.Log("UltraShield deactivated. Player can take damage again.");
         playerMovement.canTakeDamage = true;
 
         RefreshUi();
@@ -171,19 +151,19 @@ public class CollectionsManager : MonoBehaviour
         PowerUpUI[] powerUpUIs = FindObjectsOfType<PowerUpUI>();
         foreach (PowerUpUI powerUpUI in powerUpUIs)
         {
-            powerUpUI.DisableUI();
+            powerUpUI.DisableUi();
         }
     }
 
-    private void EnableIfNotEmpty(PowerUpUI powerUpUI, int count)
+    private void EnableIfNotEmpty(PowerUpUI powerUpUi, int count)
     {
         if (count > 0)
         {
-            powerUpUI.EnableUi();
+            powerUpUi.EnableUi();
         }
         else
         {
-            powerUpUI.DisableUI();
+            powerUpUi.DisableUi();
         }
     }
 

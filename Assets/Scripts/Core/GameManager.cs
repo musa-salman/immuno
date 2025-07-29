@@ -5,8 +5,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public int totalDeaths;
-    public string lastOrgan;
-
 
 
     private void Awake()

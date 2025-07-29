@@ -104,6 +104,9 @@ public class HiddenRoomRevealer : MonoBehaviour
 
                 if (pair.barrierCollider != null)
                 {
+                    string id = pair.barrierCollider.GetComponent<UniqueID>().ID;
+                    GameSaveManager.Instance.SolvedPuzzles.Add(id);
+
                     pair.barrierCollider.enabled = false;
                 }
 
