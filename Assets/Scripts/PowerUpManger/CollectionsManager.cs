@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -19,7 +18,7 @@ public class CollectionsManager : MonoBehaviour
     private int instaHealth = 0;
     private int speedUps = 0;
     private int remainingUltraShields = 0;
-    public bool powerUpActive = false;
+    public bool isPowerUpActive = false;
 
     float powerUpCoolDownDuration = 5f;
 
@@ -124,25 +123,24 @@ public class CollectionsManager : MonoBehaviour
         remainingUltraShields--;
         PlayerMovement playerMovement = FindAnyObjectByType<PlayerMovement>();
         playerMovement.canTakeDamage = false;
-        Debug.Log("UltraShield activated. Player cannot take damage for " + ultraShieldDuration + " seconds.");
+
         yield return new WaitForSeconds(ultraShieldDuration);
-        Debug.Log("UltraShield deactivated. Player can take damage again.");
+
         playerMovement.canTakeDamage = true;
 
         RefreshUi();
-
     }
 
     private IEnumerator PowerUpCooldown()
     {
-        powerUpActive = true;
+        isPowerUpActive = true;
 
         DisableAllPowerUps();
 
         yield return new WaitForSeconds(powerUpCoolDownDuration);
 
         EnableAllPowerUps();
-        powerUpActive = false;
+        isPowerUpActive = false;
 
     }
 
@@ -212,6 +210,7 @@ public class CollectionsManager : MonoBehaviour
             }
         }
 
-        EnableAllPowerUps();
+        if (!isPowerUpActive)
+            EnableAllPowerUps();
     }
 }

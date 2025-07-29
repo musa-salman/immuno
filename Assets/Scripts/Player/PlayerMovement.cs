@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         HandleDash();
-        if (collectionsManager.powerUpActive)
+        if (collectionsManager.isPowerUpActive)
         {
             return;
         }
