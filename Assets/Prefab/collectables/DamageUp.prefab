@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 6990854109066260433}
   - component: {fileID: 7627349717996533803}
   - component: {fileID: 6479403769546594107}
+  - component: {fileID: 3082091521594263462}
   m_Layer: 0
-  m_Name: upgrade
+  m_Name: DamageUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066361e07c3eb0f4eba18b7a87f9a901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpType: 0
+  powerUpType: 1
 --- !u!61 &7627349717996533803
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107,6 +108,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amplitud: 0.002
   hoverSpeed: 1.2
+--- !u!114 &3082091521594263462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746532501236531649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0837e36f6009be9aafd050336136b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueID: _PowerUp_3fa35755-bcaf-4126-8c10-6d96f55a8788
 --- !u!1 &6514585206948542644
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,8 +148,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7150198344606777428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -180,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: -1834780669
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f8cca563dbfa55941a0d320bcbe575a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4934921f012ddf2419aeb4d5a68e4e44, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
