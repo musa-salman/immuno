@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hover : MonoBehaviour
+public class Hover : MonoBehaviour
 {
-    public float amplitud = 0.002f;    
-    public float hoverSpeed = 1.2f;    
+    public float amplitud = 0.002f;
+    public float hoverSpeed = 1.2f;
     void Update()
     {
         Vector3 hoverPosition = transform.position;
