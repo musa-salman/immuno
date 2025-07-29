@@ -219,6 +219,8 @@ MonoBehaviour:
   isCleared: 0
   unclearedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   clearedColor: {r: 0, g: 1, b: 0, a: 1}
+  gridRow: 0
+  gridCol: 0
 --- !u!61 &-7874974684860308904
 BoxCollider2D:
   m_ObjectHideFlags: 0

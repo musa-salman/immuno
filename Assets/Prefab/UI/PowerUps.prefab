@@ -243,10 +243,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807a40eb245b62d4da4ad44000214910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Id: 5
   powerUpImage: {fileID: 2194213812518860046}
   powerKeyImage: {fileID: 8333261243715649457}
   powerUpText: {fileID: 7169029162231283543}
   counterText: {fileID: 4284903830802908023}
+  disabledImageMaterial: {fileID: 0}
 --- !u!1 &430772447275515834
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,10 +680,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807a40eb245b62d4da4ad44000214910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Id: 5
   powerUpImage: {fileID: 7489904267635248295}
   powerKeyImage: {fileID: 2465995570056954096}
   powerUpText: {fileID: 2125691452008187617}
   counterText: {fileID: 3122329089897877767}
+  disabledImageMaterial: {fileID: 0}
 --- !u!1 &1296377122388149757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,10 +1251,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807a40eb245b62d4da4ad44000214910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Id: 5
   powerUpImage: {fileID: 5653163717020039999}
   powerKeyImage: {fileID: 6541018448158756206}
   powerUpText: {fileID: 1055924299503208215}
   counterText: {fileID: 5436904379192301734}
+  disabledImageMaterial: {fileID: 0}
 --- !u!1 &2178479664973883612
 GameObject:
   m_ObjectHideFlags: 0
@@ -4189,10 +4195,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807a40eb245b62d4da4ad44000214910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Id: 5
   powerUpImage: {fileID: 2354024599061261721}
   powerKeyImage: {fileID: 7643865672343688728}
   powerUpText: {fileID: 629364031491706342}
   counterText: {fileID: 5504823813567553677}
+  disabledImageMaterial: {fileID: 0}
 --- !u!1 &7752971084540651568
 GameObject:
   m_ObjectHideFlags: 0

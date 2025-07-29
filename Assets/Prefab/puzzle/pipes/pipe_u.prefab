@@ -232,7 +232,6 @@ MonoBehaviour:
   currentConnections: 
   isFilled: 0
   isStartPoint: 0
-  cachedNeighbors: []
   row: 0
   col: 0
   pipeSystem: {fileID: 0}

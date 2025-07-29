@@ -44,16 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e855134cd8a0946bce352fb6d516d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpActive: 0
   speedUpDuration: 10
   speedUpLevelsBoost: 3
   ultraShieldDuration: 5
   damageUpDuration: 5
   damageUpBoostLevels: 3
-  instantHealthAmount: 50
-  playerMovement: {fileID: 0}
-  playerHealth: {fileID: 0}
-  skillManager: {fileID: 0}
-  damageUpUI: {fileID: 0}
-  instantHealthUI: {fileID: 0}
-  speedUpUI: {fileID: 0}
-  ultraShieldUI: {fileID: 0}

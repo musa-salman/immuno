@@ -99,10 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a56ce5b5dbf5bc49eed00e8ae62f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzleManager: {fileID: 0}
   type: 1
   openingDirection: 0
   isFilled: 0
   parentThermometer: {fileID: 0}
+  gridRow: 0
+  gridCol: 0
 --- !u!61 &-8776631746976551789
 BoxCollider2D:
   m_ObjectHideFlags: 0

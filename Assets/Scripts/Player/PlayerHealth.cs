@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         CurrentHealth = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.ToughenShell);
+        Debug.Log($"Player health initialized: {CurrentHealth}");
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
     }

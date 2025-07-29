@@ -919,7 +919,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8e4d24b4956ad4984fa276391b83d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
   totalHealthBar: {fileID: 2524527480706006037}
   currentHealthBar: {fileID: 3714742527100512497}
 --- !u!1 &1767323868122061820
@@ -1028,8 +1027,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -8, y: -3}
+  m_SizeDelta: {x: 224.8548, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1536503207296354677
 CanvasRenderer:
@@ -1059,9 +1058,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'CREDITS
-
-'
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49e89a416cfb2327e9871766d27e954f, type: 2}
   m_sharedMaterial: {fileID: 6204343838557320430, guid: 49e89a416cfb2327e9871766d27e954f, type: 2}
@@ -1088,7 +1085,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.35
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1487,7 +1484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9490196}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.2}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2358,7 +2355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.2}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3199,8 +3196,9 @@ GameObject:
   - component: {fileID: 6753274119150808568}
   - component: {fileID: 782070028615010476}
   - component: {fileID: 4300277124346634402}
+  - component: {fileID: 7933936619909047197}
   m_Layer: 5
-  m_Name: Credits Button
+  m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3307,19 +3305,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6753274119150808568}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4300277124346634402}
-        m_TargetAssemblyTypeName: ShowCreditsPanel, Assembly-CSharp
-        m_MethodName: OnCreditsButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4300277124346634402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3333,6 +3319,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditsPanel: {fileID: 3043885525768184470}
+--- !u!114 &7933936619909047197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764306715556561406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b16544da70818dc4889d26f2562ad7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7810795013263702283
 GameObject:
   m_ObjectHideFlags: 0
@@ -4448,14 +4446,26 @@ PrefabInstance:
       propertyPath: Id
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1219114546217607396, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
+      propertyPath: disabledImageMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 39f841fedabeddf49bd8887756a88512, type: 2}
     - target: {fileID: 1808096085994778028, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
       propertyPath: Id
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1808096085994778028, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
+      propertyPath: disabledImageMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 39f841fedabeddf49bd8887756a88512, type: 2}
     - target: {fileID: 2715283756834135434, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
       propertyPath: Id
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2715283756834135434, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
+      propertyPath: disabledImageMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 39f841fedabeddf49bd8887756a88512, type: 2}
     - target: {fileID: 6455124364003439228, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4544,6 +4554,10 @@ PrefabInstance:
       propertyPath: Id
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8917141689861313580, guid: a79a356f344864244a5e7f2ab62bfbb9, type: 3}
+      propertyPath: disabledImageMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 39f841fedabeddf49bd8887756a88512, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

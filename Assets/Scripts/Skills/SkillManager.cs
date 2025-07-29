@@ -52,11 +52,6 @@ public class SkillManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    void Start()
-    {
-        skillsContainer = FindObjectOfType<SkillsContainer>();
         AddSkill("Iron Plating", "Increase defense with hardened cell walls.", SkillType.ToughenShell, new int[] { 120, 180, 240, 300, 400, 500 },
             (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
 
@@ -81,19 +76,11 @@ public class SkillManager : MonoBehaviour
 
         AddSkill("Rapid Synthesis", "Reduce attack cooldown for faster strikes.", SkillType.AttackSpeed, new int[] { 110, 160, 240, 320, 500 },
             (baseLevel, multiplier) => Mathf.Max(0f, 1f - 0.2f * baseLevel * multiplier));
+    }
 
-        // TODO: MOVE ENABLING THE SKILLS TO BE WHEN THE PLAYER COLLECTS THE REQUIRED ITEM
-        // EnableSkillUpgrade(SkillType.ToughenShell);
-        // EnableSkillUpgrade(SkillType.Speed);
-
-        // EnableSkillUpgrade(SkillType.DoubleJump);
-        // EnableSkillUpgrade(SkillType.DashCooldownReduction);
-
-        // EnableSkillUpgrade(SkillType.HealthRegenerationRate);
-        // EnableSkillUpgrade(SkillType.RegenerationDelayReduction);
-
-        // EnableSkillUpgrade(SkillType.ProjectilePower);
-        // EnableSkillUpgrade(SkillType.AttackSpeed);
+    void Start()
+    {
+        skillsContainer = FindObjectOfType<SkillsContainer>();
     }
 
     void Update()

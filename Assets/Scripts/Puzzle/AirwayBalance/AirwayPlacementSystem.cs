@@ -66,7 +66,6 @@ public class AirwayPlacementSystem : MonoBehaviour
                         airway.isTarget = false;
                     }
 
-                    Debug.Log($"Placed airway at grid ({gridRow},{gridCol}) with state {airway.currentState}");
                     puzzleManager.airways[gridRow, gridCol] = airway;
                 }
 
