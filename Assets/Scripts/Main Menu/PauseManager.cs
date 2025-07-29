@@ -80,15 +80,8 @@ public class PauseManager : MonoBehaviour
 
     public void RegisterPauseMenu(GameObject menu)
     {
-        if (menu == null)
-        {
-            Debug.LogError("Pause menu GameObject is null.");
-            return;
-        }
-
         pauseMenu = menu;
         pauseMenu.SetActive(false);
-        Debug.Log("[PauseManager] Registered Pause Menu");
     }
 
     public void PauseGame()
