@@ -46,16 +46,18 @@ public class CollectionsManager : MonoBehaviour
 
     public void HandlePowerUp(PowerUpType type)
     {
+        PlayerVisuals visuals = FindAnyObjectByType<PlayerVisuals>();
+
         switch (type)
         {
-
             case PowerUpType.DamageUp:
                 if (dmgUps > 0)
                 {
                     SkillManager.Instance.BoostFor(SkillManager.SkillType.ProjectilePower, damageUpBoostLevels, damageUpDuration);
                     dmgUps--;
-                    StartCoroutine(PowerUpCooldown());
 
+                    visuals?.StartGlow(new Color(1f, 0.5f, 0.5f), damageUpDuration);
+                    StartCoroutine(PowerUpCooldown());
                 }
                 break;
 
@@ -64,8 +66,10 @@ public class CollectionsManager : MonoBehaviour
                 {
                     FindAnyObjectByType<PlayerHealth>().FullHealth();
                     instaHealth--;
-                    StartCoroutine(PowerUpCooldown());
 
+                    visuals?.StartGlow(new Color(0.5f, 1f, 0.5f), ultraShieldDuration);
+
+                    StartCoroutine(PowerUpCooldown());
                 }
                 break;
 
@@ -74,15 +78,19 @@ public class CollectionsManager : MonoBehaviour
                 {
                     SkillManager.Instance.BoostFor(SkillManager.SkillType.Speed, speedUpLevelsBoost, speedUpDuration);
                     speedUps--;
-                    StartCoroutine(PowerUpCooldown());
 
+                    visuals?.StartGlow(new Color(0.5f, 0.5f, 1f), speedUpDuration);
+                    StartCoroutine(PowerUpCooldown());
                 }
                 break;
+
             case PowerUpType.UltraShield:
                 if (remainingUltraShields > 0)
                 {
                     StartCoroutine(FindAnyObjectByType<PlayerHealth>().FlashSprite());
                     StartCoroutine(UltraShieldCoroutine());
+
+                    visuals?.StartGlow(new Color(0.9f, 0.6f, 1f), ultraShieldDuration);
                     StartCoroutine(PowerUpCooldown());
                 }
                 break;
@@ -112,6 +120,7 @@ public class CollectionsManager : MonoBehaviour
         RefreshUi();
     }
 #endif
+
 
 
     public void CollectPowerUp(PowerUpType type)
