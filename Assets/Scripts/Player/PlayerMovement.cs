@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y, 2), Quaternion.Euler(0, 0, 0));
         if (isSolvingPuzzle)
         {
             return;

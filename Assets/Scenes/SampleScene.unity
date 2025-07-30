@@ -15857,7 +15857,6 @@ Transform:
   - {fileID: 1162645299}
   - {fileID: 436486393}
   - {fileID: 719928441}
-  - {fileID: 1884064094}
   - {fileID: 418955578}
   - {fileID: 190039919}
   - {fileID: 986896111}
@@ -120886,55 +120885,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6338689059219844631, guid: 19760f511bc27db62959d9b6c5fe6047, type: 3}
   m_PrefabInstance: {fileID: 539425404}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1884064093
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1884064094}
-  - component: {fileID: 1884064095}
-  m_Layer: 0
-  m_Name: DoorTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1884064094
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884064093}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1478323116}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1884064095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884064093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c14b1c9eb7d401b88bd511741d67d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorTilemap: {fileID: 366632594}
-  checkPoint: {fileID: 1667267856}
-  targetSceneName: lungs
-  stayTimeRequired: 0.5
-  enemyManager: {fileID: 225788992}
 --- !u!1001 &1885385510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -122266,6 +122216,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1973008483565116228, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2612246544777051642, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -122303,8 +122257,7 @@ PrefabInstance:
       value: UICanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3043885525768184470, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd95410e9394a30babf1e95a3566f198, type: 3}

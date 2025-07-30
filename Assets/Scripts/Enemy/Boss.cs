@@ -282,6 +282,16 @@ public class Boss : MonoBehaviour
     public void DestroyBoss()
     {
         FindObjectOfType<EnemyManager>().EnemyKilled(500);
+
+        foreach (GameObject minion in summonedMinions)
+        {
+            if (minion != null)
+            {
+                Destroy(minion);
+            }
+        }
+        FindObjectOfType<Objective>().CompleteObjective();
+
         gameObject.SetActive(false);
     }
 }
