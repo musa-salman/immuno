@@ -68,7 +68,6 @@ public class StomachEnemy : MonoBehaviour
     {
         if (enemyManager != null && !enemyManager.IsActive)
         {
-            Debug.Log("Enemy is inactive due to EnemyManager state.");
             return;
         }
         transform.rotation = Quaternion.identity;

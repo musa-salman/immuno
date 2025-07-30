@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CheatManager : MonoBehaviour
 {
+    private string[] sceneNames;
+    private int selectedSceneIndex = 0;
+
     private bool showMenu = false;
 
     public static bool UndeadMode { get; private set; }
@@ -19,6 +22,7 @@ public class CheatManager : MonoBehaviour
 
     private GUIStyle headerStyle;
     private GUIStyle buttonStyle;
+    private Vector2 scrollPosition;
 
     private void Start()
     {
@@ -39,6 +43,8 @@ public class CheatManager : MonoBehaviour
             puzzleEntrances = found.ToArray();
         }
 
+        sceneNames = GetBuildSceneNames();
+
         Debug.Log("CheatManager initialized. Press 'C' to toggle the cheat menu.");
     }
 
@@ -48,120 +54,154 @@ public class CheatManager : MonoBehaviour
             showMenu = !showMenu;
     }
 
+    private string[] GetBuildSceneNames()
+    {
+        List<string> names = new();
+        foreach (var scene in UnityEditor.EditorBuildSettings.scenes)
+        {
+            if (scene.enabled)
+            {
+                string name = System.IO.Path.GetFileNameWithoutExtension(scene.path);
+                names.Add(name);
+            }
+        }
+        return names.ToArray();
+    }
+
     private void OnGUI()
     {
         if (!showMenu) return;
 
         InitStyles();
 
-        int width = 400;
-        int height = 750;
-        Rect boxRect = new(
-            (Screen.width - width) / 2,
-            (Screen.height - height) / 2,
-            width,
-            height
+        int menuWidth = 400;
+        int menuHeight = 750;
+        int contentWidth = menuWidth - 40;
+
+        Rect boxRect = new Rect(
+            (Screen.width - menuWidth) / 2,
+            (Screen.height - menuHeight) / 2,
+            menuWidth,
+            menuHeight
         );
 
         GUI.Box(boxRect, "CHEAT MENU", headerStyle);
 
-        float y = boxRect.y + 40;
-        float buttonHeight = 45;
-        float spacing = 8;
+        float innerY = 0f;
+        float buttonHeight = 45f;
+        float spacing = 8f;
 
-        GUI.Label(new Rect(boxRect.x + 20, y, width - 40, 30), "<b>CHEAT TOGGLES</b>", headerStyle);
-        y += 30 + spacing;
+        float estimatedContentHeight = 2000f; // Oversized on purpose
 
-        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), $"Undead Mode: {(UndeadMode ? "ON" : "OFF")}", buttonStyle))
+        scrollPosition = GUI.BeginScrollView(
+            new Rect(boxRect.x + 10, boxRect.y + 30, boxRect.width - 20, boxRect.height - 40),
+            scrollPosition,
+            new Rect(0, 0, contentWidth, estimatedContentHeight)
+        );
+
+        GUI.Label(new Rect(0, innerY, contentWidth, 30), "<b>CHEAT TOGGLES</b>", headerStyle);
+        innerY += 30 + spacing;
+
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), $"Undead Mode: {(UndeadMode ? "ON" : "OFF")}", buttonStyle))
             UndeadMode = !UndeadMode;
-        y += buttonHeight + spacing;
+        innerY += buttonHeight + spacing;
 
-        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), $"One Shot Kill: {(OneShotKill ? "ON" : "OFF")}", buttonStyle))
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), $"One Shot Kill: {(OneShotKill ? "ON" : "OFF")}", buttonStyle))
             OneShotKill = !OneShotKill;
-        y += buttonHeight + spacing;
+        innerY += buttonHeight + spacing;
 
-        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), $"Ghost Mode: {(GhostMode ? "ON" : "OFF")}", buttonStyle))
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), $"Ghost Mode: {(GhostMode ? "ON" : "OFF")}", buttonStyle))
             GhostMode = !GhostMode;
-        y += buttonHeight + spacing;
+        innerY += buttonHeight + spacing;
 
-        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "Full Power", buttonStyle))
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Full Power", buttonStyle))
             FullPower();
-        y += buttonHeight + spacing * 2;
+        innerY += buttonHeight + spacing * 2;
 
-        GUI.Label(new Rect(boxRect.x + 20, y, width - 40, 30), "<b>TELEPORT TO LOCATION</b>", headerStyle);
-        y += 30 + spacing;
+        GUI.Label(new Rect(0, innerY, contentWidth, 30), "<b>TELEPORT TO LOCATION</b>", headerStyle);
+        innerY += 30 + spacing;
 
-        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "⤳ Start Area", buttonStyle))
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Start Area", buttonStyle))
             TeleportTo("Teleport_Start");
-        y += buttonHeight + spacing;
+        innerY += buttonHeight + spacing;
 
-        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "⤳ Boss Room", buttonStyle))
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Boss Room", buttonStyle))
             TeleportTo("Teleport_Boss");
-        y += buttonHeight + spacing;
+        innerY += buttonHeight + spacing;
 
-        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "⤳ Exit Portal", buttonStyle))
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Exit Portal", buttonStyle))
             TeleportTo("Teleport_Exit");
+        innerY += buttonHeight + spacing * 2;
 
-        y += buttonHeight + spacing * 2;
-
-        GUI.Label(new Rect(boxRect.x + 20, y, width - 40, 30), "<b>PUZZLE ENTRANCES</b>", headerStyle);
-        y += 30 + spacing;
+        GUI.Label(new Rect(0, innerY, contentWidth, 30), "<b>PUZZLE ENTRANCES</b>", headerStyle);
+        innerY += 30 + spacing;
 
         foreach (GameObject entrance in puzzleEntrances)
         {
             if (entrance == null) continue;
-
-            string displayName = entrance.name;
-            if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), $"⤳ {displayName}", buttonStyle))
-            {
+            if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), $"{entrance.name}", buttonStyle))
                 TeleportToPuzzleEntrance(entrance);
-            }
-            y += buttonHeight + spacing;
+            innerY += buttonHeight + spacing;
         }
 
-        GUI.Label(new Rect(boxRect.x + 20, y, width - 40, 30), "<b>SCORE CHEATS</b>", headerStyle);
-        y += 30 + spacing;
+        GUI.Label(new Rect(0, innerY, contentWidth, 30), "<b>SCORE CHEATS</b>", headerStyle);
+        innerY += 30 + spacing;
 
-        scoreInput = GUI.TextField(new Rect(boxRect.x + 20, y, width - 40, 30), scoreInput);
-        y += 30 + spacing;
+        scoreInput = GUI.TextField(new Rect(0, innerY, contentWidth, 30), scoreInput);
+        innerY += 30 + spacing;
 
-        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "Add Score", buttonStyle))
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Add Score", buttonStyle))
         {
             if (int.TryParse(scoreInput, out int amount))
-            {
                 ScoreManager.Instance.AddPoints(amount);
-            }
         }
-        y += buttonHeight + spacing;
+        innerY += buttonHeight + spacing;
 
-        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "Subtract Score", buttonStyle))
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Subtract Score", buttonStyle))
         {
             if (int.TryParse(scoreInput, out int amount))
-            {
                 ScoreManager.Instance.AddPoints(-amount);
-                Debug.Log($"Subtracted {amount} points. New score: {ScoreManager.Instance.CurrentScore}");
-            }
-            else
-            {
-                Debug.LogWarning("Invalid score input.");
-            }
         }
-        y += buttonHeight + spacing;
+        innerY += buttonHeight + spacing;
 
-        if (GUI.Button(new Rect(boxRect.x + 20, y, width - 40, buttonHeight), "Set Score", buttonStyle))
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Set Score", buttonStyle))
         {
             if (int.TryParse(scoreInput, out int amount))
             {
                 ScoreManager.Instance.ResetScore();
                 ScoreManager.Instance.AddPoints(amount);
-                Debug.Log($"Score set to {amount}.");
-            }
-            else
-            {
-                Debug.LogWarning("Invalid score input.");
             }
         }
-        y += buttonHeight + spacing * 2;
+        innerY += buttonHeight + spacing * 2;
+
+        GUI.Label(new Rect(0, innerY, contentWidth, 30), "<b>SCENE MANAGEMENT</b>", headerStyle);
+        innerY += 30 + spacing;
+
+        if (sceneNames != null && sceneNames.Length > 0)
+        {
+            selectedSceneIndex = GUI.SelectionGrid(
+                new Rect(0, innerY, contentWidth, sceneNames.Length * 25),
+                selectedSceneIndex,
+                sceneNames,
+                1
+            );
+            innerY += (sceneNames.Length * 25) + spacing;
+
+            if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), $"Load Scene: {sceneNames[selectedSceneIndex]}", buttonStyle))
+            {
+                string sceneToLoad = sceneNames[selectedSceneIndex];
+                Time.timeScale = 1f;
+                SceneController.Instance.LoadScene(sceneToLoad);
+            }
+            innerY += buttonHeight + spacing * 2;
+        }
+        else
+        {
+            GUI.Label(new Rect(0, innerY, contentWidth, 30), "No scenes found in Build Settings.", buttonStyle);
+            innerY += 30 + spacing * 2;
+        }
+
+        GUI.EndScrollView();
     }
 
     private void TeleportToPuzzleEntrance(GameObject entrance)
