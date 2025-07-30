@@ -13,6 +13,10 @@ public class CheatManager : MonoBehaviour
     public static bool OneShotKill { get; private set; }
     public static bool GhostMode { get; private set; }
 
+    public static bool FlyMode { get; private set; }
+
+    public static bool SelfKill { get; private set; } = false;
+
     private GameObject[] puzzleEntrances;
 
     private PlayerHealth playerHealth;
@@ -23,6 +27,14 @@ public class CheatManager : MonoBehaviour
     private GUIStyle headerStyle;
     private GUIStyle buttonStyle;
     private Vector2 scrollPosition;
+
+    private struct CheckpointData
+    {
+        public string name;
+        public Vector3 position;
+    }
+    private List<CheckpointData> checkpointList = new();
+
 
     private void Start()
     {
@@ -44,6 +56,20 @@ public class CheatManager : MonoBehaviour
         }
 
         sceneNames = GetBuildSceneNames();
+
+        Checkpoint[] foundCheckpoints = FindObjectsOfType<Checkpoint>();
+
+        foreach (Checkpoint cp in foundCheckpoints)
+        {
+            if (cp != null)
+            {
+                checkpointList.Add(new CheckpointData
+                {
+                    name = cp.name,
+                    position = cp.transform.position
+                });
+            }
+        }
 
         Debug.Log("CheatManager initialized. Press 'C' to toggle the cheat menu.");
     }
@@ -78,7 +104,7 @@ public class CheatManager : MonoBehaviour
         int menuHeight = 750;
         int contentWidth = menuWidth - 40;
 
-        Rect boxRect = new Rect(
+        Rect boxRect = new(
             (Screen.width - menuWidth) / 2,
             (Screen.height - menuHeight) / 2,
             menuWidth,
@@ -99,8 +125,18 @@ public class CheatManager : MonoBehaviour
             new Rect(0, 0, contentWidth, estimatedContentHeight)
         );
 
-        GUI.Label(new Rect(0, innerY, contentWidth, 30), "<b>CHEAT TOGGLES</b>", headerStyle);
+        GUI.Label(new Rect(0, innerY, contentWidth, 30), "<b>PLAYER STATE / STATS</b>", headerStyle);
         innerY += 30 + spacing;
+
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Heal Player to Full", buttonStyle))
+        {
+            if (playerHealth != null)
+            {
+                playerHealth.FullHealth();
+                Debug.Log("Player healed to full health.");
+            }
+        }
+        innerY += buttonHeight + spacing;
 
         if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), $"Undead Mode: {(UndeadMode ? "ON" : "OFF")}", buttonStyle))
             UndeadMode = !UndeadMode;
@@ -113,6 +149,22 @@ public class CheatManager : MonoBehaviour
         if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), $"Ghost Mode: {(GhostMode ? "ON" : "OFF")}", buttonStyle))
             GhostMode = !GhostMode;
         innerY += buttonHeight + spacing;
+
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), $"Fly Mode: {(FlyMode ? "ON" : "OFF")}", buttonStyle))
+        {
+            FlyMode = !FlyMode;
+            player.ToggleFlyMode();
+        }
+        innerY += buttonHeight + spacing;
+
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Self-Kill", buttonStyle))
+        {
+            SelfKill = true;
+            playerHealth.TakeDamage(playerHealth.CurrentHealth + 1);
+        }
+        innerY += buttonHeight + spacing;
+
+
 
         if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Full Power", buttonStyle))
             FullPower();
@@ -143,6 +195,24 @@ public class CheatManager : MonoBehaviour
                 TeleportToPuzzleEntrance(entrance);
             innerY += buttonHeight + spacing;
         }
+
+        GUI.Label(new Rect(0, innerY, contentWidth, 30), "<b>PLAYER COLLECTIBLES</b>", headerStyle);
+        innerY += 30 + spacing;
+
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Add +5 All Collectibles", buttonStyle))
+        {
+            if (CollectionsManager.Instance != null)
+                CollectionsManager.Instance.AddAllCollectibles(5);
+        }
+
+        innerY += buttonHeight + spacing * 2;
+        if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), "Reset All Collectibles", buttonStyle))
+        {
+            if (CollectionsManager.Instance != null)
+                CollectionsManager.Instance.ResetAllCollectibles();
+        }
+        innerY += buttonHeight + spacing * 2;
+
 
         GUI.Label(new Rect(0, innerY, contentWidth, 30), "<b>SCORE CHEATS</b>", headerStyle);
         innerY += 30 + spacing;
@@ -200,6 +270,25 @@ public class CheatManager : MonoBehaviour
             GUI.Label(new Rect(0, innerY, contentWidth, 30), "No scenes found in Build Settings.", buttonStyle);
             innerY += 30 + spacing * 2;
         }
+
+        GUI.Label(new Rect(0, innerY, contentWidth, 30), "<b>CHECKPOINTS</b>", headerStyle);
+        innerY += 30 + spacing;
+
+        int i = 0;
+        foreach (var cp in checkpointList)
+        {
+            if (GUI.Button(new Rect(0, innerY, contentWidth, buttonHeight), $"{cp.name} {i}", buttonStyle))
+            {
+                if (player != null)
+                {
+                    player.transform.position = new Vector3(cp.position.x, cp.position.y, player.transform.position.z);
+                    Debug.Log($"Teleported to checkpoint: {cp.name}");
+                }
+            }
+            i++;
+            innerY += buttonHeight + spacing;
+        }
+
 
         GUI.EndScrollView();
     }

@@ -36,6 +36,13 @@ public class PlayerMovement : MonoBehaviour
 
     private GameObject enemyCollider;
 
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    private bool isFlyMode = false;
+    private Collider2D playerCollider;
+#endif
+
+
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -45,18 +52,37 @@ public class PlayerMovement : MonoBehaviour
 
         /// find in children
         enemyCollider = GameObject.Find("EnemyCollider");
+
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        playerCollider = GetComponent<Collider2D>();
+#endif
     }
 
     private void Update()
     {
         transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y, 2), Quaternion.Euler(0, 0, 0));
+
         if (isSolvingPuzzle)
         {
             return;
         }
+
+        mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        if (isFlyMode)
+        {
+            float x = Input.GetAxis("Horizontal");
+            float y = Input.GetAxis("Vertical");
+
+            body.velocity = new Vector2(x * speed, y * speed);
+            return;
+        }
+#endif
+
         float speed_level = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.Speed);
         float speed_limit = maxSpeed + (speed_level * 0.2f);
-        mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
 
         if (isDashing || isTakingDamage)
         {
@@ -234,5 +260,23 @@ public class PlayerMovement : MonoBehaviour
     {
         return true;
     }
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    public void ToggleFlyMode()
+    {
+        isFlyMode = !isFlyMode;
+
+        body.gravityScale = isFlyMode ? 0f : 1f;
+        body.velocity = Vector2.zero;
+
+        if (playerCollider != null)
+            playerCollider.enabled = !isFlyMode;
+
+        if (enemyCollider != null)
+            enemyCollider.SetActive(!isFlyMode);
+
+        Debug.Log($"Fly mode: {(isFlyMode ? "ON" : "OFF")}");
+    }
+#endif
 
 }

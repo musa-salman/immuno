@@ -91,6 +91,29 @@ public class CollectionsManager : MonoBehaviour
         RefreshUi();
     }
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    public void AddAllCollectibles(int amount)
+    {
+        dmgUps += amount;
+        instaHealth += amount;
+        speedUps += amount;
+        remainingUltraShields += amount;
+
+        RefreshUi();
+    }
+
+    public void ResetAllCollectibles()
+    {
+        dmgUps = 0;
+        instaHealth = 0;
+        speedUps = 0;
+        remainingUltraShields = 0;
+
+        RefreshUi();
+    }
+#endif
+
+
     public void CollectPowerUp(PowerUpType type)
     {
         switch (type)

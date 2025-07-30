@@ -31,11 +31,19 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float _damage)
     {
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
-        if (CheatManager.UndeadMode)
+        if (CheatManager.UndeadMode && !CheatManager.SelfKill)
         {
+
             CurrentHealth = StartingHealth;
             return;
         }
+
+        if (CheatManager.SelfKill)
+        {
+            _damage = CurrentHealth + 1;
+        }
+
+        Debug.Log($"Player took damage: {_damage}, Current Health: {CurrentHealth}");
 #endif
         if (!playerMovement.canTakeDamage || isDead)
         {
