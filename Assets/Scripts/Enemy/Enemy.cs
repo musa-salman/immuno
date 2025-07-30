@@ -34,8 +34,6 @@ public class Enemy : MonoBehaviour
     private Transform playerTransform;
     private Vector3 initialScale;
 
-    private string id;
-
     private void Start()
     {
         FindObjectOfType<EnemyManager>().RegisterEnemy();

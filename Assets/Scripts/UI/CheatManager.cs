@@ -39,9 +39,6 @@ public class CheatManager : MonoBehaviour
             puzzleEntrances = found.ToArray();
         }
 
-        Debug.Log($"Found {puzzleEntrances.Length} puzzle entrances.");
-
-
         Debug.Log("CheatManager initialized. Press 'C' to toggle the cheat menu.");
     }
 

@@ -30,7 +30,6 @@ public class PowerUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("PowerUp collected: " + powerUpType);
             GameSaveManager.Instance.CollectedPowerUps.Add(id);
             collectionsManager.CollectPowerUp(powerUpType);
             Destroy(gameObject);

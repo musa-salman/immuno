@@ -19,7 +19,6 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         CurrentHealth = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.ToughenShell);
-        Debug.Log($"Player health initialized: {CurrentHealth}");
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
     }
@@ -40,12 +39,7 @@ public class PlayerHealth : MonoBehaviour
 #endif
         if (!playerMovement.canTakeDamage || isDead)
         {
-            Debug.Log($"Player cannot take damage right now or is dead. Damage: {_damage}");
             return;
-        }
-        else
-        {
-            Debug.Log($"Player took damage: {_damage}. Current health before damage: {CurrentHealth}");
         }
 
         CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 0, StartingHealth);
@@ -106,6 +100,7 @@ public class PlayerHealth : MonoBehaviour
         string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         SceneController.Instance.LoadScene(currentScene, () =>
         {
+            CheckpointManager.Instance.RespawnPlayer();
             Debug.Log("Respawning player...");
         });
     }

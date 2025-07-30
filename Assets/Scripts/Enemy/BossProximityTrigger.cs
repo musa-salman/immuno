@@ -28,7 +28,6 @@ public class BossProximityTrigger : MonoBehaviour
         {
             hasTriggered = true;
             objectToActivate.SetActive(true);
-            Debug.Log("✅ Player is close! Boss UI activated.");
         }
     }
 }
