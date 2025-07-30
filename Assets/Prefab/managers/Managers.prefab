@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e855134cd8a0946bce352fb6d516d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpActive: 0
+  isPowerUpActive: 0
   speedUpDuration: 30
   speedUpLevelsBoost: 30
   ultraShieldDuration: 30
@@ -363,7 +363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4011049975330899736, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5965591101113366159, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_UiScaleMode
@@ -371,19 +371,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6008478355228214388, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 799.9791
+      value: 849.4215
       objectReference: {fileID: 0}
     - target: {fileID: 6008478355228214388, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 403.4688
+      value: 497.063
       objectReference: {fileID: 0}
     - target: {fileID: 6008478355228214388, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.0148
+      value: -1.9998
       objectReference: {fileID: 0}
     - target: {fileID: 6008478355228214388, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0561
+      value: -0.785
       objectReference: {fileID: 0}
     - target: {fileID: 7028750677925078427, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_SizeDelta.x

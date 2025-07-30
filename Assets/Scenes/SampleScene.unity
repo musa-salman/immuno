@@ -122266,10 +122266,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1973008483565116228, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2612246544777051642, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -122307,7 +122303,8 @@ PrefabInstance:
       value: UICanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3043885525768184470, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
