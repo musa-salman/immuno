@@ -33,11 +33,13 @@ public class Enemy : MonoBehaviour
     private bool hasSeenPlayer = false;
     private Transform playerTransform;
     private Vector3 initialScale;
+    private EnemyManager enemyManager;
 
     private string id;
 
     private void Start()
     {
+        enemyManager = FindObjectOfType<EnemyManager>();
         FindObjectOfType<EnemyManager>().RegisterEnemy();
         initialScale = transform.localScale;
         if (spriteRenderer != null)
@@ -48,6 +50,12 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (enemyManager != null && !enemyManager.IsActive)
+        {
+            Debug.Log("Enemy is inactive due to EnemyManager state.");
+            return;
+        }
+
         transform.rotation = Quaternion.identity;
         cooldownTimer += Time.deltaTime;
 
