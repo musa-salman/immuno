@@ -46,6 +46,7 @@ public class HiddenRoomPuzzleCollider : MonoBehaviour
             if (hiddenRoomRevealer != null)
             {
                 hiddenRoomRevealer.StartPuzzle(transform);
+                FindObjectOfType<EnemyManager>()?.SetEnemiesActive(false);
             }
         }
     }
