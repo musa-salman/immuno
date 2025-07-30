@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private AudioClip hurtSoundPlayer;
     [SerializeField] private AudioClip deathSoundPlayer;
     private PlayerMovement playerMovement;
+    private EnemyManager enemyManager;
+
     public float CurrentHealth { get; private set; }
 
     private bool isDead = false;
@@ -18,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        enemyManager = FindObjectOfType<EnemyManager>();
         CurrentHealth = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.ToughenShell);
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
@@ -30,6 +33,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
+        if (enemyManager != null && !enemyManager.IsActive)
+        {
+            Debug.Log("Enemy is inactive due to EnemyManager state.");
+            return;
+        }
+        
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         if (CheatManager.UndeadMode)
         {
