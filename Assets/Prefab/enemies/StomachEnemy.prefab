@@ -631,7 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0837e36f6009be9aafd050336136b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueID: StomachEnemy_Enemy_e098a86d-3988-44dc-802d-bb801c7fa8f1
+  uniqueID: _Enemy_9ef3c624-2ecc-420a-90b4-c3d9dd62b2ac
 --- !u!1001 &7564047687681450953
 PrefabInstance:
   m_ObjectHideFlags: 0

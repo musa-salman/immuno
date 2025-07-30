@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 2715454006986960065}
   - component: {fileID: 680055441903391601}
   - component: {fileID: 1654315360313207556}
+  - component: {fileID: 6442799203388783090}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -214,6 +215,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408e05d673f4111fab2bd0901329cfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6442799203388783090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7031516152327300468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20dbd2e3781d3805dabc7eb999a73ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usedCheckpoints: []
 --- !u!1 &8779019510097343539
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4011049975330899736, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5965591101113366159, guid: ff5b0d17ec56f2a42b269edeff628f8f, type: 3}
       propertyPath: m_UiScaleMode

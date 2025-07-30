@@ -48,11 +48,11 @@ public class SceneController : MonoBehaviour
 
             yield return null;
         }
+        onComplete?.Invoke();
         loadingScreen.SetActive(false);
         yield return FadeIn(fadeDuration);
 
         OnSceneTransitionEnd?.Invoke();
-        onComplete?.Invoke();
     }
 
     private IEnumerator FadeOut(float duration)

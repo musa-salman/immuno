@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0837e36f6009be9aafd050336136b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueID: _PowerUp_3fa35755-bcaf-4126-8c10-6d96f55a8788
+  uniqueID: _DamageUp_a695d3e0-9c89-417e-8541-e7199f6b3773
 --- !u!1 &6514585206948542644
 GameObject:
   m_ObjectHideFlags: 0
