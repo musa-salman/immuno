@@ -7,19 +7,19 @@ public class TextPrompt : MonoBehaviour
     {
         Transform childTransform = transform.GetChild(0);
 
-        Canvas canvas = childTransform.GetComponent<Canvas>();
+        canvas = childTransform.GetComponent<Canvas>();
 
         if (canvas != null)
         {
-            canvas.enabled = true;
+            canvas.enabled = false;
         }
     }
     public void ShowPrompt()
-    {   
-        Debug.Log("" + canvas != null);
+    {
+        Debug.Log("" + canvas);
+
         if (canvas != null)
         {
-            Debug.Log("Showing text prompt");
             canvas.enabled = true;
         }
     }
@@ -27,7 +27,6 @@ public class TextPrompt : MonoBehaviour
     {
         if (canvas != null)
         {
-        Debug.Log("Hiding text prompt");
             canvas.enabled = false;
         }
     }
