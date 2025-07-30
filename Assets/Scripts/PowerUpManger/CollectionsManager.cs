@@ -56,7 +56,8 @@ public class CollectionsManager : MonoBehaviour
                     SkillManager.Instance.BoostFor(SkillManager.SkillType.ProjectilePower, damageUpBoostLevels, damageUpDuration);
                     dmgUps--;
 
-                    visuals?.StartGlow(new Color(1f, 0.5f, 0.5f), damageUpDuration);
+                    visuals.StartGlow(new Color(1f, 0.5f, 0.5f), damageUpDuration);
+                    powerUpCoolDownDuration = damageUpDuration;
                     StartCoroutine(PowerUpCooldown());
                 }
                 break;
@@ -67,7 +68,8 @@ public class CollectionsManager : MonoBehaviour
                     FindAnyObjectByType<PlayerHealth>().FullHealth();
                     instaHealth--;
 
-                    visuals?.StartGlow(new Color(0.5f, 1f, 0.5f), ultraShieldDuration);
+                    visuals.StartGlow(new Color(0.5f, 1f, 0.5f), ultraShieldDuration);
+                    powerUpCoolDownDuration = ultraShieldDuration;
 
                     StartCoroutine(PowerUpCooldown());
                 }
@@ -79,7 +81,8 @@ public class CollectionsManager : MonoBehaviour
                     SkillManager.Instance.BoostFor(SkillManager.SkillType.Speed, speedUpLevelsBoost, speedUpDuration);
                     speedUps--;
 
-                    visuals?.StartGlow(new Color(0.5f, 0.5f, 1f), speedUpDuration);
+                    visuals.StartGlow(new Color(0.5f, 0.5f, 1f), speedUpDuration);
+                    powerUpCoolDownDuration = speedUpDuration;
                     StartCoroutine(PowerUpCooldown());
                 }
                 break;
@@ -87,10 +90,11 @@ public class CollectionsManager : MonoBehaviour
             case PowerUpType.UltraShield:
                 if (remainingUltraShields > 0)
                 {
+                    powerUpCoolDownDuration = ultraShieldDuration;
                     StartCoroutine(FindAnyObjectByType<PlayerHealth>().FlashSprite());
                     StartCoroutine(UltraShieldCoroutine());
 
-                    visuals?.StartGlow(new Color(0.9f, 0.6f, 1f), ultraShieldDuration);
+                    visuals.StartGlow(new Color(0.9f, 0.6f, 1f), ultraShieldDuration);
                     StartCoroutine(PowerUpCooldown());
                 }
                 break;
