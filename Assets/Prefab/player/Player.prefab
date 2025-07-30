@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6335032897990406418}
   - component: {fileID: 2274608752689997025}
   - component: {fileID: 3076903950092772945}
+  - component: {fileID: 5246268343847420871}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -315,6 +316,18 @@ MonoBehaviour:
   solidTilemap: {fileID: 0}
   stuckThresholdPercent: 0.6
   checkResolution: 5
+--- !u!114 &5246268343847420871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215676345885150863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5d20fe9939d1648a75869c4406d234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &241110542337114039
 GameObject:
   m_ObjectHideFlags: 0
