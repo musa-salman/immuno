@@ -5,6 +5,8 @@ public class HiddenRoomPuzzleCollider : MonoBehaviour
 {
     private HiddenRoomRevealer hiddenRoomRevealer;
 
+    private TextPrompt textPrompt;
+
     private bool playerInRange = false;
 
     private string id;
@@ -19,6 +21,7 @@ public class HiddenRoomPuzzleCollider : MonoBehaviour
         }
 
         hiddenRoomRevealer = FindObjectOfType<HiddenRoomRevealer>();
+        textPrompt = GetComponentInChildren<TextPrompt>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -26,6 +29,7 @@ public class HiddenRoomPuzzleCollider : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playerInRange = true;
+            textPrompt.ShowPrompt();
         }
     }
 
@@ -34,6 +38,7 @@ public class HiddenRoomPuzzleCollider : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playerInRange = false;
+            textPrompt.HidePrompt();
         }
     }
 
@@ -41,13 +46,8 @@ public class HiddenRoomPuzzleCollider : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("Player pressed P on puzzle collider. Notifying HiddenRoomRevealer.");
-
-            if (hiddenRoomRevealer != null)
-            {
-                hiddenRoomRevealer.StartPuzzle(transform);
-                FindObjectOfType<EnemyManager>()?.SetEnemiesActive(false);
-            }
+            hiddenRoomRevealer.StartPuzzle(transform);
+            FindObjectOfType<EnemyManager>().SetEnemiesActive(false);
         }
     }
 }
