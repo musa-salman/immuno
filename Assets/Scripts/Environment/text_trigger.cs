@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class text_t : MonoBehaviour
 {
-    [SerializeField] private bool player_triggerd = false;
-    [SerializeField] private bool was_triggered = false;
+    [SerializeField] private bool player_triggerd = true;
     [SerializeField] private bool is_one_time = false;
     [SerializeField] private float disply_duration = 2f;
     [SerializeField] private float trigger_distance = 5f;
     [SerializeField] private TextPrompt textPrompt;
+    private bool was_triggered = false;
+    private bool player_is_interacting = false;
     private CircleCollider2D collider;
 
     void Start()
@@ -27,12 +28,14 @@ public class text_t : MonoBehaviour
     }
     IEnumerator TriggerTextCoroutine()
     {
-
+        Debug.Log("Triggering text prompt" + textPrompt);
         if (textPrompt != null)
         {
-        Debug.Log("running text trigger coroutine");
-
             textPrompt.ShowPrompt();
+            while (player_is_interacting)
+            {
+                yield return null; // Wait until the player is no longer interacting
+            }
             yield return new WaitForSeconds(disply_duration);
             textPrompt.HidePrompt();
         }
@@ -49,9 +52,24 @@ public class text_t : MonoBehaviour
         }
         if (other.CompareTag("Player"))
         {
-            player_triggerd = true;
             was_triggered = true;
+            player_is_interacting = true;
             StartCoroutine(TriggerTextCoroutine());
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+         if (is_one_time && was_triggered)
+        {
+            return; // Exit if this is a one-time trigger and it has already been triggered
+        }
+        if (!player_triggerd)
+        {
+            return; // Exit if the player is already triggered
+        }
+        if (other.CompareTag("Player"))
+        {
+            player_is_interacting = false;
         }
     }
    

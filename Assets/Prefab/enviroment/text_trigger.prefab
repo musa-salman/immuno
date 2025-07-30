@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9c8eed275e58b4bb6e5e6e40b44ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_triggerd: 0
-  was_triggered: 0
+  player_triggerd: 1
   is_one_time: 0
   disply_duration: 2
   trigger_distance: 2
