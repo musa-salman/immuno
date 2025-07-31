@@ -52,30 +52,30 @@ public class SkillManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        AddSkill("Iron Plating", "Increase defense with hardened cell walls.", SkillType.ToughenShell, new int[] { 120, 180, 240, 300, 400, 500 },
+        AddSkill("Iron Plating", "Increase defense with hardened cell walls.", SkillType.ToughenShell, new int[] { 100, 200, 400, 800, 1200, 2000 },
             (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
 
-        AddSkill("Cytoblast Surge", "Move faster to evade threats.", SkillType.Speed, new int[] { 80, 110, 160 },
+        AddSkill("Cytoblast Surge", "Move faster to evade threats.", SkillType.Speed, new int[] { 100, 200, 300, 400, 600 },
             (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
 
-        AddSkill("Leaping Division", "Gain extra jumps for aerial mobility.", SkillType.DoubleJump, new int[] { 150, 250, 400 },
-            (baseLevel, multiplier) => (1 + baseLevel) * multiplier);
+        AddSkill("Leaping Division", "Gain extra jumps for aerial mobility.", SkillType.DoubleJump, new int[] { 100, 400, 1000 },
+            (baseLevel, multiplier) => (2 + baseLevel) * multiplier);
 
-        AddSkill("Histamine Reflex", "Reduces cooldown between dashes.", SkillType.DashCooldownReduction, new int[] { 100, 150, 200 },
+        AddSkill("Histamine Reflex", "Reduces cooldown between dashes.", SkillType.DashCooldownReduction, new int[] { 100, 300, 600, 900 },
 (baseLevel, multiplier) => Mathf.Max(0.1f, 0.5f - 0.1f * baseLevel * multiplier));
 
 
-        AddSkill("Cellular Renewal", "Regenerate health over time.", SkillType.HealthRegenerationRate, new int[] { 100, 150, 250, 350 },
+        AddSkill("Cellular Renewal", "Regenerate health over time.", SkillType.HealthRegenerationRate, new int[] { 100, 400, 800, 1600 },
             (baseLevel, multiplier) => (baseLevel + 1) * 0.2f * multiplier);
 
-        AddSkill("Primed Recovery", "Reduces delay before health regeneration begins.", SkillType.RegenerationDelayReduction, new int[] { 90, 140, 220, 300, 400 },
+        AddSkill("Primed Recovery", "Reduces delay before health regeneration begins.", SkillType.RegenerationDelayReduction, new int[] { 100, 300, 600, 900, 1200 },
 (baseLevel, multiplier) => Mathf.Max(0f, 10f - (baseLevel * 1f * multiplier)));
 
-        AddSkill("Enzyme Spike", "Enhance projectile attack damage.", SkillType.ProjectilePower, new int[] { 90, 130, 200, 300 },
+        AddSkill("Enzyme Spike", "Enhance projectile attack damage.", SkillType.ProjectilePower, new int[] { 200, 400, 800, 1600 },
             (baseLevel, multiplier) => 1f + 0.15f * baseLevel * multiplier);
 
-        AddSkill("Rapid Synthesis", "Reduce attack cooldown for faster strikes.", SkillType.AttackSpeed, new int[] { 110, 160, 240, 320, 500 },
-            (baseLevel, multiplier) => Mathf.Max(0f, 1f - 0.2f * baseLevel * multiplier));
+        AddSkill("Rapid Synthesis", "Reduce attack cooldown for faster strikes.", SkillType.AttackSpeed, new int[] { 200, 400, 800, 1600, 2000 },
+            (baseLevel, multiplier) => Mathf.Max(0f, 0.8f - 0.2f * baseLevel * multiplier));
     }
 
     void Start()
