@@ -5,24 +5,27 @@ public class HiddenRoomPuzzleCollider : MonoBehaviour
 {
     private HiddenRoomRevealer hiddenRoomRevealer;
 
-    private TextPrompt textPrompt;
+    [SerializeField] private TextPrompt textPrompt;
 
     private bool playerInRange = false;
 
     private string id;
 
-    private void Start()
+private void Start()
+{
+    id = GetComponent<UniqueID>().ID;
+    if (GameSaveManager.Instance.SolvedPuzzles.Contains(id))
     {
-        id = GetComponent<UniqueID>().ID;
-        if (GameSaveManager.Instance.SolvedPuzzles.Contains(id))
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        hiddenRoomRevealer = FindObjectOfType<HiddenRoomRevealer>();
-        textPrompt = GetComponentInChildren<TextPrompt>();
+        Destroy(gameObject);
+        return;
     }
+
+    hiddenRoomRevealer = FindObjectOfType<HiddenRoomRevealer>();
+    textPrompt = GetComponentInChildren<TextPrompt>();
+
+
+}
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
