@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip dashSound;
     [SerializeField] private AudioClip floatingSound;
 
+    [Header("Trail")]
+    [SerializeField] private TrailRenderer trail;
     CollectionsManager collectionsManager;
 
     private Animator animator;
@@ -160,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CanDash = false;
         isDashing = true;
+        trail.emitting = true;
         canTakeDamage = false;
 
         enemyCollider.SetActive(false);
@@ -169,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(DashTime);
         body.gravityScale = og_gravity;
         isDashing = false;
+        trail.emitting = false;
         canTakeDamage = true;
         yield return new WaitForSeconds(SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.DashCooldownReduction));
         enemyCollider.SetActive(true);
