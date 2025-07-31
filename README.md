@@ -115,7 +115,7 @@ Step into the microscopic battlefield of the human body. Play as an elite immune
 - Save consumables for boss encounters or when low on health  
 - Frequently check the upgrade menu using `U`  
 - Explore hidden areas to find upgrades, consumables, and story triggers  
-- Be patient in puzzles — rushing often leads to mistakes  
+- Be patient in puzzles, rushing often leads to mistakes  
 - Environmental hazards can sometimes be used against enemies  
 - You can pay an expert to auto-solve puzzles, but each time costs double  
   - Save this option for the hardest puzzles  
@@ -124,13 +124,32 @@ Step into the microscopic battlefield of the human body. Play as an elite immune
 
 ## Credits
 
+**Development Team**  
+Musa Salman, Anas JamJoum, Diya Bakri, Shadi Madboh
+
+**Engine & Tools**  
+Unity, C#, Aseprite, ChatGPT
+
+**Art & Animation**  
+Custom-designed sprites and levels created using Aseprite with guidance from ChatGPT.  
+Third-party assets listed in [Assets Links](#assets-links) were used and adapted where noted.
+
+**Special Thanks**  
+To our instructors, playtesters, and open-source artists for their contributions.
+
 ---
 
 ## Assets Links
 
-- **Lava asset by ansimuz:** Used as stomach acid and recolored for lung tar. [Source](https://opengameart.org/content/grotto-escape-ii-environment)
+- **Lava asset by ansimuz**: Used as stomach acid and recolored for lung tar. [Source](https://opengameart.org/content/grotto-escape-ii-environment)
 - **Pipes Tileset by Stealthix**: 32x32 pipe tiles used in the environment. [Source](https://stealthix.itch.io/pipes-tileset)
 - **Fog by AntumDeluge**: Used for atmospheric effects in the lungs. [Source](https://opengameart.org/content/fog-animation)
+- **Slime Character**: Used as an enemy type. [Source](https://assetstore.unity.com/packages/2d/characters/slime-character-157405)
+- **Main Character**: Custom-designed and animated using ChatGPT guidance and Aseprite.
+- **Stomach Level and Background**: Designed and created using Aseprite with guidance from ChatGPT.  
+- **Lungs Level and Background**: Designed and created using Aseprite with guidance from ChatGPT.
+- **Lungs Coronavirus Enemy**: Designed and animated in Aseprite as a virus enemy for the lungs level.
+- **Main Player Bullets**: Designed and animated in Aseprite with ChatGPT guidance.
 
 ---
 
