@@ -39,6 +39,8 @@ public class Objective : MonoBehaviour
             seconds--;
         }
 
+        GameSaveManager.Instance.ResetGameState();
+
         if (countdownText != null)
             countdownText.text = "";
 
