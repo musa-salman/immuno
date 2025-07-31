@@ -127,6 +127,18 @@ Defeat the viral Queen bosses infecting the stomach and lungs to rescue the body
 
 ---
 
+## System Requirements 
+
+**Minimum Requirements:**  
+- OS: Windows 10/11
+- Processor: 1.7+ GHz or better
+- Memory: 1 GB RAM
+- Graphics: Intel HD Graphics 3000 or better
+- Storage: 150 MB available space
+- Screen Resolution 1920X1080
+
+---
+
 ## Tips and Tricks
 
 - Study enemy behavior before engaging  
