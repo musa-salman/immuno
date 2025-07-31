@@ -9,9 +9,12 @@ This document provides essential information about the game, including how to pl
 1. [Game Overview](#game-overview)  
 2. [How to Play](#how-to-play)  
 3. [Controls](#controls)  
-4. [Game Mechanics](#game-mechanics)  
-5. [Tips and Tricks](#tips-and-tricks)  
-6. [Credits](#credits)
+4. [Objectives & Goals](#objectives--goals)
+5. [Game Mechanics](#game-mechanics)  
+6. [Tips and Tricks](#tips-and-tricks)  
+7. [Credits](#credits)
+8. [Assets Links](#assets-links)
+9. [Assets and Project Management](#assets-and-project-management)
 
 ---
 
