@@ -111,7 +111,7 @@ public class HiddenRoomRevealer : MonoBehaviour
                     pair.barrierCollider.enabled = false;
                 }
                 FindObjectOfType<EnemyManager>().SetEnemiesActive(true);
-                FindObjectOfType<ExplanationUI>().HideExplanation();
+                FindObjectOfType<PuzzleButtonController>().HideButtons();
                 return;
             }
         }

@@ -83,4 +83,12 @@ public class PuzzleButtonController : MonoBehaviour
         explanationUI.HideExplanation();
         hiddenRoomRevealer.PayExpertToSolvePuzzle(currentPuzzleTransform);
     }
+
+    public void HideButtons()
+    {
+        payExpertButton.gameObject.SetActive(false);
+        cancelButton.gameObject.SetActive(false);
+        explanationUI.HideExplanation();
+        currentPuzzleTransform = null;
+    }
 }
