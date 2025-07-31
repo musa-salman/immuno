@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5191520472942311046}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.4399986, y: 132.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad2a42b71da3f606b92b684896a59a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textPrompt: {fileID: 0}
 --- !u!114 &7409746259449699496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0837e36f6009be9aafd050336136b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueID: _Puzzle_Enterance_4922d67f-1181-4ee5-b195-be8a6536b920
+  uniqueID: SampleScene_Puzzle_Enterance_731355a9-55d2-41bf-891e-cbaccff3c997
 --- !u!1001 &5433114291164916057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,6 +114,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2040216497490531067}
     m_Modifications:
+    - target: {fileID: 4929678738182634258, guid: 782c3ac39cd12ba4ca9bf75af4ef04be, type: 3}
+      propertyPath: m_text
+      value: 'Reroute the acid pipes to unlock the door.
+
+        Press [P] to start,
+        or pay the expert to solve it...
+
+        but be warned: his price doubles
+        each time.'
+      objectReference: {fileID: 0}
     - target: {fileID: 5537582025214332646, guid: 782c3ac39cd12ba4ca9bf75af4ef04be, type: 3}
       propertyPath: m_Name
       value: TextPrompt
