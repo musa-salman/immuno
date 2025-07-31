@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7627349717996533803}
   - component: {fileID: 6479403769546594107}
   - component: {fileID: 3082091521594263462}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DamageUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 583800994309147980}
   - component: {fileID: 3573309366595618219}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

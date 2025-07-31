@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6507422253194007002}
   - component: {fileID: 7804854452168648202}
   - component: {fileID: 1003798065596486746}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShieldUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

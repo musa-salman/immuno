@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1104552708353065642}
   - component: {fileID: -2131081789699103418}
   - component: {fileID: 4379723138675374588}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: text_trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9c8eed275e58b4bb6e5e6e40b44ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_triggerd: 1
-  is_one_time: 0
-  disply_duration: 2
-  trigger_distance: 2
+  isPlayerTriggered: 1
+  isOneTime: 0
+  displayDuration: 2
+  triggerDistance: 5
   textPrompt: {fileID: 0}
 --- !u!58 &4379723138675374588
 CircleCollider2D:
