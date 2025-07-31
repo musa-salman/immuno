@@ -4372,8 +4372,8 @@ MonoBehaviour:
     title: Bio-Thermal Flow Control
     bodyText: "The body's heat channels have failed. Refill each bio-thermometer
       from bulb to tip to restore flow.\n\nRules:\n- Mercury must flow continuously
-      \u2014 no gaps.\n\n- Outside numbers show how many cells to fill in each row
-      and column."
+      \u2014 no gaps.\n\n-The number of fireballs to place is the total number of
+      cells the player must fill in the grid."
 --- !u!1 &436486392
 GameObject:
   m_ObjectHideFlags: 0
@@ -123846,8 +123846,8 @@ MonoBehaviour:
     title: Bio-Thermal Flow Control
     bodyText: "The body's heat channels have failed. Refill each bio-thermometer
       from bulb to tip to restore flow.\n\nRules:\n- Mercury must flow continuously
-      \u2014 no gaps.\n\n- Outside numbers show how many cells to fill in each row
-      and column."
+      \u2014 no gaps.\n\n-The number of fireballs to place is the total number of
+      cells the player must fill in the grid."
 --- !u!1001 &1102411340861420070
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124295,6 +124295,13 @@ PrefabInstance:
     - target: {fileID: 7358749210728734802, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0.58823526
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639507108540054371, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
+      propertyPath: m_text
+      value: "The body's heat channels have failed. Refill each bio-thermometer from
+        bulb to tip to restore flow.\n\nRules:\n- Mercury must flow continuously
+        \u2014 no gaps.\n\n-The number of fireballs to place is the total number
+        of cells the player must fill in the grid."
       objectReference: {fileID: 0}
     - target: {fileID: 8439357668216232179, guid: fd95410e9394a30babf1e95a3566f198, type: 3}
       propertyPath: m_Name
