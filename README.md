@@ -51,6 +51,21 @@ Step into the microscopic battlefield of the human body. Play as an elite immune
 
 ---
 
+## Objectives & Goals
+
+**Main Objective:**  
+Defeat the viral Queen bosses infecting the stomach and lungs to rescue the body and restore its health.
+
+**Secondary Goals:**  
+
+- Eliminate regular enemies and clear each organ  
+- Solve puzzles to unlock hidden rooms and progress  
+- Collect upgrade tokens to enhance abilities  
+- Use consumables strategically to survive tougher encounters  
+- Explore the environment for hidden paths and story elements
+
+---
+
 ## Game Mechanics
 
 - **Enemy AI:**  
