@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = Camera.main.transform;
         collectionsManager = CollectionsManager.Instance;
 
-        /// find in children
         enemyCollider = GameObject.Find("EnemyCollider");
 
 
@@ -61,86 +60,97 @@ public class PlayerMovement : MonoBehaviour
 #endif
     }
 
-    private void Update()
+   private void Update()
+{
+    transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y, 2), Quaternion.Euler(0, 0, 0));
+
+    if (isSolvingPuzzle)
     {
-        transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y, 2), Quaternion.Euler(0, 0, 0));
+        return;
+    }
 
-        if (isSolvingPuzzle)
-        {
-            return;
-        }
-
-        mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
+    mainCamera.position = new Vector3(transform.position.x, transform.position.y, mainCamera.position.z);
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
-        if (isFlyMode)
-        {
-            float x = Input.GetAxis("Horizontal");
-            float y = Input.GetAxis("Vertical");
+    if (isFlyMode)
+    {
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
 
-            body.velocity = new Vector2(x * speed, y * speed);
-            return;
-        }
+        body.velocity = new Vector2(x * speed, y * speed);
+        return;
+    }
 #endif
 
-        float speed_level = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.Speed);
-        float speed_limit = maxSpeed + (speed_level * 0.2f);
+    float speed_level = SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.Speed);
+    float speed_limit = maxSpeed + (speed_level * 0.2f);
 
-        if (isDashing || isTakingDamage)
-        {
-            return;
-        }
-
-
-        float horizontalInput = Input.GetAxis("Horizontal");
-        var new_speed = body.velocity.x + horizontalInput * speed;
-        var curr_vel = new Vector2(Mathf.Abs(new_speed) > speed_limit ? horizontalInput * speed_limit : new_speed, body.velocity.y);
-        bool isWalking = Mathf.Abs(horizontalInput) > 0.01f && Mathf.Abs(body.velocity.x) > 0.1f && jumpCount == 0 && !isDashing;
-
-        if (isWalking)
-        {
-            SoundManager.instance.PlaySound(floatingSound);
-        }
-
-        body.velocity = curr_vel;
-        if (horizontalInput > 0.01f)
-        {
-            transform.localScale = Vector3.one;
-        }
-
-        else if (horizontalInput < -0.01f)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.W) && jumpCount < SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.DoubleJump))
-        {
-            Jump();
-        }
-
-        HandleDash();
-        if (collectionsManager.isPowerUpActive)
-        {
-            return;
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            collectionsManager.HandlePowerUp(PowerUpType.DamageUp);
-        }
-        else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            collectionsManager.HandlePowerUp(PowerUpType.SpeedUp);
-        }
-        else if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            collectionsManager.HandlePowerUp(PowerUpType.UltraShield);
-        }
-        else if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            collectionsManager.HandlePowerUp(PowerUpType.InstantHealth);
-
-        }
+    if (isDashing || isTakingDamage)
+    {
+        return;
     }
+
+    float horizontalInput = Input.GetAxis("Horizontal");
+    float new_speed = body.velocity.x + horizontalInput * speed;
+
+    float final_x = Mathf.Abs(new_speed) > speed_limit ? horizontalInput * speed_limit : new_speed;
+
+    float frictionFactor = 0.8f; 
+    if (Mathf.Abs(horizontalInput) < 0.01f)
+    {
+        final_x = body.velocity.x * frictionFactor;
+        if (Mathf.Abs(final_x) < 0.05f) final_x = 0; 
+    }
+
+    Vector2 curr_vel = new Vector2(final_x, body.velocity.y);
+    body.velocity = curr_vel;
+
+    bool isWalking = Mathf.Abs(horizontalInput) > 0.01f && Mathf.Abs(body.velocity.x) > 0.1f && jumpCount == 0 && !isDashing;
+
+    if (isWalking)
+    {
+        SoundManager.instance.PlaySound(floatingSound);
+    }
+
+    if (horizontalInput > 0.01f)
+    {
+        transform.localScale = Vector3.one;
+    }
+    else if (horizontalInput < -0.01f)
+    {
+        transform.localScale = new Vector3(-1, 1, 1);
+    }
+
+    if (Input.GetKeyDown(KeyCode.W) && jumpCount < SkillManager.Instance.GetEffectiveLevel(SkillManager.SkillType.DoubleJump))
+    {
+        Jump();
+    }
+
+    HandleDash();
+
+    if (collectionsManager.isPowerUpActive)
+    {
+        return;
+    }
+
+    if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+    {
+        collectionsManager.HandlePowerUp(PowerUpType.DamageUp);
+    }
+    else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
+    {
+        collectionsManager.HandlePowerUp(PowerUpType.SpeedUp);
+    }
+    else if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
+    {
+        collectionsManager.HandlePowerUp(PowerUpType.UltraShield);
+    }
+    else if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
+    {
+        collectionsManager.HandlePowerUp(PowerUpType.InstantHealth);
+    }
+}
+
 
     private void Jump()
     {
