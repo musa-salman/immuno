@@ -27,8 +27,8 @@ TagManager:
   - Connector
   - Player
   - Player_Health
-  - 
-  - 
+  - Player_Bullets
+  - Text_Story
   - 
   - 
   - 

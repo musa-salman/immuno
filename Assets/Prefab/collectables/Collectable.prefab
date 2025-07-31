@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2633498126932280314}
   - component: {fileID: 4696470500871896490}
   - component: {fileID: 978430996929350569}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: collectable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7104534027991049060}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Collectable
   m_TagString: Untagged
   m_Icon: {fileID: 0}

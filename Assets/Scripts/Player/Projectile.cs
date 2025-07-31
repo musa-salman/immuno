@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
         float moveSpeed = speed * Time.deltaTime * direction;
         transform.Translate(moveSpeed, 0, 0);
         lifetime += Time.deltaTime;
-        if (lifetime >= 2)
+        if (lifetime >= 1.3f)
         {
             Deactivate();
         }
