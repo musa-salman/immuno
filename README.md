@@ -145,6 +145,9 @@ To our instructors, playtesters, and open-source artists for their contributions
 - **Pipes Tileset by Stealthix**: 32x32 pipe tiles used in the environment. [Source](https://stealthix.itch.io/pipes-tileset)
 - **Fog by AntumDeluge**: Used for atmospheric effects in the lungs. [Source](https://opengameart.org/content/fog-animation)
 - **Slime Character by NYKNCK**: Used as an enemy type. [Source](https://assetstore.unity.com/packages/2d/characters/slime-character-157405)
+- **Enemey Hurt Sound by kuechi**: Used as an enemy hurt sound. [Source](https://pixabay.com/sound-effects/punsh-in-da-face-of-my-enemy-40592/)
+- **Lava Sound by Timbre**: Used as an lava sound effect. [Source](https://freesound.org/people/Timbre/sounds/98858/)
+- **Bullet, Enemey Death, Player Hurt, Jump, Player Death Sound by Nickbota**: Used as sounds effects. [Source](https://github.com/nickbota/Unity-Platformer-Episode-11/tree/main/Assets/Audio)
 - **Main Character**: Custom-designed and animated using ChatGPT guidance and Aseprite.
 - **Stomach Level and Background**: Designed and created using Aseprite with guidance from ChatGPT.  
 - **Lungs Level and Background**: Designed and created using Aseprite with guidance from ChatGPT.
