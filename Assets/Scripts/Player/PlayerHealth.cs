@@ -69,6 +69,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (CurrentHealth <= 0)
         {
+            ScoreManager.Instance.AddPoints(-500);
             SoundManager.instance.PlaySound(deathSoundPlayer);
             if (TryGetComponent<Rigidbody2D>(out var rb))
             {
@@ -84,7 +85,6 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<PlayerMovement>().enabled = false;
 
 
-            ScoreManager.Instance.AddPoints(-500);
             isDead = true;
 
             StartCoroutine(HandleDeath());
