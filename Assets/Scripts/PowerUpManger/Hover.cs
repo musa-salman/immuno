@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Hover : MonoBehaviour
 {
-    public float amplitud = 0.002f;
+    public float amplitude = 0.1f;
     public float hoverSpeed = 1.2f;
+
+    private float startY;
+
+    void Start()
+    {
+        startY = transform.position.y;
+    }
+
     void Update()
     {
-        Vector3 hoverPosition = transform.position;
-        hoverPosition.y += amplitud * Mathf.Cos(Time.time * hoverSpeed);
-        transform.position = hoverPosition;
+        float newY = startY + amplitude * Mathf.Cos(Time.time * hoverSpeed);
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 }
