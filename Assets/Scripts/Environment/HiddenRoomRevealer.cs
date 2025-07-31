@@ -77,7 +77,7 @@ public class HiddenRoomRevealer : MonoBehaviour
     {
         Debug.Log("Puzzle cancelled by player. Skipping puzzle.");
         playerMovement.DoneSolvingPuzzle();
-        FindObjectOfType<EnemyManager>()?.SetEnemiesActive(true);
+        FindObjectOfType<EnemyManager>().SetEnemiesActive(true);
     }
 
 
@@ -110,7 +110,8 @@ public class HiddenRoomRevealer : MonoBehaviour
 
                     pair.barrierCollider.enabled = false;
                 }
-                FindObjectOfType<EnemyManager>()?.SetEnemiesActive(true);
+                FindObjectOfType<EnemyManager>().SetEnemiesActive(true);
+                FindObjectOfType<PuzzleButtonController>().HideButtons();
                 return;
             }
         }
