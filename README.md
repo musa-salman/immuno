@@ -128,7 +128,9 @@ Step into the microscopic battlefield of the human body. Play as an elite immune
 
 ## Assets Links
 
-**Lava asset by ansimuz:** Used as stomach acid and recolored for lung tar. [Source](https://opengameart.org/content/grotto-escape-ii-environment)
+- **Lava asset by ansimuz:** Used as stomach acid and recolored for lung tar. [Source](https://opengameart.org/content/grotto-escape-ii-environment)
+- **Pipes Tileset by Stealthix**: 32x32 pipe tiles used in the environment. [Source](https://stealthix.itch.io/pipes-tileset)
+- **Fog by AntumDeluge**: Used for atmospheric effects in the lungs. [Source](https://opengameart.org/content/fog-animation)
 
 ---
 
