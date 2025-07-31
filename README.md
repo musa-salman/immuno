@@ -188,6 +188,6 @@ To our instructors, playtesters, and open-source artists for their contributions
 
 ## Assets and Project Management
 
-- Project Management. [Source](https://github.com/musa-salman/immuno/issues)
+**Project Management** [Source](https://github.com/musa-salman/immuno/issues)
 
---
+---
