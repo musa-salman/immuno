@@ -17029,6 +17029,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 225788991}
     m_Modifications:
+    - target: {fileID: 129029018392392299, guid: 2df86f2a22855f481a1f9bb7f96dc397, type: 3}
+      propertyPath: maxHealth
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 2001746858821957403, guid: 2df86f2a22855f481a1f9bb7f96dc397, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -124057,10 +124061,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 241110542337114039, guid: 28d853960d90b766da18afb912ece87d, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 2584139466926132856, guid: 28d853960d90b766da18afb912ece87d, type: 3}
       propertyPath: bullets.Array.data[0]
       value: 
@@ -124144,14 +124144,6 @@ PrefabInstance:
     - target: {fileID: 3218083604485152119, guid: 28d853960d90b766da18afb912ece87d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8005157474278331581, guid: 28d853960d90b766da18afb912ece87d, type: 3}
-      propertyPath: orthographic size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8005157474278331581, guid: 28d853960d90b766da18afb912ece87d, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 2007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
