@@ -126,6 +126,12 @@ Step into the microscopic battlefield of the human body. Play as an elite immune
 
 ---
 
+## Assets Links
+
+**Lava asset by ansimuz:** Used as stomach acid and recolored for lung tar. [Source](https://opengameart.org/content/grotto-escape-ii-environment)
+
+---
+
 ## Assets and Project Management
 
 --
