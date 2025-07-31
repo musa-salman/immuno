@@ -29,6 +29,10 @@ public class ScoreManager : MonoBehaviour
     public void AddPoints(int points)
     {
         currentScore += points;
+        if (currentScore < 0)
+        {
+            currentScore = 0;
+        }
         FindFirstObjectByType<ScoreText>().UpdateScore(currentScore);
     }
 

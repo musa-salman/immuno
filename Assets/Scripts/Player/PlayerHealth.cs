@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Enemy is inactive due to EnemyManager state.");
             return;
         }
-        
+
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         if (CheatManager.UndeadMode && !CheatManager.SelfKill)
         {
@@ -84,6 +84,7 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<PlayerMovement>().enabled = false;
 
 
+            ScoreManager.Instance.AddPoints(-500);
             isDead = true;
 
             StartCoroutine(HandleDeath());
