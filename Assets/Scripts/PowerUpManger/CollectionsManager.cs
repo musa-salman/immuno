@@ -69,6 +69,7 @@ public class CollectionsManager : MonoBehaviour
                     instaHealth--;
 
                     visuals.StartGlow(new Color(0.5f, 1f, 0.5f), powerUpCoolDownDuration);
+                    powerUpCoolDownDuration = powerUpCoolDownDuration;
 
                     StartCoroutine(PowerUpCooldown());
                 }
