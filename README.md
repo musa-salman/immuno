@@ -2,6 +2,8 @@
 
 This document provides essential information about the game, including how to play, core mechanics, controls, upgrades, and additional notes.
 
+here is youtube link for the game showcase: [YouTube Showcase](https://youtu.be/COxuiHSxktY)
+
 ---
 
 ## Table of Contents
@@ -14,7 +16,7 @@ This document provides essential information about the game, including how to pl
 6. [Tips and Tricks](#tips-and-tricks)  
 7. [Credits](#credits)
 8. [Assets Links](#assets-links)
-9. [Assets and Project Management](#assets-and-project-management)
+9. [Project Management](#project-management)
 
 ---
 
@@ -127,6 +129,19 @@ Defeat the viral Queen bosses infecting the stomach and lungs to rescue the body
 
 ---
 
+## System Requirements
+
+**Minimum Requirements:**  
+
+- OS: Windows 10/11
+- Processor: 1.7+ GHz or better
+- Memory: 1 GB RAM
+- Graphics: Intel HD Graphics 3000 or better
+- Storage: 150 MB available space
+- Screen Resolution 1920X1080
+
+---
+
 ## Tips and Tricks
 
 - Study enemy behavior before engaging  
@@ -174,6 +189,8 @@ To our instructors, playtesters, and open-source artists for their contributions
 
 ---
 
-## Assets and Project Management
+## Project Management
 
---
+**Project Management** [Source](https://github.com/users/musa-salman/projects/8)
+
+---
