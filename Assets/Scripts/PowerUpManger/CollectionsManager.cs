@@ -23,13 +23,13 @@ public class CollectionsManager : MonoBehaviour
     float powerUpCoolDownDuration = 5f;
 
     [Header("PowerUp Settings")]
-    [SerializeField] private float speedUpDuration = 30f;
-    [SerializeField] private float speedUpLevelsBoost = 30f;
+    [SerializeField] private float speedUpDuration = 15f;
+    [SerializeField] private float speedUpLevelsBoost = 25f;
 
     [SerializeField] private float ultraShieldDuration = 30f;
 
-    [SerializeField] private float damageUpDuration = 5f;
-    [SerializeField] private float damageUpBoostLevels = 0.25f;
+    [SerializeField] private float damageUpDuration = 30f;
+    [SerializeField] private float damageUpBoostLevels = 0.75f;
 
     void Awake()
     {
@@ -68,8 +68,7 @@ public class CollectionsManager : MonoBehaviour
                     FindAnyObjectByType<PlayerHealth>().FullHealth();
                     instaHealth--;
 
-                    visuals.StartGlow(new Color(0.5f, 1f, 0.5f), ultraShieldDuration);
-                    powerUpCoolDownDuration = ultraShieldDuration;
+                    visuals.StartGlow(new Color(0.5f, 1f, 0.5f), powerUpCoolDownDuration);
 
                     StartCoroutine(PowerUpCooldown());
                 }
@@ -90,11 +89,11 @@ public class CollectionsManager : MonoBehaviour
             case PowerUpType.UltraShield:
                 if (remainingUltraShields > 0)
                 {
-                    powerUpCoolDownDuration = ultraShieldDuration;
                     StartCoroutine(FindAnyObjectByType<PlayerHealth>().FlashSprite());
-                    StartCoroutine(UltraShieldCoroutine());
 
                     visuals.StartGlow(new Color(0.9f, 0.6f, 1f), ultraShieldDuration);
+                    powerUpCoolDownDuration = ultraShieldDuration;
+                    StartCoroutine(UltraShieldCoroutine());
                     StartCoroutine(PowerUpCooldown());
                 }
                 break;
